@@ -1,7 +1,10 @@
+mixin ngModule(name)
+  script(src='js/' + name + '/' + name + 'Controller.js')
+
 doctype html
-html(lang="en", data-ng-app="featureApp")
+html(lang='en', data-ng-app='featureApp')
   head
-    title XaaS
+    title FS-Feature
     // meta(name='viewport' content='width=device-width')
     link(rel='stylesheet' href='/vendors/bootstrap/css/bootstrap.css')
     block headCSS
@@ -9,7 +12,7 @@ html(lang="en", data-ng-app="featureApp")
   body
     header#pageHeader
       .container
-        h1 XaaS: eXperiments as a Service
+        h1 Feature: Feature Flags as a Service
         .account-info(data-account-info)
 
     .container
@@ -17,7 +20,12 @@ html(lang="en", data-ng-app="featureApp")
 
     script(src='//code.jquery.com/jquery-2.1.1.min.js')
     script(src='/vendors/bootstrap/js/bootstrap.min.js')
-    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js')
-    //- script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js')
-    // script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-touch.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js')
+
+    // Always include the app and the AccountInfo
+    script(src='js/app/index.js')
+
+    script(src='js/AccountInfo/AccountInfoDirective.js')
+    script(src='js/AccountInfo/AccountInfoService.js')
+
     block footJS

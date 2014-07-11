@@ -1,21 +1,24 @@
 extends theme
 
+
 block headCSS
-  link(rel='stylesheet' href='/vendors/range-slider/css/angular.rangeSlider.css')
-  link(rel='stylesheet' href='/vendors/angular-toggle-switch/angular-toggle-switch.css')
-  link(rel='stylesheet' href='/vendors/angular-toggle-switch/angular-toggle-switch-bootstrap.css')
+  //- link(rel='stylesheet' href='/vendors/range-slider/css/angular.rangeSlider.css')
+  //- link(rel='stylesheet' href='/vendors/angular-toggle-switch/angular-toggle-switch.css')
+  //- link(rel='stylesheet' href='/vendors/angular-toggle-switch/angular-toggle-switch-bootstrap.css')
+
 
 block content
   div(data-ng-view)
 
+
 block footJS
-  script(src='https://code.angularjs.org/1.2.16/angular-route.min.js')
-  script(src='/vendors/range-slider/js/angular.rangeSlider.js')
-  script(src='/vendors/angular-toggle-switch/angular-toggle-switch.min.js')
-  script(src='js/app.js')
-  script(src='js/controllers.js')
-  script(src='js/directives.js')
-  script(src='js/accountInfo/AccountInfoDirective.js')
-  script(src='js/accountInfo/AccountInfoService.js')
-  script(src='js/services.js')
-  script(src='js/filters.js')
+  script(src='https://code.angularjs.org/1.2.19/angular-route.js')
+  script(src='js/app/routes.js')
+  +ngModule('AppList')
+  //- script(src='https://code.angularjs.org/1.2.16/angular-route.min.js')
+  //- script(src='/vendors/range-slider/js/angular.rangeSlider.js')
+  //- script(src='/vendors/angular-toggle-switch/angular-toggle-switch.min.js')
+  //- script(src='js/controllers.js')
+  //- script(src='js/directives.js')
+  //- script(src='js/services.js')
+  //- script(src='js/filters.js')

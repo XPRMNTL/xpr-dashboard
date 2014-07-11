@@ -1,6 +1,6 @@
 /* global window */
 
-(function(angular, $) {
+(function(angular, $, mountPath) {
   'use strict';
 
   console.log('hiDirective');
@@ -14,7 +14,7 @@
       console.log('service?');
       return {
         restrict: 'A',
-        templateUrl: 'templates/accountInfo.html',
+        templateUrl: mountPath + 'js/AccountInfo/AccountInfo.html',
         scope: '=',
         link: function(scope, element) {
           service
@@ -31,4 +31,4 @@
     }
   ]);
 
-})(window.angular, window.jQuery);
+})(window.angular, window.jQuery, window.mountPath || '/');
