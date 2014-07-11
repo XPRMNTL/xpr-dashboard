@@ -1,0 +1,106 @@
+
+body > header
+  background #036F73
+  color #FEF2D8
+  overflow auto
+
+  h1
+    float left
+
+.account-info
+  float right
+  margin 20px 0 10px
+
+  .btn
+    margin-left 20px
+
+  .person
+    img
+      max-width 25px
+      max-height 25px
+
+.flex
+  display -ms-flexbox
+  -ms-box-orient horizontal
+
+  display -webkit-flex
+  display -moz-flex
+  display -ms-flex
+  display flex
+
+  &.center
+    -webkit-align-items center
+    -moz-align-items center
+    -ms-align-items center
+    align-items center
+
+.appList
+  margin 0 0 12px
+  background #EEE
+
+  > header
+    background #F18C79
+    color #FFF
+    padding 5px 15px
+    text-align right
+    overflow hidden
+
+    h3
+      float left
+      margin 0
+
+    .switch, .glyphicon
+      vertical-align middle
+
+  section
+    padding 0 25px 25px
+
+    .experiments
+      padding 0
+
+      li
+        display block
+        margin 0 0 5px 0
+
+        .expName
+          font-weight bold
+          display inline-block
+          min-width 100px
+
+      button
+        text-transform capitalize
+
+    header
+      font-size 1.5em
+      display inline-block
+
+    .form-inline
+      input[type="text"]
+        width 400px
+
+      .references
+        label
+          text-transform capitalize
+
+      .ranged
+        display inline-block
+        min-width 350px
+        padding-left 35px
+        padding-right 40px
+        vertical-align top
+
+        .ngrs-range-slider
+          margin 0
+
+          .ngrs-value
+            top 2px
+
+            &.ngrs-value-min
+              left -30px
+            &.ngrs-value-max
+              right -40px
+
+
+  &.open
+    > section
+      // max-height 1000px

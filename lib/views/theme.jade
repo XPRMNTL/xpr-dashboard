@@ -1,0 +1,23 @@
+doctype html
+html(lang="en", data-ng-app="featureApp")
+  head
+    title XaaS
+    // meta(name='viewport' content='width=device-width')
+    link(rel='stylesheet' href='/vendors/bootstrap/css/bootstrap.css')
+    block headCSS
+    link(rel='stylesheet' href='/css/feature.css')
+  body
+    header#pageHeader
+      .container
+        h1 XaaS: eXperiments as a Service
+        .account-info(data-account-info)
+
+    .container
+      block content
+
+    script(src='//code.jquery.com/jquery-2.1.1.min.js')
+    script(src='/vendors/bootstrap/js/bootstrap.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js')
+    //- script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js')
+    // script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-touch.js')
+    block footJS

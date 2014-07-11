@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+NODE_ENV=test `pwd`/node_modules/.bin/mocha --reporter spec test/server/

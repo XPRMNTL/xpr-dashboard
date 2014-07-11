@@ -1,0 +1,22 @@
+<nav class="accountInfo" data-ng-switch on="user.isLoggedIn">
+  <div class="flex center" data-ng-switch-when="true">
+    <h4 class="person">
+      <img data-ng-src="{{ user.img }}" />
+      <span data-ng-bind="user.name"></span>
+    </h4>
+    <a
+      target="_self"
+      href="/auth/logout"
+      class="btn btn-danger"
+      data-loading-text="kthxbai..."
+      role="button">Sign Out</a>
+  </div>
+  <div data-ng-switch-when="false">
+    <a
+      target="_self"
+      href="/auth/github"
+      class="btn btn-warning"
+      data-loading-text="Redirecting..."
+      role="button">Sign In</a>
+  </div>
+</nav>
