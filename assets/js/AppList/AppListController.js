@@ -1,5 +1,5 @@
 /* global window */
-(function(angular, mountPath) {
+(function(angular) {
   'use strict';
 
   var app = angular.module('featureApp');
@@ -8,8 +8,12 @@
     '$scope',
 
     function AppListController($scope) {
+
+      $scope.appList = [
+        { name: 'Pretend App 1', count: 2 },
+        { name: 'Pretend App 2', count: 5 }
+      ];
       console.info($scope);
-      console.log(mountPath);
     }
   ]);
 

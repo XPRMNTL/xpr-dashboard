@@ -16,6 +16,15 @@ html(lang='en', data-ng-app='featureApp')
         .account-info(data-account-info)
 
     .container
+      if unauthorized
+        .alert.alert-danger.alert-dismissable
+          button(type='button', class='close', data-dismiss='alert', aria-hidden='true') &times;
+          strong='Sign in Failed! '
+          = 'You don\'t have authorization to view this page. You must be a member of the '
+          strong fs-eng
+          = ' or '
+          strong fs-webdev
+          = ' to view this content '
       block content
 
     script(src='//code.jquery.com/jquery-2.1.1.min.js')

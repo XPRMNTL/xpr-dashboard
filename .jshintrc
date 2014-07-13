@@ -17,7 +17,7 @@
   "strict": true,
   "trailing": true,
   "maxdepth": 4,
-  "maxcomplexity": 5,
+  "maxcomplexity": 10,
   "maxlen": 150,
   "devel": true,
   "node": true

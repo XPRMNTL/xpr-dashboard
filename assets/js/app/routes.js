@@ -20,16 +20,12 @@
     '$routeProvider',
     '$locationProvider',
 
-    function() {
-      console.log(arguments);
-    }
+    function($routeProvider, $locationProvider) {
+      $routeProvider
+        .when('/', getRoute('AppList'));
 
-    // function($routeProvider, $locationProvider) {
-    //   $routeProvider
-    //     .when('/', getRoute('Index'));
-    //
-    //   $locationProvider.html5Mode(true);
-    // }
+      $locationProvider.html5Mode(true);
+    }
   ]);
 
   function getRoute(name) {

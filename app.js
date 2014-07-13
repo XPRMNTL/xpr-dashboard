@@ -4,13 +4,17 @@
   /**
    * Local Dependencies
    */
-  var stack = require('./lib/stack');
+  var stack = require('./lib/stack')
+    , GithubAPI = require('./lib/githubAPI');
 
   /**
    * Local Vars
    */
   var app = module.exports = stack
-    , port = process.env.PORT || 5000;
+    , port = process.env.PORT || 5000
+    , authGithubOrgs = process.env.AUTH_GITHUB_ORGS.split(',');
+
+  GithubAPI.prototype.orgs = authGithubOrgs;
 
   /* Start ze app */
   app.listen(port, function() {
