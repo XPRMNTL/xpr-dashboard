@@ -3,7 +3,7 @@
 (function(angular, $, mountPath) {
   'use strict';
 
-  console.log('hiDirective');
+  console.info('AccountInfoDirective Loaded');
 
   var app = angular.module('featureApp');
 
@@ -11,7 +11,6 @@
     'userService',
 
     function(service) {
-      console.log('service?');
       return {
         restrict: 'A',
         templateUrl: mountPath + 'js/AccountInfo/AccountInfo.html',

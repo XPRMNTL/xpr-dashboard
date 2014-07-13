@@ -2,6 +2,8 @@
 (function(angular) {
   'use strict';
 
+  console.info('AppListController loaded');
+
   var app = angular.module('featureApp');
 
   app.controller('AppListController', [
