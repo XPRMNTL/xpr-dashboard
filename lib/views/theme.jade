@@ -1,10 +1,10 @@
-mixin ngModule(name)
-  script(src='js/' + name + '/' + name + 'Controller.js')
+include partials/mixins
 
 doctype html
 html(lang='en', data-ng-app='featureApp')
   head
     title FS-Feature
+    base(href='' + baseUrl)
     // meta(name='viewport' content='width=device-width')
     link(rel='stylesheet' href='/vendors/bootstrap/css/bootstrap.css')
     block headCSS

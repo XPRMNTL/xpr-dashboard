@@ -22,7 +22,8 @@
 
     function($routeProvider, $locationProvider) {
       $routeProvider
-        .when('/', getRoute('AppList'));
+        .when('/', getRoute('AppList'))
+        .when('/editApps', getRoute('EditApps'));
 
       $locationProvider.html5Mode(true);
     }
@@ -30,7 +31,7 @@
 
   function getRoute(name) {
     var config = {
-      templateUrl: '{0}js/{1}/{1}.html'.format(mountPath, name),
+      templateUrl: '{0}js/{1}/{1}View.html'.format(mountPath, name),
       controller: '{0}Controller'.format(name)
     };
     console.log(config);

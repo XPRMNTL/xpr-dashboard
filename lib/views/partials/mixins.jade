@@ -1,0 +1,23 @@
+// For adding an Angular Module
+//
+// `flags` is a set of bit flags
+// Start with 0. If you want the:
+//   Controller, add 1
+//   Service, add 2
+//   Directives, add 4
+//   Filters, add 8
+mixin ngModule(name, flags)
+  if ! flags
+    - flags = 1
+
+  if flags & 1
+    script(src='js/' + name + '/' + name + 'Controller.js')
+
+  if flags & 2
+    script(src='js/' + name + '/' + name + 'Service.js')
+
+  if flags & 4
+    script(src='js/' + name + '/' + name + 'Service.js')
+
+  if flags & 8
+    script(src='js/' + name + '/' + name + 'Filters.js')
