@@ -26,5 +26,8 @@
   },
   "scripts": {
     "test": "foreman run ./bin/tests"
+  },
+  "engines": {
+    "node" : "0.10.x"
   }
 }
