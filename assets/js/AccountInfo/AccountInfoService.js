@@ -7,7 +7,7 @@
 
   // No [] here to make sure we're getting and not creating
   var app = angular.module('featureApp')
-    , API = mountPath + 'auth/';
+    , API = mountPath + '/auth/';
 
   app.factory('userService', [
     '$http',
@@ -56,4 +56,4 @@
     }
   ]);
 
-})(window.angular, window.mountPath || '/');
+})(window.angular, window.mountPath || '');

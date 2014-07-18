@@ -1,1 +1,83 @@
 <h1>EditAppsView</h1>
+
+<table class="table table-hover table-striped table-condensed">
+  <caption>
+    <span class="pull-right">
+      <label class="pull-right">
+        <span title="{{ fetched.format }}" data-ng-hide="loading">List cached {{ fetched.fromNow }}</span>
+        <a class="btn btn-primary" data-ng-click="refreshList()" data-ng-disabled="loading">
+          <span class="glyphicon glyphicon-refresh"></span> Refresh List
+        </a>
+      </label>
+    </span>
+  </caption>
+  <tr>
+    <th colspan="2">App Name
+      <label class="pull-right">
+        <span class="input-group input-group-sm">
+          <span class="input-group-addon">
+            Filter
+          </span>
+          <input type="text" class="form-control" data-ng-model="search.name">
+          <span class="input-group-btn">
+            <button
+              class="btn btn-danger"
+              data-ng-disabled="! search.name.length"
+              data-ng-click="clearSearch()"
+            >
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </span>
+        </span>
+      </label>
+    </th>
+  </tr>
+  <tbody
+    data-ng-repeat-start="(org, appList) in orgList"
+    data-ng-class="{
+      true : 'hide'
+    }[loading]"
+  >
+    <tr>
+      <th class="info" colspan="2" data-ng-click="toggleView($index)">{{ org }} ({{ (appList | filter:search).length }})
+        <span
+          class="glyphicon glyphicon-chevron-left pull-right"
+          data-ng-class="{
+            true : 'hide'
+          }[!! open[$index]]"
+        ></span>
+        <span
+          class="glyphicon glyphicon-chevron-down pull-right"
+          data-ng-class="{
+            false : 'hide'
+          }[!! open[$index]]"
+        ></span>
+      </th>
+    </tr>
+  </tbody>
+  <tbody
+    data-ng-repeat-end
+    data-ng-class="{
+      false : 'hide'
+    }[(!!open[$index]) && (! loading)]"
+  >
+    <tr data-ng-repeat="app in appList | filter:search">
+      <td data-ng-bind="app.name">This list appears to be broken</td>
+      <td>
+        <button class="btn btn-primary btn-xs">
+          <span class="glyphicon glyphicon-plus" data-ng-disabled="! app.permissions.push"></span>
+          <span>Add</span>
+        </button>
+        <button class="btn btn-info btn-xs">
+          <span class="glyphicon glyphicon-edit"></span>
+          <span>Edit</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tr>
+    <td>
+      <loading status="loading"></loading>
+    </td>
+  </tr>
+</table>

@@ -28,6 +28,7 @@
 
 ## Ideas
 * When scaling up an experiment, show diff change before "apply".
+* Send experiment changes to Status Dashboard
 
 
 ## Things to remember to test

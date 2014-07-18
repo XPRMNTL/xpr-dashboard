@@ -5,7 +5,7 @@
    * Local Dependencies
    */
   var stack = require('./lib/stack')
-    , GithubAPI = require('./lib/githubAPI');
+    , GithubAPI = require('./lib/utils/githubAPI');
 
   /**
    * Local Vars

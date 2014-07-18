@@ -10,7 +10,7 @@
     '$scope',
 
     function BaseController($scope) {
-      console.log('baseControllered');
+      console.info('baseControllered');
       $scope.loading = true;
     }
   ]);

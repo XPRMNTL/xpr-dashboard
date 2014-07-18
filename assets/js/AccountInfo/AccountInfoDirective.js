@@ -13,7 +13,7 @@
     function(service) {
       return {
         restrict: 'A',
-        templateUrl: mountPath + 'js/AccountInfo/AccountInfo.html',
+        templateUrl: mountPath + '/js/AccountInfo/AccountInfo.html',
         scope: '=',
         link: function(scope, element) {
           service
@@ -30,4 +30,4 @@
     }
   ]);
 
-})(window.angular, window.jQuery, window.mountPath || '/');
+})(window.angular, window.jQuery, window.mountPath || '');

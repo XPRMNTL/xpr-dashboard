@@ -6,4 +6,4 @@
 
   angular.module('featureApp', [ 'ngRoute' ]);
 
-})(window.angular, window.mountPath || '/');
+})(window.angular, window.mountPath || '');

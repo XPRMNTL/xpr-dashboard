@@ -31,7 +31,7 @@
 
   function getRoute(name) {
     var config = {
-      templateUrl: '{0}js/{1}/{1}View.html'.format(mountPath, name),
+      templateUrl: '{0}/js/{1}/{1}View.html'.format(mountPath, name),
       controller: '{0}Controller'.format(name)
     };
     return config;
@@ -39,4 +39,4 @@
 
 
 
-})(window.angular, window.mountPath || '/');
+})(window.angular, window.mountPath || '');
