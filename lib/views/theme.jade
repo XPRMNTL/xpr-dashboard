@@ -35,7 +35,9 @@ html(lang='en', data-ng-app='featureApp')
     // Always include the app and the AccountInfo
     script(src='js/app/index.js')
 
-    script(src='js/AccountInfo/AccountInfoDirective.js')
-    script(src='js/AccountInfo/AccountInfoService.js')
+    +ngModule('AccountInfo', 6)
+
+    //- script(src='js/AccountInfo/AccountInfoDirectives.js')
+    //- script(src='js/AccountInfo/AccountInfoService.js')
 
     block footJS

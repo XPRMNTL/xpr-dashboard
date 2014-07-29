@@ -1,0 +1,20 @@
+<tr>
+  <td width="99%" data-ng-bind="app.name">This list appears to be broken</td>
+  <td>
+    <form data-ng-submit="submit()">
+      <button
+        class="btn btn-primary btn-xs"
+        data-ng-disabled="(! app.permissions.push) || saving"
+        data-btn-text="add"
+        data-status="status"
+      >
+        <span class="glyphicon glyphicon-plus"></span>
+        <span>Add</span>
+      </button>
+    </form>
+    <!-- <button class="btn btn-info btn-xs">
+      <span class="glyphicon glyphicon-edit"></span>
+      <span>Edit</span>
+    </button> -->
+  </td>
+</tr>

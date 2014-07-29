@@ -17,7 +17,7 @@ mixin ngModule(name, flags)
     script(src='js/' + name + '/' + name + 'Service.js')
 
   if flags & 4
-    script(src='js/' + name + '/' + name + 'Service.js')
+    script(src='js/' + name + '/' + name + 'Directives.js')
 
   if flags & 8
     script(src='js/' + name + '/' + name + 'Filters.js')

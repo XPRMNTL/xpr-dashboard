@@ -21,6 +21,11 @@
         $scope.open[index] = ! $scope.open[index];
       };
 
+      $scope.addApp = function(app) {
+        console.log(app);
+        // appServic
+      };
+
       $scope.refreshList = function() {
         // I do NOT want to get this happening a bunch at a time
         if ($scope.loading) return;

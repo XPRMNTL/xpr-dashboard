@@ -39,7 +39,7 @@
     }[loading]"
   >
     <tr>
-      <th class="info" colspan="2" data-ng-click="toggleView($index)">{{ org }} ({{ (appList | filter:search).length }})
+      <th class="info" colspan="2" data-ng-click="toggleView($index)">{{ org }} ({{ (appList | filter:search).length }} repos)
         <span
           class="glyphicon glyphicon-chevron-left pull-right"
           data-ng-class="{
@@ -61,23 +61,7 @@
       false : 'hide'
     }[(!!open[$index]) && (! loading)]"
   >
-    <tr data-ng-repeat="app in appList | filter:search">
-      <td data-ng-bind="app.name">This list appears to be broken</td>
-      <td>
-        <button class="btn btn-primary btn-xs">
-          <span class="glyphicon glyphicon-plus" data-ng-disabled="! app.permissions.push"></span>
-          <span>Add</span>
-        </button>
-        <button class="btn btn-info btn-xs">
-          <span class="glyphicon glyphicon-edit"></span>
-          <span>Edit</span>
-        </button>
-      </td>
-    </tr>
+    <tr data-app-item data-ng-repeat="app in appList | filter:search"></tr>
   </tbody>
-  <tr>
-    <td>
-      <loading status="loading"></loading>
-    </td>
-  </tr>
 </table>
+<loading status="loading"></loading>

@@ -97,3 +97,6 @@ body > header h1 {
 .appList section .form-inline .ranged .ngrs-range-slider .ngrs-value.ngrs-value-max {
   right: -40px;
 }
+.textNode {
+  text-transform: capitalize;
+}
