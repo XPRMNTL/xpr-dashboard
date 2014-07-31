@@ -10,31 +10,45 @@
     function() {
       return {
         restrict: 'A',
-        template: '<button><span class="glyph"></span> <span class="textNode"></span></button>',
+        template: '<button><span class="glyphicon glyphicon-ban-circle"></span> <span class="textNode"></span></button>',
         replace: true,
         scope: {
           status: '=status'
         },
         link: function(scope, element, attrs) {
           var glyphMap = {
-              add : 'glyphicon glyphicon-plus',
-              unavailable : 'glyphicon glyphicon-ban-circle'
+              add : 'glyphicon-plus',
+              edit : 'glyphicon-cog',
+              failed : 'glyphicon-warning-sign',
+              success: 'glyphicon-ok',
+              unavailable : 'glyphicon-ban-circle'
+            }
+            , classMap = {
+              failed: 'btn-danger',
+              conflict: 'btn-danger',
+              success: 'btn-success'
             }
             , textMap = {
               add: 'Add'
             };
           var $el = $(element)
-            , $g = $el.find('.glyph').removeClass()
+            , $g = $el.find('.glyphicon')
             , $t = $el.find('.textNode')
-            , btnType = attrs.btnText;
+            , btnType = attrs.btnText
+            , retry = attrs.retry
+            , enabled = ['ready', 'edit'];
+
+          if (retry === 'true') enabled.push('failed');
 
           textMap.ready = textMap[btnType];
           glyphMap.ready = glyphMap[btnType];
 
           scope.$watch('status', function(newVal) {
-            $el.prop('disabled', newVal !== 'ready');
+            $el.prop('disabled', (! ~enabled.indexOf(newVal)));
             $t.text(textMap[newVal] || newVal);
-            $g.removeClass().addClass(glyphMap[newVal] || glyphMap.unavailable);
+            // $g.removeClass().addClass(glyphMap[newVal] || glyphMap.unavailable);
+            $g[0].className = $g[0].className.replace(/\bglyphicon-.*\b/g, glyphMap[newVal] || glyphMap.unavailable);
+            $el[0].className = $el[0].className.replace(/btn-(default|primary|success|info|warning|danger|link)/g, classMap[newVal] || 'btn-primary');
           });
         }
       };

@@ -1,16 +1,30 @@
 <tr>
   <td width="99%" data-ng-bind="app.name">This list appears to be broken</td>
-  <td>
-    <form data-ng-submit="submit()">
-      <button
-        class="btn btn-primary btn-xs"
-        data-ng-disabled="(! app.permissions.push) || saving"
-        data-btn-text="add"
-        data-status="status"
-      >
-        <span class="glyphicon glyphicon-plus"></span>
-        <span>Add</span>
-      </button>
+  <td class="actions">
+    <form data-ng-submit="submit()" data-ng-hide="exists">
+      <label>
+        {{ failText }}
+        <button
+          class="btn btn-primary btn-xs"
+          data-ng-disabled="(! app.permissions.push) || saving"
+          data-btn-text="add"
+          data-retry="true"
+          data-status="status"
+        >
+          <span class="glyphicon glyphicon-plus"></span>
+          <span>Add</span>
+        </button>
+      </label>
+    </form>
+    <form data-ng-submit="edit()" data-ng-show="exists">
+      <label>
+        {{ failText }}
+        <button class="btn btn-default btn-xs" data-ng-show="exists">
+          <span class="glyphicon glyphicon-cog"></span>
+          <span>Edit</span>
+        </button>
+
+      </label>
     </form>
     <!-- <button class="btn btn-info btn-xs">
       <span class="glyphicon glyphicon-edit"></span>
