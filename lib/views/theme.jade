@@ -12,10 +12,11 @@ html(lang='en', data-ng-app='featureApp')
   body
     header#pageHeader
       .container
-        h1 Feature: Feature Flags as a Service
+        h1
+          a(href='/') Feature: Feature Flags as a Service
         .account-info(data-account-info)
 
-    .container
+    .container(data-ng-class='loading ? "loading" : "loaded"')
       if unauthorized
         .alert.alert-danger.alert-dismissable
           button(type='button', class='close', data-dismiss='alert', aria-hidden='true') &times;
@@ -31,9 +32,10 @@ html(lang='en', data-ng-app='featureApp')
     script(src='/vendors/bootstrap/js/bootstrap.min.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js')
     script(src='https://code.angularjs.org/1.2.19/angular-route.js')
+    //- script(src='/vendors/ui-bootstrap/ui-bootstrap-0.11.0.min.js')
 
     // Always include the app and the AccountInfo
-    script(src='js/app/index.js')
+    script(src='js/Base/index.js')
 
     +ngModule('AccountInfo', 6)
 

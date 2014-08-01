@@ -9,16 +9,20 @@ block headCSS
 
 block content
   div(data-ng-view)
+  loading(status='loading')
 
 
 block footJS
-  script(src='js/app/routes.js')
-  script(src='js/app/BaseController.js')
-  script(src='js/app/BaseDirectives.js')
-  script(src='js/app/BaseService.js')
+  script(src='js/Base/routes.js')
+  +ngModule('Base', 5)
+  //- script(src='js/app/BaseController.js')
+  //- script(src='js/app/BaseDirectives.js')
+  //- script(src='js/app/BaseService.js')
   script(src='vendors/moment/moment.min.js')
-  +ngModule('AppList')
-  +ngModule('EditApps', 5)
+  +ngModule('App', 14)
+  +ngModule('App','AppList')
+  +ngModule('App','AddApp', 1)
+  +ngModule('App','EditApp', 1)
   +ngModule('Github', 2)
   //- script(src='https://code.angularjs.org/1.2.16/angular-route.min.js')
   //- script(src='/vendors/range-slider/js/angular.rangeSlider.js')

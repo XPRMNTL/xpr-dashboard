@@ -1,0 +1,54 @@
+<h4>
+  <a href="/">
+    <span class="glyphicon glyphicon-arrow-left"></span>
+    Back to List
+  </a>
+</h4>
+<article class="hideLoading">
+  <section>
+    <form data-ng-submit="toggleEdit()">
+      <h2>
+        <span data-ng-bind="app.name || app.github_repo"></span>
+        <button class="btn btn-sm btn-primary" data-ng-hide="editMode">
+          <span class="glyphicon glyphicon-edit"></span>
+          Edit
+        </button>
+      </h2>
+    </form>
+
+    <form role="form" class="form-horizontal" data-ng-show="editMode">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">App Name</label>
+        <div class="col-sm-10">
+          <input class="form-control" data-ng-model="app.name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Github Repo</label>
+        <div class="col-sm-10">
+          <input class="form-control" data-ng-model="app.github_repo">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Dev Key</label>
+        <div class="col-sm-10">
+          <input class="form-control" disabled data-ng-model="app.dev_key">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+          <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Save
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <dl class="dl-horizontal" data-ng-hide="editMode">
+      <dt>Github Repo</dt>
+      <dd data-ng-bind="app.github_repo"></dd>
+      <dt>Dev Key</dt>
+      <dd data-ng-bind="app.dev_key"></dd>
+    </dl>
+  </section>
+</article>

@@ -6,18 +6,25 @@
 //   Service, add 2
 //   Directives, add 4
 //   Filters, add 8
-mixin ngModule(name, flags)
+mixin ngModule(dir, name, flags)
+  if typeof name === 'number'
+    - flags = name
+    - name = dir
+
+  if typeof name === 'undefined'
+    - name = dir
+
   if ! flags
     - flags = 1
 
   if flags & 1
-    script(src='js/' + name + '/' + name + 'Controller.js')
+    script(src='js/' + dir + '/' + name + 'Controller.js')
 
   if flags & 2
-    script(src='js/' + name + '/' + name + 'Service.js')
+    script(src='js/' + dir + '/' + name + 'Service.js')
 
   if flags & 4
-    script(src='js/' + name + '/' + name + 'Directives.js')
+    script(src='js/' + dir + '/' + name + 'Directives.js')
 
   if flags & 8
-    script(src='js/' + name + '/' + name + 'Filters.js')
+    script(src='js/' + dir + '/' + name + 'Filters.js')

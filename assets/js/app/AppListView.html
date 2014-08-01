@@ -1,0 +1,18 @@
+<h1>AppListView</h1>
+
+<table class="table table-hover table-striped table-condensed">
+  <caption>
+    <a href="/add" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-edit"></span> Edit List</a>
+  </caption>
+  <thead>
+    <tr>
+      <th colspan="2">App Name</th>
+    </tr>
+  </thead>
+  <tbody class="hideLoading">
+    <tr data-app-item="edit" data-ng-repeat="app in appList | filter:search"></tr>
+    <tr data-ng-hide="appList.length">
+      <td colspan="2">This list is empty. <a href="/add">Please add a repo.</a></td>
+    </tr>
+  </tbody>
+</table>

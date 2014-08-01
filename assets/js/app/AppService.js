@@ -18,7 +18,9 @@
       return {
         create: create,
         exists: exists,
-        fromRepo: fromRepo
+        fromRepo: fromRepo,
+        list: list,
+        save: save
       };
 
       function create(repoName, cb) {
@@ -42,8 +44,8 @@
         var dfd = $q.defer();
 
         fromRepo(repoName)
-          .then(function(resp) {
-            var exists = !! resp.data.length;
+          .then(function(data) {
+            var exists = data !== undefined;
 
             if (cb) cb(null, exists);
             return dfd.resolve(exists);
@@ -65,13 +67,48 @@
           params: {
             github_repo: repoName
           }
-        }).then(function(data) {
+        }).then(function(resp) {
+          var data = resp.data[0];
           if (cb) cb(null, data);
           return dfd.resolve(data);
         }, function(err) {
           if (cb) cb(err);
           return dfd.reject(err);
         });
+
+        return dfd.promise;
+      }
+
+      function list(cb) {
+        var dfd = $q.defer();
+
+        $http
+          .get(API)
+          .then(function(resp) {
+            var data = resp.data;
+            if (cb) cb(null, data);
+            dfd.resolve(data);
+          }, function(err) {
+            if (cb) cb(err);
+            return dfd.reject(err);
+          });
+
+        return dfd.promise;
+      }
+
+      function save(app, cb) {
+        var dfd = $q.defer()
+          , url = API + app._id;
+
+        $http
+          .post(url, app)
+          .then(function(resp) {
+            console.log(resp);
+          }, function(err) {
+            console.error(err);
+            if (cb) cb(err);
+            dfd.reject(err);
+          });
 
         return dfd.promise;
       }

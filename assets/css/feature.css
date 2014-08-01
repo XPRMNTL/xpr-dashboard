@@ -3,6 +3,10 @@ body > header {
   color: #fef2d8;
   overflow: auto;
 }
+body > header a,
+body > header a:hover {
+  color: #fef2d8;
+}
 body > header h1 {
   float: left;
 }
@@ -16,6 +20,9 @@ body > header h1 {
 .account-info .person img {
   max-width: 25px;
   max-height: 25px;
+}
+.container.loading .hideLoading {
+  display: none;
 }
 .flex {
   display: -ms-flexbox;

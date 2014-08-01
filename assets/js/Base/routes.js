@@ -22,16 +22,19 @@
 
     function($routeProvider, $locationProvider) {
       $routeProvider
-        .when('/', getRoute('AppList'))
-        .when('/editApps', getRoute('EditApps'));
+        .when('/', getRoute('App', 'AppList'))
+        .when('/add', getRoute('App', 'AddApp'))
+        .when('/edit/:repo', getRoute('App', 'EditApp'));
 
       $locationProvider.html5Mode(true);
     }
   ]);
 
-  function getRoute(name) {
+  function getRoute(dir, name) {
+    if (! name) name = dir;
+
     var config = {
-      templateUrl: '{0}/js/{1}/{1}View.html'.format(mountPath, name),
+      templateUrl: '{0}/js/{1}/{2}View.html'.format(mountPath, dir, name),
       controller: '{0}Controller'.format(name)
     };
     return config;

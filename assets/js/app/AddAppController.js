@@ -2,16 +2,16 @@
 (function(angular, moment) {
   'use strict';
 
-  console.info('EditAppsController loaded');
+  console.info('AddAppController loaded');
 
   var app = angular.module('featureApp');
 
-  app.controller('EditAppsController', [
-    '$scope',
+  app.controller('AddAppController', [
     '$controller',
+    '$scope',
     'GithubService',
 
-    function EditAppsController($scope, $controller, github) {
+    function AddAppController($controller, $scope, github) {
       $controller('BaseController', { $scope: $scope });
       $scope.open = [];
 
@@ -28,9 +28,9 @@
 
       $scope.refreshList = function() {
         // I do NOT want to get this happening a bunch at a time
-        if ($scope.loading) return;
+        if ($scope._loaded()) return;
 
-        $scope.loading = true;
+        $scope._loaded(true);
         fetchList(true);
       };
 
@@ -60,7 +60,7 @@
 
             $scope.orgList = orgList;
             $scope.fetched = fetched;
-            $scope.loading = false;
+            $scope._loaded(false);
           });
       }
     }

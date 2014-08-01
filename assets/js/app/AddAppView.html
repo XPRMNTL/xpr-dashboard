@@ -1,0 +1,64 @@
+<h1>AddAppView</h1>
+
+<table class="table table-hover table-striped table-condensed">
+  <caption>
+    <h4 class="pull-left">
+      <a href="/" class="pull-left">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        Back to List
+      </a>
+    </h4>
+    <span class="pull-right">
+      <label>
+        <span class="hideLoading" title="{{ fetched.format }}">List cached {{ fetched.fromNow }}</span>
+        <a class="btn btn-primary" data-ng-click="refreshList()" data-ng-disabled="loading">
+          <span class="glyphicon glyphicon-refresh"></span> Refresh List
+        </a>
+      </label>
+    </span>
+  </caption>
+  <thead>
+    <tr>
+      <th colspan="2">App Name
+        <label class="pull-right">
+          <span class="input-group input-group-sm">
+            <span class="input-group-addon">
+              Filter
+            </span>
+            <input type="text" class="form-control" data-ng-model="search.name">
+            <span class="input-group-btn">
+              <button
+                class="btn btn-danger"
+                data-ng-disabled="! search.name.length"
+                data-ng-click="clearSearch()"
+              >
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </span>
+          </span>
+        </label>
+      </th>
+    </tr>
+  </thead>
+  <tbody class="hideLoading" data-ng-repeat-start="(org, appList) in orgList">
+    <tr>
+      <th class="info" colspan="2" data-ng-click="toggleView($index)">{{ org }} ({{ (appList | filter:search).length }} repos)
+        <span
+          class="glyphicon pull-right"
+          data-ng-class="{
+            true: 'glyphicon-chevron-down',
+            false: 'glyphicon-chevron-left'
+          }[!! open[$index]]"
+        ></span>
+      </th>
+    </tr>
+  </tbody>
+  <tbody class="hideLoading"
+    data-ng-repeat-end
+    data-ng-class="{
+      false : 'hide'
+    }[(!!open[$index])]"
+  >
+    <tr data-app-item="add" data-ng-repeat="app in appList | filter:search"></tr>
+  </tbody>
+</table>
