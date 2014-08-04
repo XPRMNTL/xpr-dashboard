@@ -100,10 +100,14 @@
         var dfd = $q.defer()
           , url = API + app._id;
 
+        if (! url) {
+          return $q.reject({ statusText: 'Does not exist' });
+        }
+
         $http
-          .post(url, app)
+          .put(url, app)
           .then(function(resp) {
-            console.log(resp);
+            dfd.resolve(resp.data);
           }, function(err) {
             console.error(err);
             if (cb) cb(err);

@@ -15,10 +15,8 @@
 
       $scope._loaded = function(state) {
         if (state === undefined) return $rootScope.loading;
-        console.log($rootScope);
 
         $rootScope.loading = state;
-        console.log('Loading: ' + state);
       };
       $scope._loaded(true);
 

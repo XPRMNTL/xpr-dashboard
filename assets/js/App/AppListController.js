@@ -17,9 +17,7 @@
       appService
         .list()
         .then(function(appList) {
-          console.log(appList);
           $scope.appList = appList;
-          console.log($scope._loaded);
           $scope._loaded(false);
         }, function(err) {
           // FIXME: What to do in case of error

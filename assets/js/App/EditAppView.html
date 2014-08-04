@@ -26,7 +26,7 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Github Repo</label>
         <div class="col-sm-10">
-          <input class="form-control" data-ng-model="app.github_repo">
+          <input class="form-control" disabled data-ng-model="app.github_repo">
         </div>
       </div>
       <div class="form-group">
@@ -37,7 +37,10 @@
       </div>
       <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
-          <button class="btn btn-primary">
+          <button class="btn btn-danger" data-ng-click="cancel()">
+            <span class="glyphicon glyphicon glyphicon-remove"></span> Cancel
+          </button>
+          <button class="btn btn-primary" data-ng-click="save()" data-ng-disabled="isUnchanged(app)">
             <span class="glyphicon glyphicon-floppy-disk"></span> Save
           </button>
         </div>

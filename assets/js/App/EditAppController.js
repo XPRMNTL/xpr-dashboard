@@ -16,14 +16,12 @@
       $controller('BaseController', { $scope: $scope });
 
       var repo = $routeParams.repo;
-
-      console.log(repo);
+      var master = {};
 
       appService
         .fromRepo(repo)
         .then(function(app) {
-          console.log(app);
-          $scope.app = app;
+          update(app);
           $scope._loaded(false);
         }, function(err) {
           // FIXME: what to do in case of error?
@@ -31,28 +29,40 @@
           alert('fetch error');
         });
 
+      $scope.cancel = function() {
+        $scope.app = angular.copy(master);
+        $scope.editMode = false;
+      };
+
       $scope.toggleEdit = function() {
         $scope.editMode = ! $scope.editMode;
 
         // FIXME: Do not allow them to edit the dev key
       };
 
+      $scope.isUnchanged = function(appData) {
+        return angular.equals(appData, master);
+      };
 
+      $scope.save = function() {
+        appService
+          .save($scope.app)
+          .then(function(data) {
+            update(data);
+            $scope.editMode = false;
+          }, function(err) {
+            $scope.failText = 'Create failed, sry: {0} ({1})'.format(err.statusText, err.status);
 
-      // appService
-      //   .list()
-      //   .then(function(appList) {
-      //     console.log(appList);
-      //     $scope.appList = appList;
-      //     // $scope.appList = [];
-      //     //   { name: 'Pretend App 1', count: 2 },
-      //     //   { name: 'Pretend App 2', count: 5 }
-      //     // ];
-      //   }, function(err) {
-      //     // FIXME: What to do in case of error
-      //     console.error(err);
-      //     alert('appList fetch err, what now?');
-      //   });
+            //FIXME: Error state for this
+            alert('Something went wrong...');
+            console.error(err);
+          });
+      };
+
+      function update(data) {
+        master = angular.copy(data);
+        $scope.app = data;
+      }
     }
   ]);
 
