@@ -23,6 +23,7 @@
           // FIXME: What to do in case of error
           console.error(err);
           alert('appList fetch err, what now?');
+          $scope._loaded(false);
         });
     }
   ]);

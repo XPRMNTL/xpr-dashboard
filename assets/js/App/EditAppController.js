@@ -18,6 +18,13 @@
       var repo = $routeParams.repo;
       var master = {};
 
+      $scope.experiments = [
+        {
+          name : 'sampleEx1',
+          type : 'boolean',
+        }
+      ];
+
       appService
         .fromRepo(repo)
         .then(function(app) {
@@ -36,8 +43,6 @@
 
       $scope.toggleEdit = function() {
         $scope.editMode = ! $scope.editMode;
-
-        // FIXME: Do not allow them to edit the dev key
       };
 
       $scope.isUnchanged = function(appData) {
