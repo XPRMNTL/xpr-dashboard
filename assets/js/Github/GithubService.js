@@ -1,4 +1,4 @@
-/* global window */
+/* global window, localStorage */
 (function(angular, mountPath) {
 
   'use strict';
@@ -21,21 +21,51 @@
 
       function getApps(refresh) {
         var dfd = $q.defer()
-          , url = API + '/apps';
+          , url = API + '/apps'
+          , list;
 
-        if (refresh) url += '?refresh';
+        if (! refresh) list = _local();
+
+        if (list) {
+          dfd.resolve(list);
+          return dfd.promise;
+        }
 
         $http.get(url)
           .success(function(data, status, headers) {
+
+            _local(data);
+
             var fetched = headers('x-created-time');
-            dfd.resolve([data, fetched]);
+            dfd.resolve({
+              list : data,
+              time : fetched
+            });
           })
           .error(function(data, status) {
             console.error(data, status);
             throw new Error('App Fetch Error');
+            //FIXME: Error State
           });
 
         return dfd.promise;
+
+        function _local(list) {
+          if (! list) {
+            try {
+              return JSON.parse(localStorage.getItem('addAppList'));
+            } catch (e) {
+              return false;
+            }
+          }
+
+          var data = {
+            list : list,
+            time : new Date()
+          };
+
+          localStorage.setItem('addAppList', JSON.stringify(data));
+        }
       }
     }
   ]);

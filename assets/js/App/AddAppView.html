@@ -59,6 +59,6 @@
       false : 'hide'
     }[(!!open[$index])]"
   >
-    <tr data-app-item="add" data-ng-repeat="app in appList | filter:search"></tr>
+    <tr data-app-item="add" data-ng-repeat="app in appList | orderBy : nameOrder | filter:search"></tr>
   </tbody>
 </table>

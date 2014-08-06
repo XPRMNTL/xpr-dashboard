@@ -13,6 +13,10 @@
     function BaseController($rootScope, $scope) {
       console.info('baseControllered');
 
+      $scope.clearSearch = function() {
+        $scope.search = {};
+      };
+
       $scope._loaded = function(state) {
         if (state === undefined) return $rootScope.loading;
 

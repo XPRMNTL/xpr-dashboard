@@ -37,6 +37,7 @@
                   .create(name)
                   .then(function() {
                     scope.status = 'success';
+                    scope.exists = true;
                   }, function failure(err) {
                     scope.failText = 'Create failed, sry: {0} ({1})'.format(err.statusText, err.status);
                     scope.status = 'failed';

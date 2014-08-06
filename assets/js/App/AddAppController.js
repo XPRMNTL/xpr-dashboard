@@ -21,11 +21,6 @@
         $scope.open[index] = ! $scope.open[index];
       };
 
-      $scope.addApp = function(app) {
-        console.log(app);
-        // appServic
-      };
-
       $scope.refreshList = function() {
         // I do NOT want to get this happening a bunch at a time
         if ($scope._loaded()) return;
@@ -34,12 +29,16 @@
         fetchList(true);
       };
 
+      $scope.nameOrder = function(item) {
+        return item.name;
+      };
+
       function fetchList(refresh) {
         github
           .getApps(refresh)
           .then(function(results) {
-            var orgList = results[0]
-              , fetched = results[1];
+            var orgList = results.list
+              , fetched = results.time;
 
             if (fetched) {
               fetched = moment(new Date(fetched));
@@ -53,10 +52,6 @@
                 format : 'I said I don\'t know!'
               };
             }
-
-            $scope.clearSearch = function() {
-              $scope.search.name = '';
-            };
 
             $scope.orgList = orgList;
             $scope.fetched = fetched;

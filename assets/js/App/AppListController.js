@@ -25,6 +25,12 @@
           alert('appList fetch err, what now?');
           $scope._loaded(false);
         });
+
+      $scope.nameOrder = function(item) {
+        if (item.name) return item.name;
+
+        return 'zzz' + item.github_repo;
+      };
     }
   ]);
 

@@ -2,15 +2,33 @@
 
 <table class="table table-hover table-striped table-condensed">
   <caption>
-    <a href="/add" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-edit"></span> Edit List</a>
+    <a href="/add" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Add to List</a>
   </caption>
   <thead>
     <tr>
-      <th colspan="2">App Name</th>
+      <th colspan="2">App Name
+        <label class="pull-right">
+          <span class="input-group input-group-sm">
+            <span class="input-group-addon">
+              Filter
+            </span>
+            <input type="text" class="form-control" data-ng-model="search.display_name">
+            <span class="input-group-btn">
+              <button
+                class="btn btn-danger"
+                data-ng-disabled="! search.display_name.length"
+                data-ng-click="clearSearch()"
+              >
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </span>
+          </span>
+        </label>
+      </th>
     </tr>
   </thead>
   <tbody class="hideLoading">
-    <tr data-app-item="edit" data-ng-repeat="app in appList | filter:search"></tr>
+    <tr data-app-item="edit" data-ng-repeat="app in appList | orderBy : nameOrder | filter:search"></tr>
     <tr data-ng-hide="appList.length">
       <td colspan="2">This list is empty. <a href="/add">Please add a repo.</a></td>
     </tr>
