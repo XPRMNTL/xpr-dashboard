@@ -26,13 +26,14 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Github Repo</label>
         <div class="col-sm-10">
-          <input class="form-control" disabled data-ng-model="app.github_repo">
+          <p class="form-control-static" data-ng-bind="app.github_repo"></p>
+          <!-- <input class="form-control" disabled data-ng-model="app.github_repo"> -->
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label">Dev Key</label>
         <div class="col-sm-10">
-          <input class="form-control" disabled data-ng-model="app.dev_key">
+          <p class="form-control-static" data-ng-bind="app.dev_key"></p>
         </div>
       </div>
       <div class="form-group">
@@ -54,4 +55,17 @@
       <dd data-ng-bind="app.dev_key"></dd>
     </dl>
   </section>
+
+  <!-- <div class="panel panel-info">
+    <div class="panel-heading">Experiment List</div>
+    <div class="panel-body">
+      <p>Here you will modify the experiment configurations throughout the application.</p>
+      <p>Be aware that your changes are "immediate" and may be wide-reaching, so make sure you know what you're doing.</p>
+    </div>
+
+    <ul class="list-group">
+      <li class="list-group-item" data-edit-experiment data-ng-repeat="experiment in expList"></li>
+    </ul>
+  </div> -->
+  <div data-edit-experiment data-ng-repeat="exp in app.expList"></div>
 </article>

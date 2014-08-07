@@ -1,0 +1,104 @@
+
+<form role="form" class="form-horizontal">
+  <!-- <div>{{ exp }}</div> -->
+  <div class="panel" data-ng-class="{ false: 'panel-' + ( exp.color || 'default' ), true: 'panel-danger' }[isDirty(exp)]">
+    <div class="panel-heading clearfix">
+      {{ exp.name }}
+
+      <button class="btn btn-sm btn-info popover-dismiss" data-toggle="popover" data-content="{{ exp.description }}">
+        <span class="glyphicon glyphicon-info-sign"></span>
+      </button>
+
+      <div class="btn-group btn-group-sm">
+        <button
+          class="btn btn-default"
+          data-ng-repeat="choice in choices.types"
+          data-ng-class="{ true: 'active' }[choice.name === exp.type]"
+          data-ng-click="choose(choice.name)"
+          data-ng-disabled="choice.disabled"
+          data-ng-bind="choice.name + (choice.disabled ? ' (TODO)' : '')"></button>
+      </div>
+
+      <span class="pull-right hidden-xs">
+        <span data-ng-click="changeColor('default')" class="label label-default"> </span>
+        <span data-ng-click="changeColor('primary')" class="label label-primary"> </span>
+        <span data-ng-click="changeColor('success')" class="label label-success"> </span>
+        <span data-ng-click="changeColor('info')" class="label label-info"> </span>
+        <span data-ng-click="changeColor('warning')" class="label label-warning"> </span>
+      </span>
+      <span class="pull-right" data-ng-show="isDirty(exp)">
+        <span class="label label-danger">NOT SAVED</span>
+      </span>
+    </div>
+    <div class="panel-body" data-ng-show="exp.type === 'boolean'">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">
+          <span data-ng-bind="{ true: 'Enabled', false: 'Disabled'}[exp.values.boolean]"></span>
+          for All Users:
+        </label>
+        <div class="col-sm-9">
+          <div class="btn-group">
+            <button
+              class="btn btn-primary"
+              data-ng-repeat="choice in choices.boolean"
+              data-ng-class="{ true: 'active' }[choice.val === exp.values.boolean]"
+              data-ng-click="setBoolean(choice.val)"
+              data-ng-bind="choice.name + (choice.val === exp.values.boolean ? 'd' : '')"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body" data-ng-show="exp.type === 'reference'">
+      <h1>Reference, sup</h1>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">
+          <span data-ng-bind="getEnabledFor()"></span>
+        </label>
+        <div class="col-sm-9">
+          <div class="btn-group">
+            <button
+              class="btn btn-primary"
+              data-ng-repeat="choice in choices.reference"
+              data-ng-class="{ true: 'active' }[exp.values.reference[choice.name]]"
+              data-ng-click="toggleReference(choice.name)"
+              data-ng-bind="choice.name"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body clearfix" data-ng-show="isDirty(exp)">
+      <div class="pull-right">
+        <button class="btn btn-primary" data-ng-click="save()" title="Save">
+          <span class="glyphicon glyphicon-floppy-disk"></span> Save
+        </button>
+        <button class="btn btn-danger" data-ng-click="cancel()" title="Cancel">
+          <span class="glyphicon glyphicon glyphicon-remove"></span> Cancel
+        </button>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+  <!-- <div class="experiment">
+    <label>
+      {{ experiment.name }}
+      <div class="btn-group exp-div">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          {{ experiment.type }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#" data-ng-click="setType('boolean')">Boolean</li>
+          <li><a href="#" data-ng-click="setType('reference')">Reference</li>
+          <li><a href="#" data-ng-click="setType('range')">Range</li>
+        </ul>
+      </div>
+    </label>
+    {{ experiment }}
+  </div> -->
+</form>

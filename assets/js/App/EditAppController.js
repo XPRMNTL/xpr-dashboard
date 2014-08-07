@@ -14,15 +14,80 @@
 
     function EditAppController($controller, $scope, $routeParams, appService) {
       $controller('BaseController', { $scope: $scope });
+      $scope.choices = {};
+
+      function setChoices(name, items) {
+        $scope.choices[name] = items.map(function(item) {
+          if (typeof item === 'string') item = {
+            name: item,
+            disabled: false
+          };
+
+          return item;
+        });
+      }
+
+      setChoices('types', [
+        'boolean',
+        'reference',
+        { name: 'range', disabled: true },
+        { name: 'variants', disabled: true },
+        { name: 'groups', disabled: true }
+      ]);
+      setChoices('boolean', [
+        { name: 'Enable', val: true },
+        { name: 'Disable', val: false }
+      ]);
+      setChoices('reference', [ 'local', 'beta', 'prod' ]);
+
+
+      (function(items) {
+        $scope.types = items.map(function(item) {
+
+          if (typeof item === 'string') item = {
+            name: item,
+            disabled: false
+          };
+
+          return item;
+        });
+      })([
+        'boolean',
+        'reference',
+        { name: 'range', disabled: true },
+        { name: 'variants', disabled: true },
+        { name: 'groups', disabled: true }
+      ]);
 
       var repo = $routeParams.repo;
       var master = {};
-
-      $scope.experiments = [
+      var sampleExpList = [
         {
-          name : 'sampleEx1',
+          name : 'sampleBoolExp1',
+          description : 'This is a sample experiment meant to show boolean "On".',
           type : 'boolean',
-        }
+          values : {
+            boolean : true,
+            reference : {
+              local: false,
+              beta: false,
+              prod: false
+            }
+          }
+        },
+        {
+          name : 'sampleBoolExp2',
+          description : 'This is a sample experiment meant to show boolean "Off".',
+          type : 'boolean',
+          values : {
+            boolean : false,
+            reference : {
+              local: false,
+              beta: false,
+              prod: false
+            }
+          }
+        },
       ];
 
       appService
@@ -65,6 +130,7 @@
       };
 
       function update(data) {
+        data.expList = sampleExpList;
         master = angular.copy(data);
         $scope.app = data;
       }
