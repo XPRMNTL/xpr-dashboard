@@ -1,7 +1,7 @@
 
 <form role="form" class="form-horizontal">
   <!-- <div>{{ exp }}</div> -->
-  <div class="panel" data-ng-class="{ false: 'panel-' + ( exp.color || 'default' ), true: 'panel-danger' }[isDirty(exp)]">
+  <div class="panel" data-ng-class="{ false: 'panel-' + color, true: 'panel-danger' }[isDirty(exp)]">
     <div class="panel-heading clearfix">
       {{ exp.name }}
 
@@ -49,7 +49,6 @@
       </div>
     </div>
     <div class="panel-body" data-ng-show="exp.type === 'reference'">
-      <h1>Reference, sup</h1>
       <div class="form-group">
         <label class="col-sm-3 control-label">
           <span data-ng-bind="getEnabledFor()"></span>

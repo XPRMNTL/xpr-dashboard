@@ -1,4 +1,4 @@
-/* global window */
+/* global window, localStorage */
 (function(angular, $, mountPath) {
   'use strict';
 
@@ -19,6 +19,8 @@
 
           elem.find('[data-toggle="popover"]').popover();
 
+          scope.color = localStorage.getItem('color.' + scope.app.github_repo + '.' + exp.name) || 'default';
+
           scope.getEnabledFor = function() {
             var add = [];
 
@@ -37,7 +39,8 @@
           };
 
           scope.changeColor = function(color) {
-            exp.color = color;
+            localStorage.setItem('color.' + scope.app.github_repo + '.' + exp.name, color);
+            scope.color = color;
           };
 
           scope.choose = function(choice) {
