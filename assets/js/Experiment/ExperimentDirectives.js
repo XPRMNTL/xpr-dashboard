@@ -39,7 +39,11 @@
           };
 
           scope.changeColor = function(color) {
-            localStorage.setItem('color.' + scope.app.github_repo + '.' + exp.name, color);
+            if (color === 'default') {
+              localStorage.removeItem('color.' + scope.app.github_repo + '.' + exp.name);
+            } else {
+              localStorage.setItem('color.' + scope.app.github_repo + '.' + exp.name, color);
+            }
             scope.color = color;
           };
 
