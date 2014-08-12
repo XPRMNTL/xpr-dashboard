@@ -67,7 +67,8 @@
     </div>
     <div class="panel-body clearfix" data-ng-show="isDirty(exp)">
       <div class="pull-right">
-        <button class="btn btn-primary" data-ng-click="save()" title="Save">
+        <span class="text-danger" data-ng-bind="failText"></span>
+        <button class="btn btn-primary" data-ng-click="save(exp)" title="Save">
           <span class="glyphicon glyphicon-floppy-disk"></span> Save
         </button>
         <button class="btn btn-danger" data-ng-click="cancel()" title="Cancel">
@@ -75,29 +76,5 @@
         </button>
       </div>
     </div>
-
-
-
-
   </div>
-
-
-
-
-  <!-- <div class="experiment">
-    <label>
-      {{ experiment.name }}
-      <div class="btn-group exp-div">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-          {{ experiment.type }} <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="#" data-ng-click="setType('boolean')">Boolean</li>
-          <li><a href="#" data-ng-click="setType('reference')">Reference</li>
-          <li><a href="#" data-ng-click="setType('range')">Range</li>
-        </ul>
-      </div>
-    </label>
-    {{ experiment }}
-  </div> -->
 </form>

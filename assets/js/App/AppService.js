@@ -3,7 +3,7 @@
 (function(angular, mountPath) {
   'use strict';
 
-  console.info('BaseService Loaded');
+  console.info('AppService Loaded');
 
   // No [] here to make sure we're getting and not creating
   var app = angular.module('featureApp')

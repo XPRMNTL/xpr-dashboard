@@ -61,34 +61,6 @@
 
       var repo = $routeParams.repo;
       var master = {};
-      var sampleExpList = [
-        {
-          name : 'sampleBoolExp1',
-          description : 'This is a sample experiment meant to show boolean "On".',
-          type : 'boolean',
-          values : {
-            boolean : true,
-            reference : {
-              local: false,
-              beta: false,
-              prod: false
-            }
-          }
-        },
-        {
-          name : 'sampleBoolExp2',
-          description : 'This is a sample experiment meant to show boolean "Off".',
-          type : 'boolean',
-          values : {
-            boolean : false,
-            reference : {
-              local: false,
-              beta: false,
-              prod: false
-            }
-          }
-        },
-      ];
 
       appService
         .fromRepo(repo)
@@ -130,7 +102,6 @@
       };
 
       function update(data) {
-        data.expList = sampleExpList;
         master = angular.copy(data);
         $scope.app = data;
       }

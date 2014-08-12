@@ -2,19 +2,21 @@
 (function(angular, $, mountPath) {
   'use strict';
 
-  console.info('AppDirectives loaded');
+  console.info('ExperimentDirectives loaded');
 
   var app = angular.module('featureApp');
 
   app.directive('editExperiment', [
+    'experimentService',
 
-    function() {
+    function(experimentService) {
       return {
         restrict: 'A',
         templateUrl: mountPath + '/js/Experiment/EditExperiment.html',
         replace: true,
         link: function(scope, elem) {
-          var exp = scope.exp
+          var appId = scope.app._id
+            , exp = scope.exp
             , master = angular.copy(exp);
 
           elem.find('[data-toggle="popover"]').popover();
@@ -48,10 +50,12 @@
           };
 
           scope.choose = function(choice) {
+            scope.failText = null;
             exp.type = choice;
           };
 
           scope.setBoolean = function(choice) {
+            scope.failText = null;
             exp.values.boolean = choice;
           };
 
@@ -60,9 +64,17 @@
           };
 
           scope.save = function(expData) {
-            console.log(expData);
-            // FIXME: Ready to save experiment
-            alert('FIXME: now what?');
+            scope.failText = null;
+
+            experimentService.update(expData)
+              .then(function(data) {
+                ['type','values','date_modified'].map(function(key) {
+                  scope.exp[key] = data[key];
+                });
+                master = angular.copy(data);
+              }, function(err) {
+                scope.failText = 'Update failed, sry: {0} ({1})'.format(err.statusText, err.status || '000');
+              });
           };
 
           scope.cancel = function() {

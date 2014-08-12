@@ -56,16 +56,8 @@
     </dl>
   </section>
 
-  <!-- <div class="panel panel-info">
-    <div class="panel-heading">Experiment List</div>
-    <div class="panel-body">
-      <p>Here you will modify the experiment configurations throughout the application.</p>
-      <p>Be aware that your changes are "immediate" and may be wide-reaching, so make sure you know what you're doing.</p>
-    </div>
-
-    <ul class="list-group">
-      <li class="list-group-item" data-edit-experiment data-ng-repeat="experiment in expList"></li>
-    </ul>
-  </div> -->
-  <div data-edit-experiment data-ng-repeat="exp in app.expList"></div>
+  <div data-edit-experiment data-ng-repeat="exp in app.experiments"></div>
+  <div data-ng-hide="app.experiments.length">
+    <div class="well">You have no experiments. Add some.</div>
+  </div>
 </article>
