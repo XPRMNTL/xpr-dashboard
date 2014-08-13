@@ -30,7 +30,7 @@
       setChoices('types', [
         'boolean',
         'reference',
-        { name: 'range', disabled: true },
+        'range',
         { name: 'variants', disabled: true },
         { name: 'groups', disabled: true }
       ]);

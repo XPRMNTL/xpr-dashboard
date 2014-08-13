@@ -15,14 +15,16 @@
         templateUrl: mountPath + '/js/Experiment/EditExperiment.html',
         replace: true,
         link: function(scope, elem) {
-          var appId = scope.app._id
-            , exp = scope.exp
+          var exp = scope.exp
             , master = angular.copy(exp);
 
+          // Ready the "info" popover
           elem.find('[data-toggle="popover"]').popover();
 
+          // Color is stored in localStorage. Fetch it
           scope.color = localStorage.getItem('color.' + scope.app.github_repo + '.' + exp.name) || 'default';
 
+          // Function to display "Enabled" text for References
           scope.getEnabledFor = function() {
             var add = [];
 
@@ -36,10 +38,28 @@
             return 'Enabled for ' + (add.join(', '));
           };
 
+          // Function to display the "Enabled" text for Ranges
+          scope.getEnabledRange = function() {
+            var range = exp.values.range
+              , min = range.min
+              , max = range.max
+              , diff = max - min
+              , str = 'Enabled for ';
+
+            if (min === 0) {
+              if (max === 100) return str + 'all users:';
+              return str + '{0}% of users:'.format(diff);
+            }
+
+            return 'Enabled for buckets {0}-{1} ({2}%)'.format(min, max, diff);
+          };
+
+          // Turn on/off a single reference
           scope.toggleReference = function(reference) {
             exp.values.reference[reference] = ! exp.values.reference[reference];
           };
 
+          // Store the chosen color in localStorage
           scope.changeColor = function(color) {
             if (color === 'default') {
               localStorage.removeItem('color.' + scope.app.github_repo + '.' + exp.name);
@@ -49,20 +69,24 @@
             scope.color = color;
           };
 
+          // Choose a type
           scope.choose = function(choice) {
             scope.failText = null;
             exp.type = choice;
           };
 
+          // Set the boolean value
           scope.setBoolean = function(choice) {
             scope.failText = null;
             exp.values.boolean = choice;
           };
 
+          // Check to see if the form is used
           scope.isDirty = function(expData) {
             return ! angular.equals(expData, master);
           };
 
+          // Save all the data
           scope.save = function(expData) {
             scope.failText = null;
 
@@ -77,6 +101,7 @@
               });
           };
 
+          // Reset all the data
           scope.cancel = function() {
             for (var key in master) {
               if (master.hasOwnProperty(key)) {
