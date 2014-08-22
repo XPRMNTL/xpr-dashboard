@@ -1,15 +1,158 @@
 /* global window, localStorage */
-(function(angular, $, mountPath) {
+(function(angular, $, mountPath, moment) {
   'use strict';
 
   console.info('ExperimentDirectives loaded');
 
   var app = angular.module('featureApp');
 
+  app.directive('choiceButtons', [
+    function() {
+      return {
+        restrict: 'A',
+        template: '<div class="btn-group btn-group-sm">'+
+                  '  <button' +
+                  '    class="btn btn-default"' +
+                  '    data-ng-repeat="variant in variants"'+
+                  '    data-ng-class="{ true: \'active\' }[variant === getCurrent()]"' +
+                  '    data-ng-click="toggle(variant)"' +
+                  '    data-ng-bind="variant"></button>'+
+                  '</div>',
+        replace: true,
+        scope: {
+          getCurrent: '=getCurrent',
+          type: '=type',
+          variantList: '=variants',
+        },
+        link: function(scope, elem, attrs) {
+          scope.variants = (angular.copy(scope.variantList) || ['on', 'off']).concat('advanced');
+          // scope.variants = (attrs.variants || ['on', 'off']).concat(['advanced']);
+          // console.log(scope.variants);
+          // if (! attrs.variants)
+          // console.log(attrs.variants);
+          // console.log(scope.variants);
+          // if (scope.type === 'exp' && angular.equals([true,false,'advanced']))
+
+          scope.toggle = function(text) {
+            console.log(scope.getCurrent());
+
+            if (scope.getCurrent() === text) return;
+
+
+            if (text === 'on') text = true;
+            if (text === 'off') text = false;
+
+
+
+            scope.$emit('buttonChanged', text);
+            // console.log(text);
+          };
+          // console.log(scope.choices.length);
+          // console.log(scope.current);
+          // console.log(scope.type);
+          // console.log(scope);
+          // console.log('sup homie');
+        },
+      };
+    }
+  ]);
+
+  app.directive('editExperimentBeta', [
+    'experimentService',
+
+    function() {
+      return {
+        restrict: 'A',
+        templateUrl: mountPath + '/js/Experiment/EditExperimentBeta.html',
+        replace: true,
+        link: function(scope, elem) {
+          var exp = scope.exp
+            , master = angular.copy(exp);
+
+          if (exp.value === undefined && exp.values === undefined) exp.value = false;
+
+          // Ready "info" popover
+          elem.find('[data-toggle="popover"]').popover({ container: 'body', html: true });
+          // if (exp.variants) scope.variants = angular.copy(exp.variants);
+          // console.log(scope.choices.toggle);
+          scope.choices.toggle = [
+            { name : 'On', value : true },
+            { name : 'Off', value : false },
+            { name : 'Advanced' },
+          ];
+          if (exp.date_modified) scope.modified = moment(new Date(exp.date_modified));
+          // scope.choices.toggle = [ 'On', 'Off', 'Advanced' ];
+          // console.log(scope.exp);
+
+          // scope.$on('buttonChanged', function(evt, text) {
+          //   console.log(arguments);
+
+          // });
+
+          // Show how the buttons are toggled
+          scope.getToggle = function(type) {
+            var map = {
+              // By value shown on the button
+              value : function() {
+                if (exp.value === null) return 'Advanced';
+
+                return (!! exp.value) ? 'On' : 'Off';
+              },
+              // By className of the surrounding panel
+              className : function() {
+                if (scope.isDirty()) return 'danger';
+                if (exp.value === null) return 'info';
+                return exp.value ? 'success' : 'default';
+              },
+            };
+            type = type || 'value';
+
+            return (map[type] || map.value)();
+          };
+
+          scope.isDirty = function(expData) {
+            if (! expData) expData = exp;
+            return ! angular.equals(expData, master);
+          };
+
+          scope.toggle = function(choice) {
+            // Don't care if they're already on that tab
+            if (scope.getToggle() === choice.name) return;
+
+            // If they're boolean, just move along
+            if (choice.value !== undefined) return (exp.value = choice.value);
+
+            // If there isn't already a multiple values, set them to previous choice
+            if (! exp.values) {
+              exp.values = {};
+              scope.appTest.references.map(function(item) {
+                exp.values[item] = exp.value;
+              });
+            }
+
+            // Remove chosen "all-encompassing" value
+            exp.value = null;
+          };
+
+          // Reset all the data
+          scope.cancel = function() {
+            for (var key in master) {
+              if (master.hasOwnProperty(key)) {
+                exp[key] = master[key];
+              }
+            }
+            master = angular.copy(exp);
+          };
+        },
+      };
+    }
+  ]);
+
   app.directive('editExperiment', [
     'experimentService',
 
     function(experimentService) {
+
       return {
         restrict: 'A',
         templateUrl: mountPath + '/js/Experiment/EditExperiment.html',
@@ -115,4 +258,4 @@
     }
   ]);
 
-})(window.angular, window.jQuery, window.mountPath || '');
+})(window.angular, window.jQuery, window.mountPath || '', window.moment);
