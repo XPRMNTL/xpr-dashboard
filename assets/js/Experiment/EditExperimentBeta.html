@@ -43,6 +43,20 @@
     </div>
     <!-- <span data-ng-show="exp.value === null">{{ exp }}</span> -->
     <ul class="list-group" data-ng-show="getToggle() === 'Advanced'">
+      <li class="list-group-item">
+        <div class="dropdown">
+          <button class="btn btn-sm btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add Rule
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" style="width: 100%">
+            <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">References</a></li>
+            <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">Percentages</a></li>
+            <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">Groups</a></li>
+          </ul>
+        </div>
+      </li>
       <li class="list-group-item text-danger" data-ng-show="$index < 3">No Existing Rules (Off)</li>
       <li class="list-group-item" data-ng-show="$index > 2">
         <div class="row">
@@ -58,71 +72,42 @@
                     data-ng-bind="choice.name"></button>
                 </div>
               </div>
-              <ul class="list-group" data-ng-show="$index === 1">
-                <li class="list-group-item text-danger">No Existing Rules (Off)</li>
+              <ul class="list-group">
                 <li class="list-group-item">
                   <div class="dropdown">
                     <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">
                       <span class="glyphicon glyphicon-plus"></span>
-                      Add Rule
+                      Enable Groups
                       <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" style="width: 100%">
                       <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">Percentages</a></li>
-                      <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">Groups</a></li>
+                      <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">User Groups</a></li>
                     </ul>
                   </div>
                 </li>
-              </ul>
-              <ul class="list-group" data-ng-show="$index > 1">
-                <li class="list-group-item">On for 0-25%
+                <li class="list-group-item text-danger" data-ng-show="$index === 1">No Enabled Groups (Off)</li>
+                <li class="list-group-item" data-ng-show="$index > 1">Percent: 0-25%
                   <span class="actions pull-right">
                     <span class="glyphicon glyphicon-edit text-info"></span>
                     <span class="glyphicon glyphicon-remove text-danger"></span>
                   </span>
                 </li>
-                <li class="list-group-item">On for Group "Web Devs"
+                <li class="list-group-item" data-ng-show="$index > 1">Group: "Web Devs"
                   <span class="actions pull-right">
                     <span class="glyphicon glyphicon-edit text-info"></span>
                     <span class="glyphicon glyphicon-remove text-danger"></span>
                   </span>
                 </li>
-                <li class="list-group-item">On for Group "Program Managers"
+                <li class="list-group-item" data-ng-show="$index > 1">Group: "Program Managers"
                   <span class="actions pull-right">
                     <span class="glyphicon glyphicon-edit text-info"></span>
                     <span class="glyphicon glyphicon-remove text-danger"></span>
                   </span>
-                </li>
-                <li class="list-group-item">
-                  <div class="dropdown">
-                    <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">
-                      <span class="glyphicon glyphicon-plus"></span>
-                      Add Rule
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" style="width: 100%">
-                      <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">Percentages</a></li>
-                      <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">Groups</a></li>
-                    </ul>
-                  </div>
                 </li>
               </ul>
             </div>
           </div>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="dropdown">
-          <button class="btn btn-sm btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">
-            <span class="glyphicon glyphicon-plus"></span>
-            Add Rule
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu" style="width: 100%">
-            <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">References</a></li>
-            <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">Percentages</a></li>
-            <li><a role="menuitem" tabindex="-1" href="javascript:void(0);">Groups</a></li>
-          </ul>
         </div>
       </li>
     </ul>
