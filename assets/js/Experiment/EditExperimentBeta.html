@@ -55,7 +55,6 @@
                     class="btn btn-default"
                     data-ng-repeat="choice in choices.toggle"
                     data-ng-class="{ true: 'active' }[($parent.$index > 0 && $index > 1) || (($parent.$index === 0 && $index === 0))]"
-                    data-ng-click="toggle(choice, ref)"
                     data-ng-bind="choice.name"></button>
                 </div>
               </div>
