@@ -142,29 +142,29 @@
               },
               date_modified: '2014-08-17T20:16:17.483Z',
             },
-            {
-              name : 'var1',
-              description : 'This is a variant',
-              value : null,
-              values : {
-                blue : '0-20%',
-                red : '21-50%',
-                green : '51-100%',
-              },
-              variants : [ 'blue', 'red', 'green' ],
-              date_modified: '2014-08-16T20:16:17.483Z',
-            },
-            {
-              name : 'var2',
-              description : 'This has no 51-100%',
-              value : null,
-              values : {
-                something : '0-20%',
-                somethingElse : '21-50%',
-              },
-              variants : [ 'something', 'somethingElse' ],
-              date_modified: '2014-08-15T20:16:17.483Z',
-            },
+            // {
+            //   name : 'var1',
+            //   description : 'This is a variant',
+            //   value : null,
+            //   values : {
+            //     blue : '0-20%',
+            //     red : '21-50%',
+            //     green : '51-100%',
+            //   },
+            //   variants : [ 'blue', 'red', 'green' ],
+            //   date_modified: '2014-08-16T20:16:17.483Z',
+            // },
+            // {
+            //   name : 'var2',
+            //   description : 'This has no 51-100%',
+            //   value : null,
+            //   values : {
+            //     something : '0-20%',
+            //     somethingElse : '21-50%',
+            //   },
+            //   variants : [ 'something', 'somethingElse' ],
+            //   date_modified: '2014-08-15T20:16:17.483Z',
+            // },
           ],
         };
 
