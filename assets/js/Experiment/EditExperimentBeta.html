@@ -59,13 +59,6 @@
               data-ng-disabled="isOn(ref)"
               data-ng-class="hasGroups(ref) ? 'active' : ''"
               data-ng-click="toggleGroups(ref)">Groups</button>
-            <small data-ng-show="isDefault(ref)">(Default)</small>
-            <span class="label label-primary" data-ng-show="! isDefault(ref)">Custom
-              <a
-                class="glyphicon glyphicon-remove"
-                href="javascript:void(0);"
-                data-ng-click="removeCustom(ref)"></a>
-            </span>
           </div>
           <ul class="list-group" data-ng-show="hasGroups(ref)">
             <li class="list-group-item" data-ng-repeat="group in exp.references[ref]">
