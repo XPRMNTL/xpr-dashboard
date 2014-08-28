@@ -106,42 +106,51 @@
         $scope.appTest = {
           name : data.name,
           dev_key : data.dev_key,
-          references : [ 'local', 'beta', 'prod' ],
+          references : [ 'local', 'beta', 'prod', ],
+          groups : {
+            'Program Managers': [1, 2, 3, 4],
+            'Web Devs': [ 'dncrews', 'jdcrowthe', 'jamesblack' ],
+            'phase 1': '20-30%',
+            'phase 2': '20-50%',
+            'phase 3': '20-60%'
+          },
           experiments : [
             {
-              name : 'exp1',
-              description : 'This is a boolean only',
+              name : 'sampleExp',
+              description : 'This is a pretend experiment, but here I\'ve defined what the description would\'ve been.',
+              // links: [ 'https://google.com', { 'Description': 'What\'s the point of this link?', 'url': 'https://familysearch.org'}, ],
               value : true,
+              references : null,
               date_modified: '2014-09-20T20:16:17.483Z',
             },
             {
-              name : 'exp2',
-              description : 'This is a boolean too. <a target="reference" href="https://google.com">Here is a link.</a>',
+              name : 'testLinkExp',
+              description : 'This description has a link. Likey? <a target="reference" href="https://google.com">Here is a link.</a>. I wish there was an easier way to do this...',
               value : false,
+              references : null,
               date_modified: '2014-08-19T20:16:17.483Z',
             },
             {
-              name : 'exp3',
+              name : 'headerFooterExp',
               description : 'This boolean has differing values',
-              value : null,
-              values: {
+              value : false,
+              references : {
                 local : true,
-                beta : true,
-                prod : false,
+                prod : [ '0-25%', 'Program Managers', 'Web Devs' ],
               },
               date_modified: '2014-08-18T20:16:17.483Z',
             },
-            {
-              name : 'range1',
-              description : 'This one has a range too',
-              value : null,
-              values : {
-                local : true,
-                beta : true,
-                prod : '0-20%',
-              },
-              date_modified: '2014-08-17T20:16:17.483Z',
-            },
+            // {
+            //   name : 'rangedExp',
+            //   description : 'This one has a range too',
+            //   value : null,
+            //   values : {
+            //     local : true,
+            //     beta : true,
+            //     prod : '0-20%',
+            //   },
+            //   date_modified: '2014-08-17T20:16:17.483Z',
+            // },
             // {
             //   name : 'var1',
             //   description : 'This is a variant',

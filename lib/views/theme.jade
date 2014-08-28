@@ -7,6 +7,8 @@ html(lang='en', data-ng-app='featureApp')
     base(href='' + baseUrl)
     // meta(name='viewport' content='width=device-width')
     link(rel='stylesheet' href='/vendors/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet' href='/vendors/angular-toggle-switch/angular-toggle-switch.css')
+    link(rel='stylesheet' href='/vendors/angular-toggle-switch/angular-toggle-switch-bootstrap.css')
     block headCSS
     link(rel='stylesheet' href='/css/feature.css')
   body
@@ -31,8 +33,10 @@ html(lang='en', data-ng-app='featureApp')
     script(src='//code.jquery.com/jquery-2.1.1.min.js')
     script(src='/vendors/bootstrap/js/bootstrap.min.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js')
-    script(src='https://code.angularjs.org/1.2.19/angular-route.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-route.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-sanitize.js')
     //- script(src='/vendors/ui-bootstrap/ui-bootstrap-0.11.0.min.js')
+    script(src='/vendors/angular-toggle-switch/angular-toggle-switch.min.js')
 
     // Always include the app and the AccountInfo
     script(src='js/Base/index.js')

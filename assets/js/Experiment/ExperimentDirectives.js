@@ -24,8 +24,8 @@
           type: '=type',
           variantList: '=variants',
         },
-        link: function(scope, elem, attrs) {
-          scope.variants = (angular.copy(scope.variantList) || ['on', 'off']).concat('advanced');
+        link: function(scope) {
+          scope.variants = (angular.copy(scope.variantList) || [ true , false ]).concat('advanced');
           // scope.variants = (attrs.variants || ['on', 'off']).concat(['advanced']);
           // console.log(scope.variants);
           // if (! attrs.variants)
@@ -65,49 +65,96 @@
         restrict: 'A',
         templateUrl: mountPath + '/js/Experiment/EditExperimentBeta.html',
         replace: true,
-        link: function(scope, elem) {
+        link: function(scope) {
           var exp = scope.exp
             , master = angular.copy(exp);
 
-          if (exp.value === undefined && exp.values === undefined) exp.value = false;
-
-          // Ready "info" popover
-          elem.find('[data-toggle="popover"]').popover({ container: 'body', html: true });
-          // if (exp.variants) scope.variants = angular.copy(exp.variants);
-          // console.log(scope.choices.toggle);
-          scope.choices.toggle = [
-            { name : 'On', value : true },
-            { name : 'Off', value : false },
-            { name : 'Advanced' },
-          ];
           if (exp.date_modified) scope.modified = moment(new Date(exp.date_modified));
-          // scope.choices.toggle = [ 'On', 'Off', 'Advanced' ];
-          // console.log(scope.exp);
 
-          // scope.$on('buttonChanged', function(evt, text) {
-          //   console.log(arguments);
+          scope.isDefault = function(ref) {
+            if (! exp.references) return false;
 
-          // });
+            var value = exp.references[ref];
 
-          // Show how the buttons are toggled
-          scope.getToggle = function(type) {
-            var map = {
-              // By value shown on the button
-              value : function() {
-                if (exp.value === null) return 'Advanced';
+            return value === undefined;
+          };
 
-                return (!! exp.value) ? 'On' : 'Off';
-              },
-              // By className of the surrounding panel
-              className : function() {
-                if (scope.isDirty()) return 'danger';
-                if (exp.value === null) return 'info';
-                return exp.value ? 'success' : 'default';
-              },
-            };
-            type = type || 'value';
+          scope.isOn = function(ref) {
+            if (! exp.references) return false;
 
-            return (map[type] || map.value)();
+            var value = exp.references[ref] || exp.value;
+            return typeof value === 'boolean' ? value : false;
+          };
+
+          scope.hasGroups = function(ref) {
+            if (! exp.references) return false;
+            return typeof exp.references[ref] === 'object';
+          };
+
+          scope.toggleGroups = function(ref) {
+            if (! exp.references) return false;
+
+            if (exp.references[ref] === undefined) return (exp.references[ref] = []);
+            if (typeof exp.references[ref] === 'boolean') return (exp.references[ref] = []);
+            exp.references[ref] = false;
+          };
+
+          scope.removeCustom = function(ref) {
+            delete exp.references[ref];
+          };
+
+          scope.getClassName = function(ref) {
+            var classNames = [ 'default', 'success', 'warning', 'info', ]
+              , idx = 0
+              , value, advanced;
+
+            if (! ref) {
+              // Doesn't matter. If it's dirty, be danger
+              if (scope.isDirty()) return 'panel-danger';
+
+              // exp.value should be boolean only
+              value = !! exp.value;
+              // exp.value should be an object
+              advanced = !! exp.references;
+            } else {
+              if (! exp.references) return false;
+              // See if it's default or not
+              value = exp.references[ref] || exp.value;
+
+              // If it's not a boolean, this is groups, not true/false
+              if (typeof value !== 'boolean') {
+                value = false;
+                advanced = true;
+              }
+            }
+
+            // Like boolean flags
+            if (value) idx += 1;
+            if (advanced) idx += 2;
+
+            return 'panel-' + classNames[idx];
+          };
+
+          scope.showReferences = function() {
+            return !! exp.references;
+          };
+
+          scope.toggleReferences = function() {
+            var prev = angular.copy(master.references) || {};
+
+            exp.references = exp.references ? null : prev;
+          };
+
+          scope.getGroupName = function(group) {
+            var str = 'Group: "{0}'
+              , type = 'group';
+
+            if (group.charAt(group.length - 1) === '%') {
+              str = 'Percent: {0}';
+              type = 'percent';
+            }
+
+            return str.format(group);
           };
 
           scope.isDirty = function(expData) {
@@ -116,22 +163,18 @@
           };
 
           scope.toggle = function(choice) {
-            // Don't care if they're already on that tab
-            if (scope.getToggle() === choice.name) return;
 
-            // If they're boolean, just move along
-            if (choice.value !== undefined) return (exp.value = choice.value);
-
-            // If there isn't already a multiple values, set them to previous choice
-            if (! exp.values) {
-              exp.values = {};
-              scope.appTest.references.map(function(item) {
-                exp.values[item] = exp.value;
-              });
+            // If it's not a boolean, something is old or bad
+            if (typeof choice !== 'boolean') {
+              console.error('something is wrong');
+              return;
             }
 
-            // Remove chosen "all-encompassing" value
-            exp.value = null;
+            // Don't care if they're already on that tab
+            if (exp.value === choice) return;
+
+            exp.value = choice;
+            return;
           };
 
           // Reset all the data

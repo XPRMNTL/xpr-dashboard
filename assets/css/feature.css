@@ -111,3 +111,6 @@ body > header h1 {
   text-align: right;
   white-space: nowrap;
 }
+.label-primary a.glyphicon {
+  color: #fff;
+}
