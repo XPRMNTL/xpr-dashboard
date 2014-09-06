@@ -114,3 +114,6 @@ body > header h1 {
 .label-primary a.glyphicon {
   color: #fff;
 }
+.bucketForm .input-group .form-control {
+  width: 50px;
+}

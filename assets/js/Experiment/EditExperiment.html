@@ -1,134 +1,46 @@
-
-<form role="form" class="form-horizontal">
-  <!-- <div>{{ exp }}</div> -->
-  <div class="panel" data-ng-class="{ false: 'panel-' + color, true: 'panel-danger' }[isDirty(exp)]">
-    <div class="panel-heading clearfix">
-      {{ exp.name }}
-
-      <button class="btn btn-sm btn-info popover-dismiss" data-toggle="popover" data-content="{{ exp.description }}">
-        <span class="glyphicon glyphicon-info-sign"></span>
-      </button>
-
-      <div class="btn-group btn-group-sm">
-        <button
-          class="btn btn-default"
-          data-ng-repeat="choice in choices.types"
-          data-ng-class="{ true: 'active' }[choice.name === exp.type]"
-          data-ng-click="choose(choice.name)"
-          data-ng-disabled="choice.disabled"
-          data-ng-bind="choice.name + (choice.disabled ? ' (TODO)' : '')"></button>
-      </div>
-
-      <span class="pull-right hidden-xs">
-        <span data-ng-click="changeColor('default')" class="label label-default"> </span>
-        <span data-ng-click="changeColor('primary')" class="label label-primary"> </span>
-        <span data-ng-click="changeColor('success')" class="label label-success"> </span>
-        <span data-ng-click="changeColor('info')" class="label label-info"> </span>
-        <span data-ng-click="changeColor('warning')" class="label label-warning"> </span>
-      </span>
-      <span class="pull-right" data-ng-show="isDirty(exp)">
-        <span class="label label-danger">NOT SAVED</span>
-      </span>
-    </div>
-    <div class="panel-body" data-ng-show="exp.type === 'boolean'">
-      <div class="form-group">
-        <label class="col-sm-3 control-label">
-          <span data-ng-bind="{ true: 'Enabled', false: 'Disabled'}[exp.values.boolean]"></span>
-          for All Users:
-        </label>
-        <div class="col-sm-9">
-          <div class="btn-group">
+<div class="panel" data-ng-class="getClassName()">
+  <div class="panel-heading clearfix">
+    <div class="row">
+      <div class="col-md-7">
+        <h4>
+          {{ exp.name }}
+          <div class="btn-group btn-group-sm">
             <button
-              class="btn btn-primary"
-              data-ng-repeat="choice in choices.boolean"
-              data-ng-class="{ true: 'active' }[choice.val === exp.values.boolean]"
-              data-ng-click="setBoolean(choice.val)"
-              data-ng-bind="choice.name + (choice.val === exp.values.boolean ? 'd' : '')"></button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="panel-body" data-ng-show="exp.type === 'reference'">
-      <div class="form-group">
-        <label class="col-sm-3 control-label">
-          <span data-ng-bind="getEnabledFor()"></span>
-        </label>
-        <div class="col-sm-9">
-          <div class="btn-group">
+              class="btn btn-default"
+              data-ng-class="exp.value === true ? 'active' : ''"
+              data-ng-click="toggle(true)">On</button>
             <button
-              class="btn btn-primary"
-              data-ng-repeat="choice in choices.reference"
-              data-ng-class="{ true: 'active' }[exp.values.reference[choice.name]]"
-              data-ng-click="toggleReference(choice.name)"
-              data-ng-bind="choice.name"></button>
+              class="btn btn-default"
+              data-ng-class="exp.value === false ? 'active' : ''"
+              data-ng-click="toggle(false)">Off</button>
           </div>
-        </div>
+          <button
+            class="btn btn-sm btn-default"
+            data-ng-class="showReferences() ? 'active' : ''"
+            data-ng-click="toggleReferences()">References</button>
+        </h4>
+        <p data-ng-bind-html="exp.description"></p>
       </div>
-    </div>
-    <div class="panel-body" data-ng-show="exp.type === 'range'">
-      <div class="form-group">
-        <label class="col-sm-3 control-label">
-          <span data-ng-bind="getEnabledRange()"></span>
-        </label>
-        <div class="col-sm-9">
-          <span
-            range-slider
-            min="0"
-            max="100"
-            model-min="exp.values.range.min"
-            model-max="exp.values.range.max"
-            prevent-equal-min-max="true"></span>
-        </div>
-      </div>
-    </div>
-    <div class="panel-body clearfix" data-ng-show="isDirty(exp)">
-      <div class="pull-right">
-        <span class="text-danger" data-ng-bind="failText"></span>
-        <button class="btn btn-primary" data-ng-click="save(exp)" title="Save">
-          <span class="glyphicon glyphicon-floppy-disk"></span> Save
-        </button>
-        <button class="btn btn-danger" data-ng-click="cancel()" title="Cancel">
-          <span class="glyphicon glyphicon glyphicon-remove"></span> Cancel
-        </button>
+      <div class="col-md-5">
+        <span class="pull-right" data-ng-show="isDirty(exp)">
+          <div class="pull-right">
+            <form role="form" class="form-horizontal">
+              <span class="text-danger" data-ng-bind="failText"></span>
+              <button class="btn btn-sm btn-primary" data-ng-click="save(exp)" title="Save">
+                <span class="glyphicon glyphicon-floppy-disk"></span> Save
+              </button>
+              <button class="btn btn-sm btn-danger" data-ng-click="cancel()" title="Cancel">
+                <span class="glyphicon glyphicon glyphicon-remove"></span> Cancel
+              </button>
+            </form>
+          </div>
+        </span>
+        <small class="pull-right" data-ng-show="! isDirty(exp)" data-ng-bind="'Modified: ' + modified.fromNow()" title="{{ modified.format('MMMM Do YYYY, h:mm:ss a') }}"></small>
       </div>
     </div>
   </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">{{ exp.name }}</div>
-    <div class="panel-body row">
-      <div class="col-md-3">
-        <div class="panel panel-success">
-          <div class="panel-heading">
-            Local
-            <button
-              class="btn btn-primary"
-              data-ng-repeat="choice in choices.boolean"
-              data-ng-class="{ true: 'active' }[choice.val === exp.values.boolean]"
-              data-ng-click="setBoolean(choice.val)"
-              data-ng-bind="choice.name + (choice.val === exp.values.boolean ? 'd' : '')"></button>
-          </div>
-          <div class="panel-body">sup?</div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="panel panel-info">
-          <div class="panel-heading">Beta</div>
-          <div class="panel-body">sup?</div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="panel panel-warning">
-          <div class="panel-heading">Prod</div>
-          <div class="panel-body">sup?</div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="panel panel-primary">
-          <div class="panel-heading">All</div>
-          <div class="panel-body">sup?</div>
-        </div>
-      </div>
-    </div>
+  {{ app.references || ['local','beta'] }}
+  <div class="panel-body row" data-ng-show="!! exp.references">
+    <div data-ng-repeat="refName in appTest.references" data-edit-experiment-ref></div>
   </div>
-</form>
+</div>

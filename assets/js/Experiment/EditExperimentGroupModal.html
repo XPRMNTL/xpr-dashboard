@@ -1,0 +1,107 @@
+<div
+  class="modal fade"
+  id="modal-{{ exp.name }}-{{ refName }}"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalLabel-{{ exp.name }}-{{ refName }}"
+  aria-hidden="true">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4
+          class="modal-title"
+          id="modalLabel-{{ exp.name }}-{{ refName }}"
+          data-ng-bind="getModalTitle()"></h4>
+      </div>
+      <div class="modal-body" data-ng-show="group.type === 'users'">
+        <div class="form-horizontal">
+          <div class="form-group" data-ng-class="{ true : 'has-error' }[checkError('name')]">
+            <label class="col-sm-3 control-label">Group Name</label>
+            <div class="col-sm-9">
+              <input
+                class="form-control"
+                placeholder="Group Name"
+                data-ng-disabled="group.frozenName"
+                data-ng-model="group.name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Users</label>
+            <div class="col-sm-9">
+              <ul class="list-group">
+                <li class="list-group-item" data-ng-repeat="user in group.list">
+                  {{ user }}
+                  <span class="actions pull-right">
+                    <span
+                      class="glyphicon glyphicon-remove text-danger"
+                      data-ng-click="removeUser($index)"></span>
+                  </span>
+                </li>
+                <li class="list-group-item">
+                  <form role="form" data-ng-submit="addUser()">
+                    <div class="input-group" data-ng-class="{ true : 'has-error' }[checkError('users')]">
+                      <input class="form-control" placeholder="New Username" data-ng-model="newUser">
+                      <span class="input-group-btn">
+                        <button
+                          class="btn btn-success"
+                          data-ng-disabled="! newUser"
+                          type="button">
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                      </span>
+                    </div>
+                  </form>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body" data-ng-show="group.type === 'percent'">
+        <p>Possible bucket numbers are 0-99.</p>
+
+        <form class="form-inline bucketForm" role="form">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">Min</div>
+              <input class="form-control" data-ng-model="group.min">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">Max</div>
+              <input class="form-control" data-ng-model="group.max">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <input
+                class="form-control"
+                data-ng-model="group.percent">
+              <div class="input-group-addon">%</div>
+            </div>
+          </div>
+        </form>
+
+        <span
+          range-slider
+          min="0"
+          max="99"
+          model-min="group.min"
+          model-max="group.max"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-ng-click="saveGroup()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

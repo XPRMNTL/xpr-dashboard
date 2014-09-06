@@ -103,16 +103,24 @@
 
       function update(data) {
 
-        $scope.appTest = {
+        var test = {
           name : data.name,
           dev_key : data.dev_key,
           references : [ 'local', 'beta', 'prod', ],
           groups : {
-            'Program Managers': [1, 2, 3, 4],
             'Web Devs': [ 'dncrews', 'jdcrowthe', 'jamesblack' ],
-            'phase 1': '20-30%',
-            'phase 2': '20-50%',
-            'phase 3': '20-60%'
+            'phase 1': {
+              min: 20,
+              max: 30,
+            },
+            'phase 2': {
+              min: 20,
+              max: 50,
+            },
+            'phase 3': {
+              min: 20,
+              max: 60,
+            },
           },
           experiments : [
             {
@@ -136,7 +144,7 @@
               value : false,
               references : {
                 local : true,
-                prod : [ '0-25%', 'Program Managers', 'Web Devs' ],
+                prod : [ { min: 0, max: 25, percent: 26 }, { min: 26, max: 50, percent: 25 }, 'Web Devs' ],
               },
               date_modified: '2014-08-18T20:16:17.483Z',
             },
@@ -176,6 +184,9 @@
             // },
           ],
         };
+
+        $scope.appTest = test;
+        console.log(data.experiments, test.experiments);
 
         master = angular.copy(data);
         $scope.app = data;

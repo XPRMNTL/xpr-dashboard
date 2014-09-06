@@ -1,0 +1,59 @@
+<div class="col-md-4">
+  <div class="panel" data-ng-class="getClassName()">
+    <div class="panel-heading">
+      <strong data-ng-bind="refName"></strong>
+      <div class="btn-group btn-group-sm">
+        <button
+          class="btn btn-default"
+          data-ng-click="exp.references[refName] = true"
+          data-ng-class="isOn(refName) ? 'active' : ''">On</button>
+        <button
+          class="btn btn-default"
+          data-ng-click="exp.references[refName] = false"
+          data-ng-class="isOn(refName) ? '' : 'active'">Off</button>
+      </div>
+      <button
+        class="btn btn-default btn-sm"
+        data-ng-class="hasGroups(refName) ? 'active' : ''"
+        data-ng-click="toggleGroups(refName)">Groups</button>
+    </div>
+    <ul class="list-group" data-ng-show="hasGroups(refName)">
+      <li class="list-group-item" data-ng-repeat="group in exp.references[refName]">
+        {{ getGroupName(group) }}
+        <span class="actions pull-right">
+          <span
+            class="glyphicon glyphicon-edit text-info"
+            data-ng-click="editGroup(group, refName)"></span>
+          <span
+            class="glyphicon glyphicon-remove text-danger"
+            data-ng-click="removeGroup($index)"></span>
+        </span>
+      </li>
+      <li class="list-group-item">
+        <div class="dropdown">
+          <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add Group
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" style="width: 100%">
+            <li>
+              <a
+                role="menuitem"
+                tabindex="-1"
+                data-ng-click="newGroup('percent')">User Buckets</a>
+            </li>
+            <li>
+              <a
+                role="menuitem"
+                tabindex="-1"
+                data-ng-click="newGroup('users', refName)">User Groups</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div data-edit-experiment-group-modal></div>
+</div>

@@ -22,7 +22,7 @@
 
       function hackUpdate(appId, experiment, cb) {
         var dfd = $q.defer()
-          , url = API + appId;
+          , url = API + 'hack/' + appId;
 
         if (! appId) {
           return $q.reject({ statusText: 'Does not exist' });
