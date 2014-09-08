@@ -101,7 +101,21 @@
           });
       };
 
+      $scope.$watch('app.groups', function(val, prev) {
+        console.log(val, prev);
+      }, true);
+
+      // $scope.$on('saveGroup', function(evt, group) {
+      //   if (! angular.isArray(group.list)) return;
+
+      //   console.log(group);
+      //   console.log($scope.app.groups);
+      //   console.info('suphomie');
+      // });
+
       function update(data) {
+
+        if (! data.groups) data.groups = {};
 
         var test = {
           name : data.name,
@@ -185,7 +199,7 @@
           ],
         };
 
-        $scope.appTest = test;
+        // $scope.appTest = test;
         console.log(data.experiments, test.experiments);
 
         master = angular.copy(data);

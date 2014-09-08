@@ -157,7 +157,7 @@
         link: function(scope) {
           var exp = scope.exp
             , refName = scope.refName
-            , app = scope.appTest
+            , app = scope.app
             , groups = app.groups;
 
           scope.getClassName = function() {
@@ -215,9 +215,10 @@
             if (typeof group === 'string') {
               type = 'users';
               name = group;
-              group = scope.appTest.groups[group];
+              group = groups[group];
             }
             if (typeof group === 'string') type = 'users';
+            if (! group) return 'ERROR';
 
             var mapper = {
               percent: 'Buckets: {0}-{1} ({2}%)'.format(group.min, group.max, group.percent),
@@ -236,7 +237,7 @@
               if (typeof group === 'string') {
                 group = {
                   name : group,
-                  list : scope.appTest.groups[group]
+                  list : groups[group]
                 };
                 group.frozenName = true;
                 group.type = 'users';
@@ -277,7 +278,6 @@
           scope.editGroup = editGroup;
 
           scope.newGroup = function(type) {
-            console.log(type);
             var newGroups = {
                 percent: {
                   min: 0,
@@ -405,6 +405,7 @@
            */
           scope.$watch('group', function(val, prev) {
             if (! (val || prev)) return;
+            if ( typeof val.min !== 'number') return;
             if (angular.equals(val, prev)) return;
             var min = val.min
               , max = val.max
