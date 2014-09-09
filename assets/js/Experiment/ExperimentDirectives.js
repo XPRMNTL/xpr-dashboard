@@ -309,7 +309,7 @@
     function() {
       return {
         restrict: 'A',
-        templateUrl: mountPath + '/js/Experiment/editExperimentGroupModal.html',
+        templateUrl: mountPath + '/js/Experiment/EditExperimentGroupModal.html',
         replace: true,
         link: function(scope, elem) {
           var exp = scope.exp
