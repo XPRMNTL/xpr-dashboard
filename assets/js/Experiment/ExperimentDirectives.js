@@ -287,7 +287,7 @@
 
           scope.invalid = [];
 
-          elem.modal({ backdrop: 'static', show: false });
+          elem.modal({ backdrop: 'static', keyboard: false, show: false });
 
           scope.$on('openModal', function(evt, _group) {
             scope.invalid = [];
