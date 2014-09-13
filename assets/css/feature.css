@@ -8,7 +8,7 @@ body > header a,
 body > header a:hover {
   color: #fff;
 }
-body > header .brand {
+.brand {
   display: inline-block;
   border-width: 0 1px;
   border-style: solid;
@@ -18,35 +18,37 @@ body > header .brand {
   padding: 5px 11px 5px 25px;
   position: relative;
 }
-body > header .brand:before {
+.brand:before {
   content: '';
   display: block;
-  background: url("../img/logo.png");
+  background-image: url("../img/logo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 80px;
   width: 80px;
   position: absolute;
   left: -100px;
   top: -6px;
 }
-body > header .brand:hover {
+.brand:hover {
   text-decoration: none;
 }
-body > header .brand h1,
-body > header .brand .h1,
-body > header .brand h2,
-body > header .brand .h2 {
+.brand h1,
+.brand .h1,
+.brand h2,
+.brand .h2 {
   margin: 0;
   padding: 0;
   font-family: 'Josefin Slab', serif;
   text-transform: uppercase;
 }
-body > header .brand h1,
-body > header .brand .h1 {
+.brand h1,
+.brand .h1 {
   letter-spacing: 18px;
   line-height: 43px;
 }
-body > header .brand h2,
-body > header .brand .h2 {
+.brand h2,
+.brand .h2 {
   font-size: 12px;
   letter-spacing: 5.04px;
   line-height: 15px;
@@ -189,4 +191,29 @@ nav.goBack {
 }
 .bucketForm .input-group .form-control {
   width: 50px;
+}
+@media( max-width: 767px) {
+  .brand {
+    height: 45px;
+    margin: 12px 0 8px 60px;
+    padding: 0 0 0 15px;
+  }
+  .brand:before {
+    height: 45px;
+    width: 45px;
+    left: -55px;
+    top: -2px;
+  }
+  .brand h1,
+  .brand .h1 {
+    letter-spacing: 13px;
+    line-height: 1;
+    margin-top: -2px;
+  }
+  .brand h2,
+  .brand .h2 {
+    font-size: 10px;
+    letter-spacing: 4.94px;
+    line-height: 1.1;
+  }
 }
