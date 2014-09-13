@@ -6,24 +6,24 @@
         <button
           class="btn btn-default"
           data-ng-click="exp.references[refName] = true"
-          data-ng-class="isOn(refName) ? 'active' : ''">On</button>
+          data-ng-class="isOn() ? 'active' : ''">On</button>
         <button
           class="btn btn-default"
           data-ng-click="exp.references[refName] = false"
-          data-ng-class="isOn(refName) ? '' : 'active'">Off</button>
+          data-ng-class="isOn() ? '' : 'active'">Off</button>
       </div>
       <button
         class="btn btn-default btn-sm"
-        data-ng-class="hasGroups(refName) ? 'active' : ''"
-        data-ng-click="toggleGroups(refName)">Groups</button>
+        data-ng-class="hasGroups() ? 'active' : ''"
+        data-ng-click="toggleGroups()">Groups</button>
     </div>
-    <ul class="list-group" data-ng-show="hasGroups(refName)">
+    <ul class="list-group" data-ng-show="hasGroups()">
       <li class="list-group-item" data-ng-repeat="group in exp.references[refName]">
         {{ getGroupName(group) }}
         <span class="actions pull-right">
           <span
             class="glyphicon glyphicon-edit text-info"
-            data-ng-click="editGroup(group, refName)"></span>
+            data-ng-click="editGroup(group, $index)"></span>
           <span
             class="glyphicon glyphicon-remove text-danger"
             data-ng-click="removeGroup($index)"></span>
@@ -47,7 +47,7 @@
               <a
                 role="menuitem"
                 tabindex="-1"
-                data-ng-click="newGroup('users', refName)">User Groups</a>
+                data-ng-click="newGroup('users')">User Groups</a>
             </li>
           </ul>
         </div>

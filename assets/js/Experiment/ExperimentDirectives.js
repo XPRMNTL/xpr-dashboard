@@ -6,57 +6,6 @@
 
   var app = angular.module('featureApp');
 
-  app.directive('choiceButtons', [
-    function() {
-      return {
-        restrict: 'A',
-        template: '<div class="btn-group btn-group-sm">'+
-                  '  <button' +
-                  '    class="btn btn-default"' +
-                  '    data-ng-repeat="variant in variants"'+
-                  '    data-ng-class="{ true: \'active\' }[variant === getCurrent()]"' +
-                  '    data-ng-click="toggle(variant)"' +
-                  '    data-ng-bind="variant"></button>'+
-                  '</div>',
-        replace: true,
-        scope: {
-          getCurrent: '=getCurrent',
-          type: '=type',
-          variantList: '=variants',
-        },
-        link: function(scope) {
-          scope.variants = (angular.copy(scope.variantList) || [ true , false ]).concat('advanced');
-          // scope.variants = (attrs.variants || ['on', 'off']).concat(['advanced']);
-          // console.log(scope.variants);
-          // if (! attrs.variants)
-          // console.log(attrs.variants);
-          // console.log(scope.variants);
-          // if (scope.type === 'exp' && angular.equals([true,false,'advanced']))
-
-          scope.toggle = function(text) {
-            console.log(scope.getCurrent());
-
-            if (scope.getCurrent() === text) return;
-
-
-            if (text === 'on') text = true;
-            if (text === 'off') text = false;
-
-
-
-            scope.$emit('buttonChanged', text);
-            // console.log(text);
-          };
-          // console.log(scope.choices.length);
-          // console.log(scope.current);
-          // console.log(scope.type);
-          // console.log(scope);
-          // console.log('sup homie');
-        },
-      };
-    }
-  ]);
-
   app.directive('editExperiment', [
     'experimentService',
 
@@ -116,22 +65,22 @@
           scope.save = function(expData) {
             scope.failText = null;
 
-            experimentService.hack(scope.app._id, expData)
-              .then(function() {
-                console.log(arguments);
-              }, function(err) {
-                scope.failText = 'Update failed, sry: {0} ({1})'.format(err.statusText, err.status || '000');
-              });
-
-            // experimentService.update(expData)
-            //   .then(function(data) {
-            //     ['type','values','date_modified'].map(function(key) {
-            //       scope.exp[key] = data[key];
-            //     });
-            //     master = angular.copy(data);
+            // experimentService.hack(scope.app._id, expData)
+            //   .then(function() {
+            //     console.log(arguments);
             //   }, function(err) {
             //     scope.failText = 'Update failed, sry: {0} ({1})'.format(err.statusText, err.status || '000');
             //   });
+
+            experimentService.update(expData)
+              .then(function(data) {
+                ['value','references','date_modified'].map(function(key) {
+                  scope.exp[key] = data[key];
+                });
+                master = angular.copy(data);
+              }, function(err) {
+                scope.failText = 'Update failed, sry: {0} ({1})'.format(err.statusText, err.status || '000');
+              });
           };
 
           // Reset all the data
@@ -228,8 +177,9 @@
             return mapper[type];
           };
 
-          function editGroup(_group) {
+          function editGroup(_group, idx) {
             var group = angular.copy(_group);
+            console.log(arguments);
 
             // Set the ref and type
             if (typeof group.name !== 'string') {
@@ -237,7 +187,7 @@
               if (typeof group === 'string') {
                 group = {
                   name : group,
-                  list : groups[group]
+                  list : angular.copy(groups[group])
                 };
                 group.frozenName = true;
                 group.type = 'users';
@@ -246,32 +196,39 @@
               group.type = 'users';
             }
 
+            if (typeof idx === 'number') group.index = idx;
+
             scope.$broadcast('openModal', group);
           }
 
           scope.$on('saveGroup', function(evt, group) {
-            var type = group.type
-              , edit, name;
+            // var type = group.type
+            var idx = group.index
+              , edit = typeof idx === 'number'
+              , name = group.name;
 
             delete group.type;
 
-            if (group.name) {
-              name = group.name;
-            }
+            if (name) {
+              // Group name uniqueness
+              if ((! edit) && groups[name]) return scope.$broadcast('invalid', 'name');
 
-            /**
-             * If it's users, save the group to the app and
-             * save just the name here
-             */
-            if (type === 'users') {
-              if (group.frozenName) edit = true;
-              if ((!edit) && groups[name]) return scope.$broadcast('invalid', 'name');
-
+              /**
+               * If it's a named group, save the group to the app and
+               * save just the name here
+               */
               groups[name] = group.list;
               group = group.name;
             }
 
-            if (! edit) exp.references[refName].push(group);
+            if (edit) {
+              console.log(idx);
+              exp.references[refName][idx] = group;
+            } else {
+              console.log('new');
+              exp.references[refName].push(group);
+            }
+
             scope.$broadcast('closeModal');
           });
 
@@ -353,7 +310,7 @@
 
           scope.addUser = function() {
             var user = scope.newUser
-              , list = group.list
+              , list = group.list || (group.list = [])
               , idx;
 
             // Nothing if empty
@@ -388,7 +345,8 @@
             // Validation
             if (group.type === 'users') {
               if (_group.name === '') scope.invalid.push('name');
-              if (_group.list.length === 0) scope.invalid.push('users');
+              if (! _group.list) scope.invalid.push('users');
+              if (_group.list && _group.list.length === 0) scope.invalid.push('users');
             }
 
             if (scope.invalid.length) return;

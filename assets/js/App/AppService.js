@@ -20,7 +20,8 @@
         exists: exists,
         fromRepo: fromRepo,
         list: list,
-        save: save
+        save: save,
+        saveGroups: saveGroups,
       };
 
       function create(repoName, cb) {
@@ -100,14 +101,39 @@
         var dfd = $q.defer()
           , url = API + app._id;
 
-        if (! url) {
+        if (! app._id) {
           return $q.reject({ statusText: 'Does not exist' });
         }
 
         $http
           .put(url, app)
           .then(function(resp) {
-            dfd.resolve(resp.data);
+            var data = resp.data;
+            if (cb) cb(null, data);
+            dfd.resolve(data);
+          }, function(err) {
+            console.error(err);
+            if (cb) cb(err);
+            dfd.reject(err);
+          });
+
+        return dfd.promise;
+      }
+
+      function saveGroups(appId, groups, cb) {
+        var dfd = $q.defer()
+          , url = API + appId + '/groups';
+
+        if (! appId) {
+          return $q.reject({ statusText: 'App does not exist' });
+        }
+
+        $http
+          .put(url, groups)
+          .then(function(resp) {
+            var data = resp.data;
+            if (cb) cb(null, data);
+            dfd.resolve(data);
           }, function(err) {
             console.error(err);
             if (cb) cb(err);

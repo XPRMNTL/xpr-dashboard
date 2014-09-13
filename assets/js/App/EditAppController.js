@@ -102,7 +102,19 @@
       };
 
       $scope.$watch('app.groups', function(val, prev) {
-        console.log(val, prev);
+        if (! prev) return;
+
+        appService
+          .saveGroups($scope.app._id, val)
+          .then(function(groups) {
+            // FIXME: Do something here please
+            console.info(groups);
+            alert('group saved');
+          }, function(err) {
+            // FIXME: Error state here
+            alert(err);
+            console.error(err);
+          });
       }, true);
 
       // $scope.$on('saveGroup', function(evt, group) {

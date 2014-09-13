@@ -47,6 +47,8 @@
           , id = experiment._id
           , url = API + id;
 
+        console.log(experiment);
+
         if (! id) {
           return $q.reject({ statusText: 'Does not exist' });
         }
@@ -54,8 +56,10 @@
         $http
           .put(url, experiment)
           .then(function(resp) {
-            if (cb) cb(null, resp.data);
-            dfd.resolve(resp.data);
+            var data = resp.data;
+            console.log(data);
+            if (cb) cb(null, data);
+            dfd.resolve(data);
           }, function(err) {
             console.error(err);
             if (cb) cb(err);
