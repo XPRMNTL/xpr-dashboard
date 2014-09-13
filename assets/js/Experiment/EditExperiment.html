@@ -16,7 +16,7 @@
           </div>
           <button
             class="btn btn-sm btn-default"
-            data-ng-class="exp.references !== null ? 'active' : ''"
+            data-ng-class="!! exp.references ? 'active' : ''"
             data-ng-click="toggleReferences()">References</button>
         </h4>
         <p data-ng-bind-html="exp.description"></p>

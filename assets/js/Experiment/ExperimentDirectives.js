@@ -18,7 +18,9 @@
           var exp = scope.exp
             , master = angular.copy(exp);
 
-          if (exp.date_modified) scope.modified = moment(new Date(exp.date_modified));
+          scope.$watch('exp.date_modified', function(val) {
+            scope.modified = moment(new Date(val));
+          }, true);
 
           scope.getClassName = function() {
             var classNames = [ 'default', 'success', 'warning', 'info', ]
@@ -33,6 +35,10 @@
             if (exp.references) idx += 2;
 
             return 'panel-' + classNames[idx];
+          };
+
+          scope.showReferences = function() {
+            return !! (exp.references);
           };
 
           scope.toggleReferences = function() {
@@ -136,7 +142,7 @@
             var refs = exp.references;
             if (! refs) return false;
 
-            var value = refs[refName] || exp.value;
+            var value = typeof refs[refName] !== 'undefined' ? refs[refName] : exp.value;
             return typeof value === 'boolean' ? value : false;
           };
 
@@ -207,6 +213,13 @@
               , edit = typeof idx === 'number'
               , name = group.name;
 
+            if (group.frozenName) {
+              edit = true;
+              var i = exp.references[refName].indexOf(name);
+
+              if (~i) idx = i;
+            }
+
             delete group.type;
 
             if (name) {
@@ -221,8 +234,7 @@
               group = group.name;
             }
 
-            if (edit) {
-              console.log(idx);
+            if (typeof idx === 'number') {
               exp.references[refName][idx] = group;
             } else {
               console.log('new');
@@ -354,6 +366,24 @@
             scope.$emit('saveGroup', _group);
           };
 
+          scope.getGroupList = function() {
+            var groups = scope.app.groups
+              , groupList = []
+              , key;
+            for (key in groups) {
+              if (groups.hasOwnProperty(key)) {
+                groupList.push(key);
+              }
+            }
+            return groupList;
+          };
+
+          scope.typeaheadSelect = function(groupName) {
+            group.name = groupName;
+            group.list = angular.copy(scope.app.groups[groupName]);
+            group.frozenName = true;
+          };
+
 
           /**
            * Calculate min/max/percentage
@@ -397,116 +427,6 @@
               val.percent = (max - min) + 1;
             }
           }, true);
-        }
-      };
-    }
-  ]);
-
-  app.directive('editExperimentOld', [
-    'experimentService',
-
-    function(experimentService) {
-
-      return {
-        restrict: 'A',
-        templateUrl: mountPath + '/js/Experiment/EditExperimentOld.html',
-        replace: true,
-        link: function(scope, elem) {
-          var exp = scope.exp
-            , master = angular.copy(exp);
-
-          // Ready the "info" popover
-          elem.find('[data-toggle="popover"]').popover();
-
-          // Color is stored in localStorage. Fetch it
-          scope.color = localStorage.getItem('color.' + scope.app.github_repo + '.' + exp.name) || 'default';
-
-          // Function to display "Enabled" text for References
-          scope.getEnabledFor = function() {
-            var add = [];
-
-            for (var key in exp.values.reference) {
-              if (exp.values.reference.hasOwnProperty(key)) {
-                if (exp.values.reference[key]) add.push(key);
-              }
-            }
-
-            if (! add.length) return 'Disabled for All Users: ';
-            return 'Enabled for ' + (add.join(', '));
-          };
-
-          // Function to display the "Enabled" text for Ranges
-          scope.getEnabledRange = function() {
-            var range = exp.values.range
-              , min = range.min
-              , max = range.max
-              , diff = max - min
-              , str = 'Enabled for ';
-
-            if (min === 0) {
-              if (max === 100) return str + 'all users:';
-              return str + '{0}% of users:'.format(diff);
-            }
-
-            return 'Enabled for buckets {0}-{1} ({2}%)'.format(min, max, diff);
-          };
-
-          // Turn on/off a single reference
-          scope.toggleReference = function(reference) {
-            exp.values.reference[reference] = ! exp.values.reference[reference];
-          };
-
-          // Store the chosen color in localStorage
-          scope.changeColor = function(color) {
-            if (color === 'default') {
-              localStorage.removeItem('color.' + scope.app.github_repo + '.' + exp.name);
-            } else {
-              localStorage.setItem('color.' + scope.app.github_repo + '.' + exp.name, color);
-            }
-            scope.color = color;
-          };
-
-          // Choose a type
-          scope.choose = function(choice) {
-            scope.failText = null;
-            exp.type = choice;
-          };
-
-          // Set the boolean value
-          scope.setBoolean = function(choice) {
-            scope.failText = null;
-            exp.values.boolean = choice;
-          };
-
-          // Check to see if the form is used
-          scope.isDirty = function(expData) {
-            return ! angular.equals(expData, master);
-          };
-
-          // Save all the data
-          scope.save = function(expData) {
-            scope.failText = null;
-
-            experimentService.update(expData)
-              .then(function(data) {
-                ['type','values','date_modified'].map(function(key) {
-                  scope.exp[key] = data[key];
-                });
-                master = angular.copy(data);
-              }, function(err) {
-                scope.failText = 'Update failed, sry: {0} ({1})'.format(err.statusText, err.status || '000');
-              });
-          };
-
-          // Reset all the data
-          scope.cancel = function() {
-            for (var key in master) {
-              if (master.hasOwnProperty(key)) {
-                exp[key] = master[key];
-              }
-            }
-            master = angular.copy(exp);
-          };
         }
       };
     }

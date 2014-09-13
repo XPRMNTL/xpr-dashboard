@@ -57,7 +57,6 @@
           .put(url, experiment)
           .then(function(resp) {
             var data = resp.data;
-            console.log(data);
             if (cb) cb(null, data);
             dfd.resolve(data);
           }, function(err) {

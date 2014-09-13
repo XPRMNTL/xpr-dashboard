@@ -30,7 +30,9 @@
                 class="form-control"
                 placeholder="Group Name"
                 data-ng-disabled="group.frozenName"
-                data-ng-model="group.name">
+                data-ng-model="group.name"
+                data-typeahead="groupName for groupName in getGroupList()"
+                data-typeahead-on-select="typeaheadSelect($item)">
             </div>
           </div>
           <div class="form-group">

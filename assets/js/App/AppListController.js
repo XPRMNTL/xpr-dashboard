@@ -27,9 +27,7 @@
         });
 
       $scope.nameOrder = function(item) {
-        if (item.name) return item.name;
-
-        return 'zzz' + item.github_repo;
+        return item.name || item.github_repo;
       };
     }
   ]);
