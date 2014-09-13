@@ -5,8 +5,8 @@ html(lang='en', data-ng-app='featureApp')
   head
     title FS-Feature
     base(href='' + baseUrl)
-    meta(name='viewport' content='width=device-width' id='vpHack')
-    link(rel="apple-touch-icon" href="/img/iOS.png")
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' id='vpHack')
+    link(rel='apple-touch-icon' href='/img/iOS.png')
     link(href='http://fonts.googleapis.com/css?family=Josefin+Slab:600,700|Maven+Pro:400,500,700', rel='stylesheet', type='text/css')
     link(rel='stylesheet' href='/vendors/bootstrap/css/bootstrap.css')
     link(rel='stylesheet' href='/vendors/angular-toggle-switch/angular-toggle-switch.css')
@@ -52,7 +52,7 @@ html(lang='en', data-ng-app='featureApp')
     script(type='text/javascript').
       window.onload = function() {
         var mvp = document.getElementById('vpHack');
-        mvp.setAttribute('content', 'width=400');
+        mvp.setAttribute('content', 'width=400, user-scalable=no');
       }
 
     block footJS
