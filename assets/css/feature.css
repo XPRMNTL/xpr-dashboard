@@ -1,14 +1,90 @@
 body > header {
-  background: #036f73;
-  color: #fef2d8;
+  background: #a55871;
+  color: #fff;
   overflow: auto;
 }
 body > header a,
 body > header a:hover {
-  color: #fef2d8;
+  color: #fff;
 }
-body > header h1 {
-  float: left;
+body > header .brand {
+  display: inline-block;
+  border-width: 0 1px;
+  border-style: solid;
+  border-color: #d8d8d8;
+  height: 69px;
+  margin: 31px 0 25px 100px;
+  padding: 5px 11px 5px 25px;
+  position: relative;
+}
+body > header .brand:before {
+  content: '';
+  display: block;
+  background: url("../img/logo.png");
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  left: -100px;
+  top: -6px;
+}
+body > header .brand:hover {
+  text-decoration: none;
+}
+body > header .brand h1,
+body > header .brand .h1,
+body > header .brand h2,
+body > header .brand .h2 {
+  margin: 0;
+  padding: 0;
+  font-family: 'Josefin Slab', serif;
+  text-transform: uppercase;
+}
+body > header .brand h1 {
+  letter-spacing: 18px;
+  line-height: 43px;
+}
+body > header .brand h2 {
+  font-size: 12px;
+  letter-spacing: 5.04px;
+  line-height: 15px;
+}
+body {
+  font-family: 'Maven Pro', sans-serif;
+  background-color: #f6f6f6;
+}
+h2,
+.h2 {
+  font-family: 'Josefin Slab', serif;
+  font-weight: bold;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  font-weight: 500;
+}
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: transparent;
+}
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #d8d8d8;
+}
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  background: #d0021b;
+  color: #fff;
+}
+.panel > .list-group .list-group-item:hover {
+  background: #d0021b;
+  color: #fff;
+}
+[data-ng-view] {
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 .account-info {
   float: right;
@@ -37,72 +113,6 @@ body > header h1 {
   -moz-align-items: center;
   -ms-align-items: center;
   align-items: center;
-}
-.appList {
-  margin: 0 0 12px;
-  background: #eee;
-}
-.appList > header {
-  background: #f18c79;
-  color: #fff;
-  padding: 5px 15px;
-  text-align: right;
-  overflow: hidden;
-}
-.appList > header h3 {
-  float: left;
-  margin: 0;
-}
-.appList > header .switch,
-.appList > header .glyphicon {
-  vertical-align: middle;
-}
-.appList section {
-  padding: 0 25px 25px;
-}
-.appList section .experiments {
-  padding: 0;
-}
-.appList section .experiments li {
-  display: block;
-  margin: 0 0 5px 0;
-}
-.appList section .experiments li .expName {
-  font-weight: bold;
-  display: inline-block;
-  min-width: 100px;
-}
-.appList section .experiments button {
-  text-transform: capitalize;
-}
-.appList section header {
-  font-size: 1.5em;
-  display: inline-block;
-}
-.appList section .form-inline input[type="text"] {
-  width: 400px;
-}
-.appList section .form-inline .references label {
-  text-transform: capitalize;
-}
-.appList section .form-inline .ranged {
-  display: inline-block;
-  min-width: 350px;
-  padding-left: 35px;
-  padding-right: 40px;
-  vertical-align: top;
-}
-.appList section .form-inline .ranged .ngrs-range-slider {
-  margin: 0;
-}
-.appList section .form-inline .ranged .ngrs-range-slider .ngrs-value {
-  top: 2px;
-}
-.appList section .form-inline .ranged .ngrs-range-slider .ngrs-value.ngrs-value-min {
-  left: -30px;
-}
-.appList section .form-inline .ranged .ngrs-range-slider .ngrs-value.ngrs-value-max {
-  right: -40px;
 }
 .textNode {
   text-transform: capitalize;
