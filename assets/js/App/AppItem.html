@@ -1,30 +1,10 @@
-<tr>
+<tr data-ng-click="defaultAction()">
   <td width="99%" data-ng-bind="app.display_name || app.name || app.github_repo">This list appears to be broken</td>
-  <td class="actions">
-    <form data-ng-submit="submit()" data-ng-hide="exists">
-      <label>
-        {{ failText }}
-        <button
-          class="btn btn-primary btn-xs"
-          data-ng-disabled="(! app.permissions.push) || saving"
-          data-btn-text="add"
-          data-retry="true"
-          data-status="status"
-        >
-          <span class="glyphicon glyphicon-plus"></span>
-          <span>Add</span>
-        </button>
-      </label>
-    </form>
-    <label data-ng-show="exists">
+  <td>
+    <div class="actions">
       {{ failText }}
-      <a
-        data-ng-href="edit/{{ (app.github_repo || app.name) | clean }}"
-        class="btn btn-default btn-xs"
-      >
-        <span class="glyphicon glyphicon-cog"></span>
-        <span>Edit</span>
-      </a>
-    </label>
+      <span class="glyphicon" data-ng-class="actionIcon()"></span>
+      <span data-ng-bind="actionText()"></span>
+    </div>
   </td>
 </tr>

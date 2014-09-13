@@ -1,5 +1,6 @@
 body > header {
   background: #a55871;
+  background: radial-gradient(ellipse at 50% 15%, #fda08d 0%, #cd051f 25%, #d0021b 30%, #a55871 65%);
   color: #fff;
   overflow: auto;
 }
@@ -39,11 +40,13 @@ body > header .brand .h2 {
   font-family: 'Josefin Slab', serif;
   text-transform: uppercase;
 }
-body > header .brand h1 {
+body > header .brand h1,
+body > header .brand .h1 {
   letter-spacing: 18px;
   line-height: 43px;
 }
-body > header .brand h2 {
+body > header .brand h2,
+body > header .brand .h2 {
   font-size: 12px;
   letter-spacing: 5.04px;
   line-height: 15px;
@@ -56,6 +59,37 @@ h2,
 .h2 {
   font-family: 'Josefin Slab', serif;
   font-weight: bold;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 5.22px;
+}
+h2 label,
+.h2 label {
+  font-family: 'Maven Pro', sans-serif;
+  font-size: 14px;
+  letter-spacing: normal;
+}
+a {
+  color: #000;
+}
+.input-group-sm > .form-control,
+.input-group-sm > .input-group-addon,
+.input-group-sm > .input-group-btn > .btn {
+  border-radius: 0;
+}
+.input-group-addon {
+  background: transparent;
+  border: 0;
+}
+.panel-default > .panel-heading {
+  background-color: rgba(102,102,102,0.1);
+}
+.table {
+  border-top: 1px solid #d8d8d8;
+  border-collapse: separate;
+}
+.table > thead > tr > th {
+  border-bottom: 1px solid #d8d8d8;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -63,28 +97,54 @@ h2,
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
+  border-top: 1px solid #fff;
   font-weight: 500;
 }
-.table-striped > tbody > tr:nth-child(odd) > td,
-.table-striped > tbody > tr:nth-child(odd) > th {
+.table > caption + thead > tr:first-child > th,
+.table > colgroup + thead > tr:first-child > th,
+.table > thead:first-child > tr:first-child > th,
+.table > caption + thead > tr:first-child > td,
+.table > colgroup + thead > tr:first-child > td,
+.table > thead:first-child > tr:first-child > td {
+  border-top: 1px solid #fff;
+}
+.table-striped > tbody > tr > td,
+.table-striped > tbody > tr > th {
+  border-top: 1px solid #fff;
+}
+.table-striped > tbody > tr:nth-child(odd) > td {
   background-color: transparent;
 }
-.table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #d8d8d8;
+  color: #fff;
+  background-color: rgba(208,2,27,0.5);
+}
+.table-striped > tbody > tr:nth-child(even) > td,
+.table-striped > tbody > tr:nth-child(even) > th {
+  background-color: rgba(216,216,215,0.33);
 }
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
-  background: #d0021b;
+  background: rgba(208,2,27,0.8);
   color: #fff;
+  cursor: pointer;
 }
 .panel > .list-group .list-group-item:hover {
-  background: #d0021b;
+  background: rgba(208,2,27,0.8);
   color: #fff;
 }
 [data-ng-view] {
   padding-bottom: 50px;
   padding-top: 50px;
+}
+table .actions {
+  display: none;
+}
+table tr:hover .actions {
+  display: block;
+}
+nav.goBack {
+  font-weight: bold;
 }
 .account-info {
   float: right;
@@ -120,6 +180,9 @@ h2,
 .actions {
   text-align: right;
   white-space: nowrap;
+}
+.action {
+  cursor: pointer;
 }
 .label-primary a.glyphicon {
   color: #fff;

@@ -8,19 +8,71 @@
 
   app.directive('appItem', [
     'appService',
+    '$location',
 
-    function(appService) {
+    function(appService, $location) {
       return {
         restrict: 'A',
         templateUrl: mountPath + '/js/App/AppItem.html',
         replace: true,
         link: function(scope, elem, attrs) {
+          var app = scope.app;
           if (attrs.appItem === 'edit') {
             scope.exists = true;
           }
+
+          scope.actionText = function() {
+            var texts = {
+              true : {
+                true : 'Going...',
+                false : 'Adding...',
+              },
+              false: {
+                true: 'Edit',
+                false : 'Add',
+              },
+            };
+
+            return texts[scope.status === 'loading'][!! scope.exists];
+
+            var exists = !! scope.exists;
+            if (scope.status === 'loading') return { true : 'Going...', false: 'Adding...' }[exists];
+
+            return {
+              true: 'Edit',
+              false : 'Add',
+            }[exists];
+
+          };
+
+          scope.actionIcon = function() {
+            if (scope.status === 'loading') return 'glyphicon-time';
+
+            return {
+              true: 'glyphicon-cog',
+              false: 'glyphicon-plus',
+            }[!! scope.exists];
+          };
+
           scope.status = 'ready';
-          scope.submit = function() {
-            scope.status = 'saving';
+
+          scope.defaultAction = function(action) {
+            var mapper = {
+              edit : goToItem,
+              add : create,
+            };
+
+            action = action || scope.exists ? 'edit' : 'add';
+
+            mapper[action]();
+          };
+
+          scope.submit = create;
+          scope.getEditUrl = getEditUrl;
+          scope.goToItem = goToItem;
+
+          function create() {
+            scope.status = 'loading';
             var name = scope.app.name;
             scope.failText = null;
             appService
@@ -46,7 +98,20 @@
                 scope.failText = 'Dup-check failed, sry: {0} ({1})'.format(err.statusText, err.status);
                 scope.status = 'failed';
               });
-          };
+          }
+
+          function getEditUrl(){
+            scope.status = 'loading';
+            scope.failText = '';
+            var url = 'edit/{0}'.format(window.encodeURIComponent(app.github_repo || app.name));
+            return url;
+          }
+
+          function goToItem() {
+            var url = getEditUrl();
+
+            $location.path(url);
+          }
         }
       };
     }

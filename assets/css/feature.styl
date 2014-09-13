@@ -5,6 +5,8 @@ ser-font = 'Josefin Slab', serif
 body > header
   // background #A55871 url('../img/headerBG.png') no-repeat top left
   background #A55871
+  // background radial-gradient(#A55871 25%, #A55871 50%)
+  background radial-gradient(ellipse at 50% 15%, rgba(253,160,141,1) 0%,rgba(205,5,31,1) 25%,rgba(208,2,27,1) 30%,rgba(165,88,113,1) 65%)
   color #FFF
   overflow auto
 
@@ -20,6 +22,7 @@ body > header
     margin 31px 0 25px 100px
     padding 5px 11px 5px 25px
     position relative
+    // text-decoration none
 
     &:before
       content ''
@@ -40,10 +43,10 @@ body > header
       font-family ser-font
       text-transform uppercase
 
-    h1
+    h1, .h1
       letter-spacing 18px
       line-height 43px
-    h2
+    h2, .h2
       font-size 12px
       letter-spacing 5.04px
       line-height 15px
@@ -60,30 +63,81 @@ body
 h2, .h2
   font-family ser-font
   font-weight bold
+  font-size 24px
+  text-transform uppercase
+  letter-spacing 5.22px
+
+  label
+    font-family sans-font
+    font-size 14px
+    letter-spacing normal
+
+a
+  color #000
+  // text-decoration underline
+
+// Form Styling
+.input-group-sm > .form-control, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .btn
+  border-radius 0
+
+.input-group-addon
+  background transparent
+  border 0
+
+// Panel Styling
+.panel-default > .panel-heading
+  background-color rgba(102,102,102,.1)
+
 
 // Table Styling
+.table
+  border-top 1px solid #D8D8D8
+  border-collapse separate
+
+.table > thead > tr > th
+  border-bottom 1px solid #D8D8D8
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td
+  border-top 1px solid #FFF
   font-weight 500
 
-.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th
+.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td
+  border-top 1px solid #FFF
+
+.table-striped > tbody > tr > td, .table-striped > tbody > tr > th
+  border-top 1px solid #FFF
+
+.table-striped > tbody > tr:nth-child(odd) > td
   background-color transparent
 
-.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th
-  background-color #D8D8D8
+.table-striped > tbody > tr:nth-child(odd) > th
+  color #FFF
+  background-color rgba(208,2,27,.5)
+
+.table-striped > tbody > tr:nth-child(even) > td, .table-striped > tbody > tr:nth-child(even) > th
+  background-color rgba(216,216,215,.33)
 
 .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th
-  background #D0021B
+  background rgba(208,2,27,.8)
   color #FFF
+  cursor pointer
 
 .panel > .list-group .list-group-item:hover
-  background #D0021B
+  background rgba(208,2,27,.8)
   color #FFF
 
 [data-ng-view]
   padding-bottom 50px
   padding-top 50px
 
+table .actions
+  display none
+
+table tr:hover .actions
+  display block
+
+nav.goBack
+  font-weight bold
 
 
 .account-info
@@ -123,6 +177,9 @@ h2, .h2
 .actions
   text-align right
   white-space nowrap
+
+.action
+  cursor pointer
 
 // Exp Edit Pages
 .label-primary a.glyphicon

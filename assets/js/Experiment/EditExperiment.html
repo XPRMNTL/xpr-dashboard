@@ -26,11 +26,9 @@
           <div class="pull-right">
             <form role="form" class="form-horizontal">
               <span class="text-danger" data-ng-bind="failText"></span>
+              <span class="action" data-ng-click="cancel()">Cancel</span>
               <button class="btn btn-sm btn-primary" data-ng-click="save(exp)" title="Save">
                 <span class="glyphicon glyphicon-floppy-disk"></span> Save
-              </button>
-              <button class="btn btn-sm btn-danger" data-ng-click="cancel()" title="Cancel">
-                <span class="glyphicon glyphicon glyphicon-remove"></span> Cancel
               </button>
             </form>
           </div>
