@@ -52,21 +52,6 @@
             return ! angular.equals(expData, master);
           };
 
-          scope.toggle = function(choice) {
-
-            // If it's not a boolean, something is old or bad
-            if (typeof choice !== 'boolean') {
-              console.error('something is wrong');
-              return;
-            }
-
-            // Don't care if they're already on that tab
-            if (exp.value === choice) return;
-
-            exp.value = choice;
-            return;
-          };
-
           // Save all the data
           scope.save = function(expData) {
             scope.failText = null;

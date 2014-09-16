@@ -34,15 +34,6 @@
             };
 
             return texts[scope.status === 'loading'][!! scope.exists];
-
-            var exists = !! scope.exists;
-            if (scope.status === 'loading') return { true : 'Going...', false: 'Adding...' }[exists];
-
-            return {
-              true: 'Edit',
-              false : 'Add',
-            }[exists];
-
           };
 
           scope.actionIcon = function() {

@@ -26,7 +26,8 @@
             <input type="text" class="form-control" data-ng-model="search.name">
             <span class="input-group-btn">
               <button
-                class="btn btn-danger"
+                class="btn btn-primary"
+                data-ng-class="search.name.length ? 'active' : 'inactive'"
                 data-ng-disabled="! search.name.length"
                 data-ng-click="clearSearch()"
               >

@@ -4,34 +4,38 @@
       <strong data-ng-bind="refName"></strong>
       <div class="btn-group btn-group-sm">
         <button
-          class="btn btn-default"
+          class="btn btn-primary"
           data-ng-click="exp.references[refName] = true"
-          data-ng-class="isOn() ? 'active' : ''">On</button>
+          data-ng-class="isOn() ? 'active' : 'inactive'">On</button>
         <button
-          class="btn btn-default"
+          class="btn btn-danger"
           data-ng-click="exp.references[refName] = false"
-          data-ng-class="isOn() ? '' : 'active'">Off</button>
+          data-ng-class="isOn() ? 'inactive' : 'active'">Off</button>
       </div>
       <button
-        class="btn btn-default btn-sm"
-        data-ng-class="hasGroups() ? 'active' : ''"
-        data-ng-click="toggleGroups()">Groups</button>
+        class="btn btn-primary btn-sm"
+        data-ng-class="hasGroups() ? 'active' : 'inactive'"
+        data-ng-click="toggleGroups()">
+          <span class="glyphicon glyphicon-unchecked"></span>
+          <span class="glyphicon glyphicon-ok"></span>
+          Groups
+        </button>
     </div>
     <ul class="list-group" data-ng-show="hasGroups()">
       <li class="list-group-item" data-ng-repeat="group in exp.references[refName]">
         {{ getGroupName(group) }}
         <span class="actions pull-right">
           <span
-            class="glyphicon glyphicon-edit text-info"
+            class="glyphicon glyphicon-edit"
             data-ng-click="editGroup(group, $index)"></span>
           <span
-            class="glyphicon glyphicon-remove text-danger"
+            class="glyphicon glyphicon-remove"
             data-ng-click="removeGroup($index)"></span>
         </span>
       </li>
-      <li class="list-group-item">
+      <li class="list-group-item list-group-button-item">
         <div class="dropdown">
-          <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">
+          <button class="btn btn-sm btn-success btn-block dropdown-toggle" type="button">
             <span class="glyphicon glyphicon-plus"></span>
             Add Group
             <span class="caret"></span>

@@ -10,7 +10,8 @@
             <input type="text" class="form-control" data-ng-model="search.display_name">
             <span class="input-group-btn">
               <button
-                class="btn btn-danger"
+                class="btn btn-primary"
+                data-ng-class="search.display_name.length ? 'active' : 'inactive'"
                 data-ng-disabled="! search.display_name.length"
                 data-ng-click="clearSearch()"
               >
@@ -30,7 +31,7 @@
   </tbody>
   <tfoot>
     <td colspan="2">
-      <a href="/add" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-plus"></span> Add to List</a>
+      <a href="/add" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Add to List</a>
     </td>
   </tfoot>
 </table>

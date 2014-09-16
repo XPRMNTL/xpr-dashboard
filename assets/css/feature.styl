@@ -56,6 +56,18 @@ body > header
   // h1
   //   float left
 
+// Bootstrap-Toggle overrides
+.switch
+  border-radius 0
+  vertical-align middle
+
+  .switch-left
+    background #D73246
+
+  .switch-right
+    background #000
+    color #FFF
+
 
 // Bootstrap overrides
 body
@@ -79,6 +91,37 @@ a
   // text-decoration underline
 
 // Form Styling
+.btn
+  border-radius 0
+  border-width 0 0 1px
+  text-transform uppercase
+  &.inactive
+    background-color #D8D8D8
+    border-color #CCC
+    color rgba(51,51,51,.3)
+
+    .glyphicon-ok
+      display none
+    .glyphicon-unchecked
+      display inline-block
+
+  &.active
+    .glyphicon-ok
+      display inline-block
+    .glyphicon-unchecked
+      display none
+
+.btn-danger:not(.inactive)
+  background #000
+  border-color #CCC
+
+.btn-primary:not(.inactive)
+  background-color rgba(208,2,27,.8)
+  border-color #FF576C
+
+.btn-sm, .btn-group-sm > .btn
+  border-radius 0
+
 .input-group-sm > .form-control, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .btn
   border-radius 0
 
@@ -87,8 +130,17 @@ a
   border 0
 
 // Panel Styling
+.panel
+  background transparent
+  margin-bottom 30px
+
 .panel-default > .panel-heading
   background-color rgba(102,102,102,.1)
+
+.panel-body
+  background-color transparent
+  padding-top 0
+  padding-bottom 0
 
 
 // Table Styling
@@ -124,9 +176,38 @@ a
   color #FFF
   cursor pointer
 
+.modal-header
+  background rgba(208,2,27,.8)
+  color #FFF
+
+.modal-content
+  background-color #f6f6f6
+
+// End Bootstrap overrides
+
+.list-group-item:nth-child(odd)
+  background #EEE
+.list-group-item:nth-child(even)
+  background transparent
+
+.panel-heading p
+  padding-left 30px
+
 .panel > .list-group .list-group-item:hover
   background rgba(208,2,27,.8)
   color #FFF
+
+.panel > .list-group .list-group-item.list-group-button-item
+  background transparent
+  color #333
+
+.panel-body.row > .col-md-4
+  padding-left 0
+  padding-right 0
+
+  .panel
+    border-radius 0
+    margin-bottom 0
 
 [data-ng-view]
   padding-bottom 50px
@@ -137,6 +218,9 @@ table .actions
 
 table tr:hover .actions
   display block
+
+.actions .glyphicon
+  cursor pointer
 
 nav.goBack
   font-weight bold

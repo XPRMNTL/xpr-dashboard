@@ -53,6 +53,17 @@ body > header a:hover {
   letter-spacing: 5.04px;
   line-height: 15px;
 }
+.switch {
+  border-radius: 0;
+  vertical-align: middle;
+}
+.switch .switch-left {
+  background: #d73246;
+}
+.switch .switch-right {
+  background: #000;
+  color: #fff;
+}
 body {
   font-family: 'Maven Pro', sans-serif;
   background-color: #f6f6f6;
@@ -74,6 +85,40 @@ h2 label,
 a {
   color: #000;
 }
+.btn {
+  border-radius: 0;
+  border-width: 0 0 1px;
+  text-transform: uppercase;
+}
+.btn.inactive {
+  background-color: #d8d8d8;
+  border-color: #ccc;
+  color: rgba(51,51,51,0.3);
+}
+.btn.inactive .glyphicon-ok {
+  display: none;
+}
+.btn.inactive .glyphicon-unchecked {
+  display: inline-block;
+}
+.btn.active .glyphicon-ok {
+  display: inline-block;
+}
+.btn.active .glyphicon-unchecked {
+  display: none;
+}
+.btn-danger:not(.inactive) {
+  background: #000;
+  border-color: #ccc;
+}
+.btn-primary:not(.inactive) {
+  background-color: rgba(208,2,27,0.8);
+  border-color: #ff576c;
+}
+.btn-sm,
+.btn-group-sm > .btn {
+  border-radius: 0;
+}
 .input-group-sm > .form-control,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn {
@@ -83,8 +128,17 @@ a {
   background: transparent;
   border: 0;
 }
+.panel {
+  background: transparent;
+  margin-bottom: 30px;
+}
 .panel-default > .panel-heading {
   background-color: rgba(102,102,102,0.1);
+}
+.panel-body {
+  background-color: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .table {
   border-top: 1px solid #d8d8d8;
@@ -131,9 +185,37 @@ a {
   color: #fff;
   cursor: pointer;
 }
+.modal-header {
+  background: rgba(208,2,27,0.8);
+  color: #fff;
+}
+.modal-content {
+  background-color: #f6f6f6;
+}
+.list-group-item:nth-child(odd) {
+  background: #eee;
+}
+.list-group-item:nth-child(even) {
+  background: transparent;
+}
+.panel-heading p {
+  padding-left: 30px;
+}
 .panel > .list-group .list-group-item:hover {
   background: rgba(208,2,27,0.8);
   color: #fff;
+}
+.panel > .list-group .list-group-item.list-group-button-item {
+  background: transparent;
+  color: #333;
+}
+.panel-body.row > .col-md-4 {
+  padding-left: 0;
+  padding-right: 0;
+}
+.panel-body.row > .col-md-4 .panel {
+  border-radius: 0;
+  margin-bottom: 0;
 }
 [data-ng-view] {
   padding-bottom: 50px;
@@ -144,6 +226,9 @@ table .actions {
 }
 table tr:hover .actions {
   display: block;
+}
+.actions .glyphicon {
+  cursor: pointer;
 }
 nav.goBack {
   font-weight: bold;

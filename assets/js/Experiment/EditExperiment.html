@@ -1,23 +1,28 @@
 <div class="panel" data-ng-class="getClassName()">
-  <div class="panel-heading clearfix">
+  <div class="panel-heading clearfix no-gap">
     <div class="row">
       <div class="col-md-7">
         <h4>
           {{ exp.name }}
           <div class="btn-group btn-group-sm">
             <button
-              class="btn btn-default"
-              data-ng-class="exp.value === true ? 'active' : ''"
-              data-ng-click="toggle(true)">On</button>
+              class="btn btn-primary"
+              data-ng-class="exp.value === true ? 'active' : 'inactive'"
+              data-ng-click="exp.value = true">On</button>
             <button
-              class="btn btn-default"
-              data-ng-class="exp.value === false ? 'active' : ''"
-              data-ng-click="toggle(false)">Off</button>
+              class="btn btn-danger"
+              data-ng-class="exp.value === false ? 'active' : 'inactive'"
+              data-ng-click="exp.value = false">Off</button>
           </div>
+          <!-- <toggle-switch model="exp.value"></toggle-switch> -->
           <button
-            class="btn btn-sm btn-default"
-            data-ng-class="!! exp.references ? 'active' : ''"
-            data-ng-click="toggleReferences()">References</button>
+            class="btn btn-sm btn-primary"
+            data-ng-class="!! exp.references ? 'active' : 'inactive'"
+            data-ng-click="toggleReferences()">
+            <span class="glyphicon glyphicon-unchecked"></span>
+            <span class="glyphicon glyphicon-ok"></span>
+            References
+          </button>
         </h4>
         <p data-ng-bind-html="exp.description"></p>
       </div>
