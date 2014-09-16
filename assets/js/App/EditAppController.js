@@ -108,11 +108,11 @@
           .saveGroups($scope.app._id, val)
           .then(function(groups) {
             // FIXME: Do something here please
-            console.info(groups);
-            alert('group saved');
+            // console.info(groups);
+            // alert('group saved');
           }, function(err) {
             // FIXME: Error state here
-            alert(err);
+            // alert(err);
             console.error(err);
           });
       }, true);
