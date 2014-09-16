@@ -3,8 +3,6 @@
 (function(angular, mountPath) {
   'use strict';
 
-  console.info('AccountInfoService Loaded');
-
   // No [] here to make sure we're getting and not creating
   var app = angular.module('featureApp')
     , API = mountPath + '/auth/';

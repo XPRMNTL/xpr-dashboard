@@ -2,8 +2,6 @@
 (function(angular, $, mountPath, moment) {
   'use strict';
 
-  console.info('ExperimentDirectives loaded');
-
   var app = angular.module('featureApp');
 
   app.directive('editExperiment', [
@@ -58,7 +56,7 @@
 
             // experimentService.hack(scope.app._id, expData)
             //   .then(function() {
-            //     console.log(arguments);
+            //     console.info(arguments);
             //   }, function(err) {
             //     scope.failText = 'Update failed, sry: {0} ({1})'.format(err.statusText, err.status || '000');
             //   });
@@ -170,7 +168,6 @@
 
           function editGroup(_group, idx) {
             var group = angular.copy(_group);
-            console.log(arguments);
 
             // Set the ref and type
             if (typeof group.name !== 'string') {
@@ -222,7 +219,6 @@
             if (typeof idx === 'number') {
               exp.references[refName][idx] = group;
             } else {
-              console.log('new');
               exp.references[refName].push(group);
             }
 

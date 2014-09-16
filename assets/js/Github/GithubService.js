@@ -3,8 +3,6 @@
 
   'use strict';
 
-  console.info('GithubService loaded');
-
   // No [] here to make sure we're getting and not creating
   var app = angular.module('featureApp')
     , API = mountPath + '/api/github';

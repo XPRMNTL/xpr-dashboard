@@ -2,8 +2,6 @@
 (function(angular, moment) {
   'use strict';
 
-  console.info('AddAppController loaded');
-
   var app = angular.module('featureApp');
 
   app.controller('AddAppController', [

@@ -2,8 +2,6 @@
 (function(angular) {
   'use strict';
 
-  console.info('AppFilters loaded');
-
   var app = angular.module('featureApp');
 
   app.filter('clean', function() {

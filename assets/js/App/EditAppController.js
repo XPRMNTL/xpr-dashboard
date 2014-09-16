@@ -2,8 +2,6 @@
 (function(angular) {
   'use strict';
 
-  console.info('EditAppController loaded');
-
   var app = angular.module('featureApp');
 
   app.controller('EditAppController', [

@@ -2,8 +2,6 @@
 (function(angular, $, mountPath) {
   'use strict';
 
-  console.info('AppDirectives loaded');
-
   var app = angular.module('featureApp');
 
   app.directive('appItem', [

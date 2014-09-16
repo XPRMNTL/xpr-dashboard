@@ -3,8 +3,6 @@
 (function(angular, mountPath) {
   'use strict';
 
-  console.info('ExperimentService Loaded');
-
   // No [] here to make sure we're getting and not creating
   var app = angular.module('featureApp')
     , API = mountPath + '/api/experiment/';
@@ -46,8 +44,6 @@
         var dfd = $q.defer()
           , id = experiment._id
           , url = API + id;
-
-        console.log(experiment);
 
         if (! id) {
           return $q.reject({ statusText: 'Does not exist' });

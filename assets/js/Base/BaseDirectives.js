@@ -2,8 +2,6 @@
 (function(angular, $) {
   'use strict';
 
-  console.info('BaseDirectives loaded');
-
   var app = angular.module('featureApp');
 
   app.directive('loading', [

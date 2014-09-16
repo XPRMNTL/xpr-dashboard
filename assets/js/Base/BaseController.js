@@ -2,8 +2,6 @@
 (function(angular) {
   'use strict';
 
-  console.info('BaseController loaded');
-
   var app = angular.module('featureApp');
 
   app.controller('BaseController', [
@@ -11,8 +9,6 @@
     '$scope',
 
     function BaseController($rootScope, $scope) {
-      console.info('baseControllered');
-
       $scope.clearSearch = function() {
         $scope.search = {};
       };

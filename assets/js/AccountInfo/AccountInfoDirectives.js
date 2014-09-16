@@ -3,8 +3,6 @@
 (function(angular, $, mountPath) {
   'use strict';
 
-  console.info('AccountInfoDirective Loaded');
-
   var app = angular.module('featureApp');
 
   app.directive('accountInfo', [
