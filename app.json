@@ -6,8 +6,8 @@
     "feature flags",
     "experiments"
   ],
-  "repository": "https://github.com/fs-webdev/feature",
-  "logo": "https://raw.githubusercontent.com/fs-webdev/feature/master/assets/img/logo.png",
+  "repository": "https://github.com/XPRMNTL/feature",
+  "logo": "https://raw.githubusercontent.com/XPRMNTL/feature/master/assets/img/logo.png",
   "success_url": "/",
   "addons": [
     "redistogo",

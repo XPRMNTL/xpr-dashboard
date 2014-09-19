@@ -16,7 +16,7 @@ Created http://random-thing-23.herokuapp.com/ | git@heroku.com:random-thing-23.g
 
 Clone the repository
 ```sh
-$ git clone https://github.com/fs-webdev/feature
+$ git clone https://github.com/XPRMNTL/feature
 ```
 
 
