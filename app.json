@@ -15,11 +15,11 @@
   ],
   "env": {
     "BASE_URL": {
-      "description": "This url is the root of your application. It is used for OAuth on the server and the <base> tag on the client",
+      "description": "This url is the root of your application. It is used for OAuth on the server and the <base> tag on the client. If you want to do this quickly, please set your \"App Name\" above and use \"<appname>.herokuapp.com\" (no trailing slash). You can change it later.",
       "required": true
     },
     "GITHUB_CLIENT_ID": {
-      "description": "The OAuth ClientID obtained from github.com",
+      "description": "The OAuth ClientID obtained from github.com. When it asks for your homepage URL, use the `BASE_URL` above. Authorization callback URL is your `BASE_URL`+ \"/auth/github/callback\"",
       "required": true
     },
     "GITHUB_CLIENT_SECRET": {
@@ -27,7 +27,7 @@
       "required": true
     },
     "GITHUB_ORGS": {
-      "description": "A list of Github Organizations from which to pull repos for experiments",
+      "description": "A comma-separated (no spaces) list of Github Organizations from which to pull repos for experiments",
       "required": true
     }
   }
