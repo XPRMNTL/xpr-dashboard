@@ -4,7 +4,7 @@ Notice where I have trailing slashes...
 GITHUB_CLIENT_ID=idhere
 GITHUB_CLIENT_SECRET=secrethere
 
-AUTH_GITHUB_ORGS=comma,separated,values
+GITHUB_ORGS=comma,separated,values
 
 REDISTOGO_URL=redis://username:password@url:port/
 

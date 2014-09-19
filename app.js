@@ -12,7 +12,7 @@
    */
   var app = module.exports = stack
     , port = process.env.PORT || 5000
-    , authGithubOrgs = process.env.AUTH_GITHUB_ORGS.split(',');
+    , authGithubOrgs = process.env.GITHUB_ORGS.split(',');
 
   // Initialize Database Connections
   require('./lib/utils/db');
