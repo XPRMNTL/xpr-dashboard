@@ -4,7 +4,7 @@
 
 ### Heroku
 #### Automated
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/fs-webdev/feature/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/XPRMNTL/feature/tree/master)
 #### Manual
 Create the Heroku repository
 
