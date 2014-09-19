@@ -15,7 +15,7 @@
   ],
   "env": {
     "BASE_URL": {
-      "description": "This url is the root of your application. It is used for OAuth on the server and the <base> tag on the client. If you want to do this quickly, please set your \"App Name\" above and use \"<appname>.herokuapp.com\" (no trailing slash). You can change it later.",
+      "description": "This url is the root of your application. It is used for OAuth on the server and the <base> tag on the client. If you want to do this quickly, please set your \"App Name\" above and use \"http://<appname>.herokuapp.com\" (no trailing slash). You can change it later.",
       "required": true
     },
     "GITHUB_CLIENT_ID": {
