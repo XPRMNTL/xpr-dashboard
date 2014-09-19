@@ -37,15 +37,15 @@ Deploy it however makes you happy.
 
 Required environment variables:
 
-- BASE_URL
+- `BASE_URL`
   - This url is the root of your application. It is used for OAuth on the server and the `<base>` tag on the client.
   - Example: "http://appname.herokuapp.com" (no trailing slash)
-- PORT
+- `PORT`
   - The port on which the Express.js app will listen.
-- GITHUB_CLIENT_ID
+- `GITHUB_CLIENT_ID`
   - The OAuth ClientID obtained from github.com. When it asks for your homepage URL, use the `BASE_URL` above. Authorization callback URL is your `BASE_URL`+ "/auth/github/callback"
-- GITHUB_CLIENT_SECRET
+- `GITHUB_CLIENT_SECRET`
   - The OAuth Client secret obtained from github.com
-- GITHUB_ORGS
+- `GITHUB_ORGS`
   - A comma-separated (no spaces) list of Github Organizations from which to pull repos for experiments
   - Example: "heroku,github,something"
