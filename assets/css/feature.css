@@ -13,6 +13,7 @@ body > header a:hover {
   border-width: 0 1px;
   border-style: solid;
   border-color: #d8d8d8;
+  float: left;
   height: 69px;
   margin: 31px 0 25px 100px;
   padding: 5px 11px 5px 25px;
