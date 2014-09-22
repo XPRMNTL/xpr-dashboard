@@ -1,6 +1,6 @@
 {
   "name": "XPRMNTL Dashboard",
-  "description": "This dashboard handles managment of Experiment configuration",
+  "description": "Feature Flags as a Service. This dashboard handles the managment of Experiment configuration",
   "keywords": [
     "productivity",
     "feature flags",
