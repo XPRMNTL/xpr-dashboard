@@ -1,6 +1,17 @@
+[![XPRMNTL](https://raw.githubusercontent.com/XPRMNTL/XPRMNTL.github.io/master/images/ghLogo.jpg)](https://github.com/XPRMNTL/XPRMNTL.github.io)
 # XPRMNTL Dashboard
+Dashboard component of the [XPRMNTL](https://github.com/XPRMNTL/XPRMNTL.github.io) Experiments as a Service product
 
-## Deployment:
+## Features
+The XPRMNTL dashboard is a UI for the API, which allows you to:
+
+1. Select Github repositories to add to Experiments
+2. Modify experiment configuration
+
+The current implementation requires a Github Organization with repositories for the code and uses Github's OAuth2 strategies for authentication/authorization.
+
+
+## Deployment
 
 ### Heroku
 #### Automated
