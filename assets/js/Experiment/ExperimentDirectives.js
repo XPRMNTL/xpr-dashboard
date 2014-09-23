@@ -15,9 +15,13 @@
         link: function(scope) {
           var exp = scope.exp
             , master = angular.copy(exp);
+          var monthAgo = new Date();
+          monthAgo.setMonth(monthAgo.getMonth()-1);
+          // monthAgo.setDate(monthAgo.getDate())
 
           scope.$watch('exp.date_modified', function(val) {
-            scope.modified = moment(new Date(val));
+            var modified = scope.modified = moment(new Date(val));
+            modified.isOld = !! modified.isBefore(monthAgo);
           }, true);
 
           scope.getClassName = function() {

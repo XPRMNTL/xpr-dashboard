@@ -38,7 +38,7 @@
             </form>
           </div>
         </span>
-        <small class="pull-right" data-ng-show="! isDirty(exp)" data-ng-bind="'Modified: ' + modified.fromNow()" title="{{ modified.format('MMMM Do YYYY, h:mm:ss a') }}"></small>
+        <small class="pull-right" data-ng-class="{ true: 'label label-danger' }[modified.isOld]"data-ng-show="! isDirty(exp)" data-ng-bind="'Modified: ' + modified.fromNow()" title="{{ modified.format('MMMM Do YYYY, h:mm:ss a') }}"></small>
       </div>
     </div>
   </div>
