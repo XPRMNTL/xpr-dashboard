@@ -210,11 +210,13 @@ a {
   background: transparent;
   color: #333;
 }
-.panel-body.row > .col-md-4 {
+.panel-body.row > .col-md-4,
+.panel-body.row > .col-md-3 {
   padding-left: 0;
   padding-right: 0;
 }
-.panel-body.row > .col-md-4 .panel {
+.panel-body.row > .col-md-4 .panel,
+.panel-body.row > .col-md-3 .panel {
   border-radius: 0;
   margin-bottom: 0;
 }

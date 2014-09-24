@@ -24,6 +24,13 @@
             modified.isOld = !! modified.isBefore(monthAgo);
           }, true);
 
+          scope.getCol = function() {
+            var str = 'col-md-';
+            str += 12 / scope.app.references.length;
+
+            return str;
+          };
+
           scope.getClassName = function() {
             var classNames = [ 'default', 'success', 'warning', 'info', ]
               , idx = 0;
