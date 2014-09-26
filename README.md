@@ -1,4 +1,4 @@
-[![XPRMNTL](https://raw.githubusercontent.com/XPRMNTL/XPRMNTL.github.io/master/images/ghLogo.jpg)](https://github.com/XPRMNTL/XPRMNTL.github.io)
+[![XPRMNTL](https://raw.githubusercontent.com/XPRMNTL/XPRMNTL.github.io/master/images/ghLogo.png)](https://github.com/XPRMNTL/XPRMNTL.github.io)
 # XPRMNTL Dashboard
 Dashboard component of the [XPRMNTL](https://github.com/XPRMNTL/XPRMNTL.github.io) Experiments as a Service product
 
