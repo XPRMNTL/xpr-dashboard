@@ -12,50 +12,6 @@
 
     function EditAppController($controller, $scope, $routeParams, appService) {
       $controller('BaseController', { $scope: $scope });
-      $scope.choices = {};
-
-      function setChoices(name, items) {
-        $scope.choices[name] = items.map(function(item) {
-          if (typeof item === 'string') item = {
-            name: item,
-            disabled: false
-          };
-
-          return item;
-        });
-      }
-
-      setChoices('types', [
-        'boolean',
-        'reference',
-        'range',
-        { name: 'variants', disabled: true },
-        { name: 'groups', disabled: true }
-      ]);
-      setChoices('boolean', [
-        { name: 'Enable', val: true },
-        { name: 'Disable', val: false }
-      ]);
-      setChoices('reference', [ 'local', 'beta', 'prod' ]);
-
-
-      (function(items) {
-        $scope.types = items.map(function(item) {
-
-          if (typeof item === 'string') item = {
-            name: item,
-            disabled: false
-          };
-
-          return item;
-        });
-      })([
-        'boolean',
-        'reference',
-        { name: 'range', disabled: true },
-        { name: 'variants', disabled: true },
-        { name: 'groups', disabled: true }
-      ]);
 
       var repo = $routeParams.repo;
       var master = {};
@@ -106,11 +62,9 @@
           .saveGroups($scope.app._id, val)
           .then(function(groups) {
             // FIXME: Do something here please
-            // console.info(groups);
-            // alert('group saved');
+            console.info(groups);
           }, function(err) {
             // FIXME: Error state here
-            // alert(err);
             console.error(err);
           });
       }, true);
@@ -118,7 +72,11 @@
       function update(data) {
         if (! data.groups) data.groups = {};
 
+        // Newer experiments on top
+        data.experiments.reverse();
+
         master = angular.copy(data);
+
         $scope.app = data;
       }
     }
