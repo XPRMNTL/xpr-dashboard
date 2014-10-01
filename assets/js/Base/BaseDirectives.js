@@ -1,5 +1,5 @@
 /* global window */
-(function(angular, $) {
+(function(angular) {
   'use strict';
 
   var app = angular.module('featureApp');

@@ -1,4 +1,4 @@
-/* global window, localStorage */
+/* global window */
 (function(angular, $, mountPath, moment) {
   'use strict';
 
