@@ -1,5 +1,6 @@
 [![XPRMNTL](https://raw.githubusercontent.com/XPRMNTL/XPRMNTL.github.io/master/images/ghLogo.png)](https://github.com/XPRMNTL/XPRMNTL.github.io)
 # XPRMNTL Dashboard
+[![Build Status](https://travis-ci.org/XPRMNTL/feature.svg?branch=master)](https://travis-ci.org/XPRMNTL/feature)
 Dashboard component of the [XPRMNTL](https://github.com/XPRMNTL/XPRMNTL.github.io) Experiments as a Service product
 
 ## Features
