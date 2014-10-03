@@ -15,11 +15,6 @@ before(function(done) {
   });
 });
 
-connection.on('error', function(err) {
-  // console.log('hi');
-  // console.log(arguments);
-});
-
 after(function(done) {
   return connection.close(done);
 });

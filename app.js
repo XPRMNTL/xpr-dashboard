@@ -15,7 +15,10 @@
     , authGithubOrgs = process.env.GITHUB_ORGS.split(',');
 
   // Initialize Database Connections
-  require('./lib/utils/db');
+  // only if we're not in test mode
+  if (process.env.NODE_ENV !== 'test') {
+    require('./lib/utils/db');
+  }
 
   GithubAPI.prototype.orgs = authGithubOrgs;
 
