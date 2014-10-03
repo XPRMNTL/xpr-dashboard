@@ -1,0 +1,194 @@
+{
+  "apps": {
+    "full": {
+      "github_repo": "example/advanced",
+      "groups": {
+        "sample group": [ "user0", "user1" ]
+      },
+      "experiments": [
+        {
+          "name": "testExp0",
+          "description": "test description",
+          "value": true
+        },
+        {
+          "name": "testExp1",
+          "value": false
+        },
+        {
+          "name": "testExp2",
+          "value": true,
+          "references": {
+            "local": false
+          }
+        },
+        {
+          "name": "testExp3",
+          "value": false,
+          "references": {
+            "local": true
+          }
+        },
+        {
+          "name": "testExp4",
+          "value": false,
+          "references": {
+            "int": [
+              "sample group",
+              {
+                "min": 0,
+                "max": 9,
+                "percent": "10"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "shared": {
+      "github_repo": "example/advancedShared",
+      "groups": {
+        "sample group": [ "user0", "user1" ]
+      },
+      "experiments": [
+        {
+          "name": "testExp0",
+          "description": "test description",
+          "value": true
+        },
+        {
+          "name": "testExp1",
+          "value": false
+        },
+        {
+          "name": "testExp2",
+          "value": true,
+          "references": {
+            "local": false
+          }
+        },
+        {
+          "name": "testExp3",
+          "value": false,
+          "references": {
+            "local": true
+          }
+        },
+        {
+          "name": "testExp4",
+          "value": false,
+          "references": {
+            "int": [
+              "sample group",
+              {
+                "min": 0,
+                "max": 9,
+                "percent": "10"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "api": {
+
+      "all" : {
+        "groups": {
+          "sample group": [ "user0", "user1" ]
+        },
+        "experiments": {
+          "testExp0": true,
+          "testExp1": false,
+          "testExp2": true,
+          "testExp3": false,
+          "testExp4": false
+        },
+        "envs": {
+          "local": {
+            "testExp2": false,
+            "testExp3": true
+          },
+          "int": {
+            "testExp4": [ "sample group", "0-9%" ]
+          }
+        }
+      },
+      "local": {
+        "groups": {
+          "sample group": [ "user0", "user1" ]
+        },
+        "experiments": {
+          "testExp0": true,
+          "testExp1": false,
+          "testExp2": false,
+          "testExp3": true,
+          "testExp4": false
+        }
+      },
+      "int": {
+        "groups": {
+          "sample group": [ "user0", "user1" ]
+        },
+        "experiments": {
+          "testExp0": true,
+          "testExp1": false,
+          "testExp2": true,
+          "testExp3": false,
+          "testExp4": [ "sample group", "0-9%" ]
+        }
+      }
+    }
+  },
+
+  "raw": {
+    "simple": {
+      "experiments" : [
+        { "name": "testExp1", "default": true },
+        { "name": "testExp2", "default": false }
+      ]
+    },
+    "simpleShared": {
+      "experiments" : [
+        { "name": "testExp1", "default": true },
+        { "name": "testExp2", "default": false }
+      ],
+      "shared" : {
+        "experiments": [
+          { "name": "sharedExp1", "default": false },
+          { "name": "sharedExp2", "default": true }
+        ]
+      }
+    }
+  },
+
+  "api": {
+    "simple": {
+      "app": {
+        "experiments": {
+          "testExp1": true,
+          "testExp2": false
+        },
+        "groups": {},
+        "envs": {}
+      }
+    },
+    "simpleShared" : {
+      "app": {
+        "experiments": {
+          "testExp1": true,
+          "testExp2": false
+        },
+        "groups": {},
+        "envs": {}
+      },
+      "shared" : {
+        "experiments": {
+          "sharedExp1": false,
+          "sharedExp2": true
+        },
+        "groups": {},
+        "envs": {}
+      }
+    }
+  }
+}

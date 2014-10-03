@@ -22,11 +22,12 @@
     "superagent-defaults": "^0.1.6"
   },
   "devDependencies": {
+    "chai": "^1.9.2",
     "mocha": "^1.20.1",
-    "should": "^4.0.4"
+    "supertest": "^0.14.0"
   },
   "scripts": {
-    "test": "foreman run ./bin/tests"
+    "test": "NODE_ENV=test `pwd`/node_modules/.bin/mocha --reporter spec test/server/**/*"
   },
   "engines": {
     "node": "0.10.x"
