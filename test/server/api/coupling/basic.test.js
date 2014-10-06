@@ -65,7 +65,6 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
         supertest.agent(app)
           .post(ENDPOINT)
           .set({
-            'accept': 'application/json',
             'x-feature-key': devKey
           })
           .expect(200, function(err, resp) {
@@ -88,7 +87,6 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
       supertest.agent(app)
         .post(ENDPOINT)
         .set({
-          'accept': 'application/json',
           'x-feature-key': devKey
         })
         .send(mocks.raw.simple)
@@ -133,7 +131,6 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
         supertest.agent(app)
           .post(ENDPOINT)
           .set({
-            'accept': 'application/json',
             'x-feature-key': devKey
           })
           .send(mocks.raw.simple)
@@ -153,7 +150,6 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
         supertest.agent(app)
           .post(ENDPOINT)
           .set({
-            'accept': 'application/json',
             'x-feature-key': devKey,
             'x-feature-key-shared': sharedKey
           })

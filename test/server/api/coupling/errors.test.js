@@ -27,17 +27,6 @@ var ENDPOINT = '/api/coupling/';
 
 describe('API Coupling interface (/api/coupling) expected error codes:', function() {
 
-  describe('Given no `accept` `application/json`, POST(/)', function() {
-    it('should return an empty 401', function(done) {
-      supertest.agent(app)
-        .post(ENDPOINT)
-        .expect(401, function(err, resp) {
-          expect(resp.body).to.eql({});
-          done(err);
-        });
-    });
-  });
-
   describe('Given no x-feature-key, POST(/)', function() {
     it('should return an empty 401', function(done) {
       supertest.agent(app)

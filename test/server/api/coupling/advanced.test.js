@@ -50,7 +50,6 @@ describe('API Coupling interface (/api/coupling) advanced configuration:', funct
       supertest.agent(app)
         .post(ENDPOINT)
         .set({
-          'accept': 'application/json',
           'x-feature-key': devKey
         })
         .expect(200, function(err, resp) {
@@ -68,7 +67,6 @@ describe('API Coupling interface (/api/coupling) advanced configuration:', funct
       supertest.agent(app)
         .post(ENDPOINT)
         .set({
-          'accept': 'application/json',
           'x-feature-key': devKey
         })
         .send({
@@ -87,7 +85,6 @@ describe('API Coupling interface (/api/coupling) advanced configuration:', funct
       supertest.agent(app)
         .post(ENDPOINT)
         .set({
-          'accept': 'application/json',
           'x-feature-key': devKey,
           'x-feature-key-shared': sharedKey
         })
