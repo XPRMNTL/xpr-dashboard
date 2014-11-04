@@ -61,6 +61,21 @@
             return ! angular.equals(expData, master);
           };
 
+          scope.deleteMe = function() {
+            var id = scope.exp._id;
+            scope.failText = null;
+
+            if (window.confirm('Are you sure you want to delete this? You will lose all configuration.')) {
+              experimentService.del(id)
+                .then(function() {
+                  scope.$emit('deleteExp', id);
+                }, function(err) {
+                  scope.failText = 'Delete failed, sry: {0} ({1})'.format(err.statusText, err.status || '000');
+                });
+            }
+
+          };
+
           // Save all the data
           scope.save = function(expData) {
             scope.failText = null;

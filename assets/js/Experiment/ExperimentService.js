@@ -16,6 +16,7 @@
       return {
         hack: hackUpdate,
         update: update,
+        del: del,
       };
 
       function hackUpdate(appId, experiment, cb) {
@@ -55,6 +56,28 @@
             var data = resp.data;
             if (cb) cb(null, data);
             dfd.resolve(data);
+          }, function(err) {
+            console.error(err);
+            if (cb) cb(err);
+            dfd.reject(err);
+          });
+
+        return dfd.promise;
+      }
+
+      function del(id, cb) {
+        var dfd = $q.defer()
+          , url = API + id;
+
+        if (! id) {
+          return $q.reject({ statusText: 'Does not exist' });
+        }
+
+        $http
+          .delete(url)
+          .then(function() {
+            if (cb) cb();
+            dfd.resolve();
           }, function(err) {
             console.error(err);
             if (cb) cb(err);

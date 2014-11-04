@@ -38,7 +38,13 @@
             </form>
           </div>
         </span>
-        <small class="pull-right" data-ng-class="{ true: 'label label-danger' }[modified.isOld]"data-ng-show="! isDirty(exp)" data-ng-bind="'Modified: ' + modified.fromNow()" title="{{ modified.format('MMMM Do YYYY, h:mm:ss a') }}"></small>
+        <span class="pull-right actions" data-ng-show="! isDirty(exp)">
+          <small data-ng-class="{ true: 'label label-warning' }[modified.isOld]" data-ng-bind="'Modified: ' + modified.fromNow()" title="{{ modified.format('MMMM Do YYYY, h:mm:ss a') }}"></small>
+          <span data-ng-click="deleteMe()" class="glyphicon glyphicon-trash deleter"></span>
+          <br />
+          <small class="label label-danger" data-ng-bind="failText"></small>
+        </span>
+
       </div>
     </div>
   </div>
