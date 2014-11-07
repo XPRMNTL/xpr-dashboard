@@ -62,44 +62,4 @@ describe('API Coupling interface (/api/coupling) advanced configuration:', funct
     });
   });
 
-  describe('Given a reference, POST(/)', function() {
-    it('should return the experiment for just that reference', function(done) {
-      supertest.agent(app)
-        .post(ENDPOINT)
-        .set({
-          'x-feature-key': devKey
-        })
-        .send({
-          reference: 'local'
-        })
-        .expect(200, function(err, resp) {
-          if (err) return done(err);
-          expect(resp.body).to.eql({
-            app: mocks.apps.api.local
-          });
-          done();
-        });
-    });
-
-    it('should return shared exp data for just that reference', function(done) {
-      supertest.agent(app)
-        .post(ENDPOINT)
-        .set({
-          'x-feature-key': devKey,
-          'x-feature-key-shared': sharedKey
-        })
-        .send({
-          reference: 'int'
-        })
-        .expect(200, function(err, resp) {
-          if (err) return done(err);
-          expect(resp.body).to.eql({
-            app: mocks.apps.api.int,
-            shared: mocks.apps.api.int
-          });
-          done();
-        });
-    });
-  });
-
 });

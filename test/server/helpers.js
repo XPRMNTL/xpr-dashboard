@@ -16,7 +16,7 @@ exports.createApps = function (data, cb) {
 
     var doc = new AppModel(config);
 
-    doc.save(function(err) {
+    doc.serialize(function(err) {
       if (err) return dfd.reject(err);
       dfd.resolve(doc);
     });

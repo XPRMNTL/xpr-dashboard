@@ -70,7 +70,6 @@
       }, true);
 
       $scope.$on('deleteExp', function(evt, id) {
-        console.log('DELETE REQUEST: ', id);
         $scope.app.experiments = $scope.app.experiments.filter(function(item) {
           return (item._id !== id);
         });
