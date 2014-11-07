@@ -65,7 +65,7 @@
             var id = scope.exp._id;
             scope.failText = null;
 
-            if (window.confirm('Are you sure you want to delete this? You will lose all configuration.')) {
+            if (window.confirm('Are you sure you want to delete this experiment? You will lose all data associated with it.')) {
               experimentService.del(id)
                 .then(function() {
                   scope.$emit('deleteExp', id);
