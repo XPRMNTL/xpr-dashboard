@@ -12,7 +12,9 @@
    */
   var app = module.exports = stack
     , port = process.env.PORT || 5000
-    , authGithubOrgs = process.env.GITHUB_ORGS.split(',');
+    , authGithubOrgs = process.env.GITHUB_ORGS.split(',').map(function(item) {
+      return item.toLowerCase();
+    });
 
   // Initialize Database Connections
   // only if we're not in test mode
