@@ -19,7 +19,8 @@
     "simple-stack-common": "^0.2.3",
     "stylus": "^0.47.1",
     "superagent": "^0.18.1",
-    "superagent-defaults": "^0.1.6"
+    "superagent-defaults": "^0.1.6",
+    "xpr-util-validation": "0.0.1"
   },
   "devDependencies": {
     "chai": "^1.9.2",
