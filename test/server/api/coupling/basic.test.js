@@ -82,6 +82,24 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
       });
     });
 
+    describe('Given an experiments list with any invalid experiments, ', function() {
+
+      it('should reply with an experiments list with invalid experiments removed', function(done) {
+        supertest.agent(app)
+          .post(ENDPOINT)
+          .set({
+            'x-feature-key': devKey
+          })
+          .send(mocks.raw.simpleInvalid)
+          .expect(200, function(err, resp) {
+            if (err) return done(err);
+
+            expect(resp.body).to.eql(mocks.api.simple);
+            done();
+          });
+      });
+    });
+
     it('should add all data and send back defaulted configs', function(done) {
 
       supertest.agent(app)

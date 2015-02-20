@@ -147,6 +147,13 @@
         { "name": "testExp2", "default": false }
       ]
     },
+    "simpleInvalid": {
+      "experiments" : [
+        { "name": "testExp1", "default": true },
+        { "name": "testExp2", "default": false },
+        { "name": "test Exp3", "default": false }
+      ]
+    },
     "simpleShared": {
       "experiments" : [
         { "name": "testExp1", "default": true },
