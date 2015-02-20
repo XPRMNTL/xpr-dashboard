@@ -172,6 +172,16 @@
         "envs": {}
       }
     },
+    "simpleNoDefault": {
+      "app": {
+        "experiments": {
+          "testExp1": false,
+          "testExp2": false
+        },
+        "groups": {},
+        "envs": {}
+      }
+    },
     "simpleShared" : {
       "app": {
         "experiments": {
