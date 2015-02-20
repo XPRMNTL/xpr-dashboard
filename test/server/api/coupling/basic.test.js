@@ -100,23 +100,57 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
       });
     });
 
-    it('should add all data and send back defaulted configs', function(done) {
+    describe('Given a simple experiments list with ALLOW_NEW_EXP_DEFAULT set to false, ', function () {
+      before(function(done) {
+        process.env.ALLOW_NEW_EXP_DEFAULT = 'false';
+        done();
+      });
 
-      supertest.agent(app)
-        .post(ENDPOINT)
-        .set({
-          'x-feature-key': devKey
-        })
-        .send(mocks.raw.simple)
-        .expect(200, function(err, resp) {
-          if (err) return done(err);
+      it('should add all data and send back defaulted configs with all defaults set to false', function (done) {
 
-          expect(resp.body).to.eql(mocks.api.simple);
-          done();
-        });
+        supertest.agent(app)
+          .post(ENDPOINT)
+          .set({
+            'x-feature-key': devKey
+          })
+          .send(mocks.raw.simple)
+          .expect(200, function (err, resp) {
+            if (err) return done(err);
 
+            expect(resp.body).to.eql(mocks.api.simpleNoDefault);
+            done();
+          });
+      });
     });
 
+    describe('Given a simple experiments list with ALLOW_NEW_EXP_DEFAULT set to true, ', function () {
+      before(function(done) {
+        process.env.ALLOW_NEW_EXP_DEFAULT = 'true';
+        done();
+      });
+
+      after(function(done) {
+        process.env.ALLOW_NEW_EXP_DEFAULT = 'false';
+        done();
+      });
+
+      it('should add all data and send back defaulted configs', function (done) {
+
+        supertest.agent(app)
+          .post(ENDPOINT)
+          .set({
+            'x-feature-key': devKey
+          })
+          .send(mocks.raw.simple)
+          .expect(200, function (err, resp) {
+            if (err) return done(err);
+
+            expect(resp.body).to.eql(mocks.api.simple);
+
+            done();
+          });
+      });
+    });
   });
 
   describe('When fetching experiments, POST(/)', function() {
@@ -124,6 +158,8 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
     var devKey, sharedKey, _docs;
 
     before(function(done) {
+      process.env.ALLOW_NEW_EXP_DEFAULT = 'true';
+
       helpers.createApps([
         { 'github_repo': 'example/example2' },
         { 'github_repo': 'example/shared2' }
@@ -137,13 +173,14 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
     });
 
     after(function(done) {
+      process.env.ALLOW_NEW_EXP_DEFAULT = 'false';
+
       helpers.deleteApps(_docs, function() {
         done();
       });
     });
 
     describe('Given no shared header', function() {
-
       it('should send back all existing experiments', function(done) {
 
         supertest.agent(app)
