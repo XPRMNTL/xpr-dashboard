@@ -83,6 +83,15 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
     });
 
     describe('Given an experiments list with any invalid experiments, ', function() {
+      before(function(done) {
+        process.env.ALLOW_NEW_EXP_DEFAULT = 'true';
+        done();
+      });
+
+      after(function(done) {
+        process.env.ALLOW_NEW_EXP_DEFAULT = 'false';
+        done();
+      });
 
       it('should reply with an experiments list with invalid experiments removed', function(done) {
         supertest.agent(app)
