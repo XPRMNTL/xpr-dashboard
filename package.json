@@ -1,6 +1,6 @@
 {
   "name": "feature",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "description": "Experiments Dashboard for Frontier",
   "main": "app.js",
   "author": "Dan Crews <crewsd@gmail.com>",
@@ -20,7 +20,7 @@
     "stylus": "^0.47.1",
     "superagent": "^0.18.1",
     "superagent-defaults": "^0.1.6",
-    "xpr-util-validation": "git+https://github.com/fs-webdev/xpr-util-validation.js.git#0.0.1"
+    "xpr-util-validation": "^0.0.1"
   },
   "devDependencies": {
     "chai": "^1.9.2",
