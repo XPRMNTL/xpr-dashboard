@@ -25,13 +25,17 @@
   </thead>
   <tbody class="hideLoading">
     <tr data-app-item="edit" data-ng-repeat="app in appList | orderBy : nameOrder | filter:search"></tr>
-    <tr data-ng-hide="appList.length">
+    <tr data-ng-hide="appList.length || appListError">
       <td colspan="2">This list is empty. <a href="/add">Please add a repo.</a></td>
     </tr>
   </tbody>
   <tfoot>
-    <td colspan="2">
+    <td data-ng-hide="appListError" class="hideLoading" colspan="2">
       <a href="/add" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Add to List</a>
     </td>
   </tfoot>
 </table>
+
+<div data-ng-show="appListError">
+  An error occurred while retrieving the application list.
+</div>

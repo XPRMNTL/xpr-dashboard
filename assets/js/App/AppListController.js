@@ -18,9 +18,8 @@
           $scope.appList = appList;
           $scope._loaded(false);
         }, function(err) {
-          // FIXME: What to do in case of error
           console.error(err);
-          alert('appList fetch err, what now?');
+          $scope.appListError = true;
           $scope._loaded(false);
         });
 
