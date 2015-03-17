@@ -1,6 +1,7 @@
-[![XPRMNTL](https://raw.githubusercontent.com/XPRMNTL/XPRMNTL.github.io/master/images/ghLogo.png)](https://github.com/XPRMNTL/XPRMNTL.github.io)
-# XPRMNTL Dashboard
-[![Build Status](https://travis-ci.org/XPRMNTL/feature.svg?branch=master)](https://travis-ci.org/XPRMNTL/feature)
+[![XPRMNTL][logo-image]][logo-url]
+# XPRMNTL Dashboard.js
+[![Build Status][build-image]][build-url]
+[![Tips][gratipay-image]][gratipay-url]
 
 Dashboard component of the [XPRMNTL](https://github.com/XPRMNTL/XPRMNTL.github.io) Experiments as a Service product
 
@@ -91,10 +92,10 @@ The Coupling endpoint is the way that applications "announce":
   - Shared Experiments information (if applicable)
     - Which data it is sharing (devKey)
     - Which experiments that share us using
-  
+
 And receive back:
   - The app and shared experiment configurations
-  
+
 #### Example
 
 ##### Request
@@ -128,7 +129,7 @@ Body:
         "description": "Here's my description. You likey? String"
       }
     ]
-  }  
+  }
 }
 ```
 
@@ -154,3 +155,10 @@ Body:
 
 ### Dashboard Endpoints
 This stuff is all used internally. In the future, this may be open to the external API, but it currently requires use of the Github OAuth, so external systems would need to be authenticated separately (user-based devkeys?). Totally doable, just not yet done.
+
+[logo-image]: https://raw.githubusercontent.com/XPRMNTL/XPRMNTL.github.io/master/images/ghLogo.png
+[logo-url]: https://github.com/XPRMNTL/XPRMNTL.github.io
+[build-image]: https://travis-ci.org/XPRMNTL/feature.svg?branch=master
+[build-url]: https://travis-ci.org/XPRMNTL/feature
+[gratipay-image]: https://img.shields.io/gratipay/dncrews.svg
+[gratipay-url]: https://www.gratipay.com/dncrews/
