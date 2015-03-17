@@ -1,6 +1,6 @@
 {
   "name": "feature",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Experiments Dashboard for Frontier",
   "main": "app.js",
   "author": "Dan Crews <crewsd@gmail.com>",
