@@ -1,6 +1,7 @@
 [![XPRMNTL][logo-image]][logo-url]
 # XPRMNTL Dashboard.js
 [![Build Status][build-image]][build-url]
+[![NPM version][npm-image]][npm-url]
 [![Tips][gratipay-image]][gratipay-url]
 
 Dashboard component of the [XPRMNTL](https://github.com/XPRMNTL/XPRMNTL.github.io) Experiments as a Service product
@@ -29,7 +30,7 @@ The current implementation requires a Github Organization with repositories for 
 
 ### Heroku
 #### Automated
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/XPRMNTL/feature/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/XPRMNTL/xpr-dashboard/tree/master)
 #### Manual
 Create the Heroku repository
 
@@ -41,7 +42,7 @@ Created http://random-thing-23.herokuapp.com/ | git@heroku.com:random-thing-23.g
 
 Clone the repository
 ```sh
-$ git clone https://github.com/XPRMNTL/feature
+$ git clone https://github.com/XPRMNTL/xpr-dashboard
 ```
 
 
@@ -158,7 +159,9 @@ This stuff is all used internally. In the future, this may be open to the extern
 
 [logo-image]: https://raw.githubusercontent.com/XPRMNTL/XPRMNTL.github.io/master/images/ghLogo.png
 [logo-url]: https://github.com/XPRMNTL/XPRMNTL.github.io
-[build-image]: https://travis-ci.org/XPRMNTL/feature.svg?branch=master
-[build-url]: https://travis-ci.org/XPRMNTL/feature
+[build-image]: https://travis-ci.org/XPRMNTL/xpr-dashboard.svg?branch=master
+[build-url]: https://travis-ci.org/XPRMNTL/xpr-dashboard
+[npm-image]: https://img.shields.io/npm/v/xpr-dashboard.svg
+[npm-url]: https://www.npmjs.org/package/xpr-dashboard
 [gratipay-image]: https://img.shields.io/gratipay/dncrews.svg
 [gratipay-url]: https://www.gratipay.com/dncrews/
