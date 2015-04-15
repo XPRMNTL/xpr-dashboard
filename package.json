@@ -15,11 +15,10 @@
     "passport-github": "^0.1.5",
     "redis": "^0.12.1",
     "simple-stack-common": "^0.2.3",
-    "stylus": "^0.51.1",
-    "superagent": "^1.2.0",
-    "superagent-defaults": "^0.1.12",
-    "xpr-dash-mongodb": "^2.0.0",
-    "xpr-util-validation": "^1.0.0"
+    "stylus": "^0.47.1",
+    "superagent": "^0.18.1",
+    "superagent-defaults": "^0.1.6",
+    "xpr-util-validation": "git+https://github.com/fs-webdev/xpr-util-validation.js.git#0.1.0"
   },
   "devDependencies": {
     "chai": "^2.3.0",
