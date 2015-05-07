@@ -3,24 +3,22 @@
 /**
  * Module Dependencies
  */
-var Q = require('q')
-  , AppModel = require('xpr-dash-mongodb').app;
+var AppModel = require('xpr-dash-mongodb').app
+  , Promise = Promise || require('bluebird');
 
 exports.createApps = function (data, cb) {
   function maker(config) {
-    var dfd = Q.defer();
+    return new Promise(function(resolve, reject) {
+      var doc = new AppModel(config);
 
-    var doc = new AppModel(config);
-
-    doc.serialize(function(err) {
-      if (err) return dfd.reject(err);
-      dfd.resolve(doc);
+      doc.serialize(function(err) {
+        if (err) return reject(err);
+        resolve(doc);
+      });
     });
-
-    return dfd.promise;
   }
 
-  Q.all(data.map(maker))
+  Promise.all(data.map(maker))
     .then(function(docs) {
       cb(null, docs);
     }, function(err) {
@@ -29,12 +27,12 @@ exports.createApps = function (data, cb) {
 };
 
 exports.deleteApps = function (apps, cb) {
-  Q.all(apps.map(function(item) {
-    var dfd = Q.defer();
-    item.remove(function() {
-      dfd.resolve();
+  Promise.all(apps.map(function(item) {
+    return new Promise(function(resolve, reject) {
+      item.remove(function() {
+        resolve();
+      });
     });
-    return dfd.promise;
   })).then(function() {
     cb();
   });
