@@ -3,12 +3,8 @@
 /**
  * Module Dependencies
  */
-var Q = require('q');
-
-/**
- * Local Dependencies
- */
-var AppModel = require('../../lib/models/app');
+var Q = require('q')
+  , AppModel = require('xpr-dash-mongodb').app;
 
 exports.createApps = function (data, cb) {
   function maker(config) {

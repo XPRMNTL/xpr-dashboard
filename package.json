@@ -1,30 +1,30 @@
 {
   "name": "xpr-dashboard",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Experiments Dashboard for Frontier",
   "main": "app.js",
   "author": "Dan Crews <crewsd@gmail.com>",
   "dependencies": {
-    "connect-redis": "^2.0.0",
-    "debug": "^2.0.0",
-    "glob": "^4.0.3",
-    "jade": "^1.3.1",
-    "mongoose": "3.8.x",
-    "node-uuid": "^1.4.1",
-    "passport": "^0.2.0",
+    "connect-redis": "^2.3.0",
+    "debug": "^2.1.3",
+    "glob": "^5.0.5",
+    "jade": "^1.9.2",
+    "node-uuid": "^1.4.3",
+    "passport": "^0.2.1",
     "passport-github": "^0.1.5",
-    "q": "^1.0.1",
-    "redis": "^0.11.0",
+    "q": "^2.0.3",
+    "redis": "^0.12.1",
     "simple-stack-common": "^0.2.3",
-    "stylus": "^0.47.1",
-    "superagent": "^0.18.1",
-    "superagent-defaults": "^0.1.6",
-    "xpr-util-validation": "^0.0.1"
+    "stylus": "^0.51.1",
+    "superagent": "^1.2.0",
+    "superagent-defaults": "^0.1.12",
+    "xpr-dash-mongodb": "^1.0.0",
+    "xpr-util-validation": "0.0.2"
   },
   "devDependencies": {
-    "chai": "^1.9.2",
-    "mocha": "^1.20.1",
-    "supertest": "^0.14.0"
+    "chai": "^2.3.0",
+    "mocha": "^2.2.4",
+    "supertest": "^0.15.0"
   },
   "scripts": {
     "test": "NODE_ENV=test `pwd`/node_modules/.bin/mocha --reporter spec test/server/**/*"

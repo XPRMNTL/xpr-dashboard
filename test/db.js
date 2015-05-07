@@ -1,13 +1,7 @@
 /* global before, after */
 'use strict';
 
-var connection, mongoose;
-
-mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/test');
-
-connection = mongoose.connection;
+var connection = require('xpr-dash-mongodb').init('mongodb://localhost/test');
 
 before(function(done) {
   return connection.on('open', function() {

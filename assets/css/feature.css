@@ -284,12 +284,12 @@ nav.goBack {
   display: inline-block;
   margin: 0 0 0 10px;
 }
-@media( min-resolution: 192dpi) {
+@media (min-resolution: 192dpi) {
   .brand:before {
     background-image: url("../img/logo2x.png");
   }
 }
-@media( max-width: 767px) {
+@media (max-width: 767px) {
   .brand {
     height: 45px;
     margin: 12px 0 8px 60px;
