@@ -1,6 +1,6 @@
 {
   "name": "xpr-dashboard",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Experiments Dashboard for Frontier",
   "main": "app.js",
   "author": "Dan Crews <crewsd@gmail.com>",
@@ -18,7 +18,7 @@
     "stylus": "^0.51.1",
     "superagent": "^1.2.0",
     "superagent-defaults": "^0.1.12",
-    "xpr-dash-mongodb": "^1.0.0",
+    "xpr-dash-mongodb": "^2.0.0",
     "xpr-util-validation": "^1.0.0"
   },
   "devDependencies": {
