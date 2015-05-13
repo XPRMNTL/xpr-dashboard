@@ -20,7 +20,7 @@ var supertest = require('supertest')
 var root = '../../../../'
   , mocks = require(root + 'test/mocks')
   , db = require(root + 'test/db')
-  , helpers = require(root + 'test/server/helpers')
+  , helpers = require('xpr-dash-mongodb').testHelpers
   , app = require(root + '/app');
 
 /**

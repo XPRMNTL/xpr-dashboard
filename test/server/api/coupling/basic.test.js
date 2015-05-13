@@ -20,7 +20,7 @@ var supertest = require('supertest')
 var root = '../../../../'
   , mocks = require(root + 'test/mocks')
   , db = require(root + 'test/db')
-  , helpers = require(root + 'test/server/helpers')
+  , helpers = require('xpr-dash-mongodb').testHelpers
   , app = require(root + '/app');
 
 /**
@@ -83,14 +83,12 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
     });
 
     describe('Given an experiments list with any invalid experiments, ', function() {
-      before(function(done) {
+      before(function() {
         process.env.ALLOW_NEW_EXP_DEFAULT = 'true';
-        done();
       });
 
-      after(function(done) {
+      after(function() {
         process.env.ALLOW_NEW_EXP_DEFAULT = 'false';
-        done();
       });
 
       it('should reply with an experiments list with invalid experiments removed', function(done) {
@@ -133,14 +131,12 @@ describe('API Coupling interface (/api/coupling) for basic configurations:', fun
     });
 
     describe('Given a simple experiments list with ALLOW_NEW_EXP_DEFAULT set to true, ', function () {
-      before(function(done) {
+      before(function() {
         process.env.ALLOW_NEW_EXP_DEFAULT = 'true';
-        done();
       });
 
-      after(function(done) {
+      after(function() {
         process.env.ALLOW_NEW_EXP_DEFAULT = 'false';
-        done();
       });
 
       it('should add all data and send back defaulted configs', function (done) {
