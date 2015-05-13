@@ -21,7 +21,7 @@ var root = '../../../../'
   , mocks = require(root + 'test/mocks')
   , db = require(root + 'test/db')
   , helpers = require('xpr-dash-mongodb').testHelpers
-  , app = require(root + '/app');
+  , app = require(root + '/lib/app');
 
 /**
  * Local vars

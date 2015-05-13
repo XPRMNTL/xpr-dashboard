@@ -18,7 +18,7 @@ var supertest = require('supertest')
  * Local Dependencies
  */
 var root = '../../../../'
-  , app = require(root + '/app');
+  , app = require(root + '/lib/app');
 
 /**
  * Local vars
