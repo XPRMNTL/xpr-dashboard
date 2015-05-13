@@ -1,7 +1,7 @@
 # Stuff I want to do
 
 ## Application
-1. Configuration subscriptions (over time)
+1. ~~Configuration subscriptions (over time)~~
 2. Configuration Push
 3. API Documentation
 4. UI Testing
