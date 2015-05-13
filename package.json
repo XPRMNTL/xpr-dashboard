@@ -2,7 +2,7 @@
   "name": "xpr-dashboard",
   "version": "3.0.1",
   "description": "Experiments Dashboard for Frontier",
-  "main": "app.js",
+  "main": "./lib/app.js",
   "author": "Dan Crews <crewsd@gmail.com>",
   "dependencies": {
     "bluebird": "^2.9.25",
