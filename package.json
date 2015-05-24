@@ -2,9 +2,11 @@
   "name": "xpr-dashboard",
   "version": "3.0.1",
   "description": "Experiments Dashboard for Frontier",
-  "main": "./lib/app.js",
+  "main": "./index.js",
   "author": "Dan Crews <crewsd@gmail.com>",
+  "repository": "https://github.com/XPRMNTL/xpr-dashboard",
   "dependencies": {
+    "babel": "^5.4.7",
     "bluebird": "^2.9.25",
     "connect-redis": "^2.3.0",
     "debug": "^2.1.3",

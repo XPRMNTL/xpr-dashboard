@@ -1,6 +1,8 @@
 /* global before, after */
 'use strict';
 
+require('babel/register');
+
 var connection = require('xpr-dash-mongodb').init('mongodb://localhost/test');
 
 before(function(done) {
