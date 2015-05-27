@@ -4,7 +4,14 @@
   "description": "Experiments Dashboard for Frontier",
   "main": "./index.js",
   "author": "Dan Crews <crewsd@gmail.com>",
-  "repository": "https://github.com/XPRMNTL/xpr-dashboard",
+  "homepage": "https://github.com/XPRMNTL/xpr-dashboard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/XPRMNTL/xpr-dashboard"
+  },
+  "bugs": {
+    "url": "https://github.com/XPRMNTL/xpr-dashboard/issues"
+  },
   "dependencies": {
     "babel": "^5.4.7",
     "bluebird": "^2.9.25",
@@ -20,6 +27,7 @@
     "stylus": "^0.51.1",
     "superagent": "^1.2.0",
     "superagent-defaults": "^0.1.12",
+    "xpr-dash-couchdb": "^1.0.0",
     "xpr-dash-mongodb": "^2.0.0",
     "xpr-util-validation": "^1.0.0"
   },
@@ -32,6 +40,6 @@
     "test": "NODE_ENV=test `pwd`/node_modules/.bin/mocha --reporter spec test/server/**/*"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "0.12.x"
   }
 }
