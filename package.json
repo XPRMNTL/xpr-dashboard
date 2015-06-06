@@ -25,7 +25,6 @@
     "redis-url": "^1.2.0",
     "superagent": "^1.2.0",
     "superagent-defaults": "^0.1.12",
-    "xpr-dash-couchdb": "^1.0.0",
     "xpr-dash-mongodb": "^2.0.0",
     "xpr-util-validation": "^1.0.0"
   },
