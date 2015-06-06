@@ -1,11 +1,11 @@
-// For adding an Angular Module
-//
-// `flags` is a set of bit flags
-// Start with 0. If you want the:
-//   Controller, add 1
-//   Service, add 2
-//   Directives, add 4
-//   Filters, add 8
+//- For adding an Angular Module
+//-
+//- `flags` is a set of bit flags
+//- Start with 0. If you want the:
+//-   Controller, add 1
+//-   Service, add 2
+//-   Directives, add 4
+//-   Filters, add 8
 mixin ngModule(dir, name, flags)
   if typeof name === 'number'
     - flags = name
