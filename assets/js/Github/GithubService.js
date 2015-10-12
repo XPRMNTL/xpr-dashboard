@@ -10,8 +10,9 @@
   app.factory('GithubService', [
     '$http',
     '$q',
+    'userService',
 
-    function GithubService($http, $q) {
+    function GithubService($http, $q, userService) {
 
       return {
         getApps : getApps
@@ -22,29 +23,39 @@
           , url = API + '/apps'
           , list;
 
-        if (! refresh) list = _local();
-
-        if (list) {
-          dfd.resolve(list);
-          return dfd.promise;
-        }
-
-        $http.get(url)
-          .success(function(data, status, headers) {
-
-            _local(data);
-
-            var fetched = headers('x-created-time');
-            dfd.resolve({
-              list : data,
-              time : fetched
+        userService.getUser().then(function(user) {
+          if (user.employeeID) {
+            return dfd.resolve({
+              list: [],
+              time: new Date()
             });
-          })
-          .error(function(data, status) {
-            console.error(data, status);
-            throw new Error('App Fetch Error');
-            //FIXME: Error State
-          });
+          }
+
+          if (! refresh) list = _local();
+
+          if (list) {
+            dfd.resolve(list);
+            return dfd.promise;
+          }
+
+          $http.get(url)
+            .success(function(data, status, headers) {
+
+              _local(data);
+
+              var fetched = headers('x-created-time');
+              dfd.resolve({
+                list : data,
+                time : fetched
+              });
+            })
+            .error(function(data, status) {
+              console.error(data, status);
+              throw new Error('App Fetch Error');
+              //FIXME: Error State
+            });
+
+        });
 
         return dfd.promise;
 

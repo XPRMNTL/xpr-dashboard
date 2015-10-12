@@ -13,6 +13,7 @@
     "node-uuid": "^1.4.3",
     "passport": "^0.2.1",
     "passport-github": "^0.1.5",
+    "passport-saml": "^0.13.0",
     "redis": "^0.12.1",
     "simple-stack-common": "^0.2.3",
     "stylus": "^0.51.1",

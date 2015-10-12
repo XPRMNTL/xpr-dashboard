@@ -20,9 +20,9 @@
               scope.user = user;
             });
 
-          element.on('click', '.btn', function() {
-            $(this).button('loading');
-          });
+          // element.on('click', '.btn', function() {
+          //   $(this).button('loading');
+          // });
         }
       };
     }
