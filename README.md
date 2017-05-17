@@ -81,6 +81,10 @@ Optional environment variables:
   - A boolean value which determines if client apps are allowed to set the default value for new experiments
   - Default: false
 
+## Services required for localdev
+- local mongodb server
+- local redis-server (can't save github auth session without it)
+
 ## API Documentation
 There are two endpoint groups of the API. There are the Dashboard endpoints, which are used internally by this dashboard, and the Coupling endpoint, which is what your experimenting apps will use.
 

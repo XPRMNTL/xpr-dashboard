@@ -61,8 +61,14 @@
     <div class="well">You have no experiments. Add some.</div>
   </div> -->
 
-  <div data-edit-experiment data-ng-repeat="exp in app.experiments"></div>
+  <div data-edit-experiment data-ng-repeat="exp in app.experiments | filter : {archived: false}"></div>
+  <hr>
+
+  <h2>Archived</h2>
+  <div style="background-color: #aaa" data-edit-experiment data-ng-repeat="exp in app.experiments | filter : {archived: true}"></div>
+
   <div data-ng-hide="app.experiments.length">
+    <hr>
     <div class="well">You have no experiments. Add some.</div>
   </div>
 </article>
