@@ -141,6 +141,31 @@ a {
   padding-top: 0;
   padding-bottom: 0;
 }
+.archived {
+  padding: 1em 3em;
+  background-color: rgba(1,1,1,0.1);
+  border-radius: 4px;
+}
+.archived .archived-heading {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.archived .archived-heading > span {
+  display: flex;
+  align-items: center;
+}
+.archived .archived-heading > span > .glyphicon {
+  color: #999;
+  font-size: 130%;
+}
+.archived > div > .panel {
+  border: 2px dashed #fff;
+}
+.archived > div > .panel .panel-heading > div > div > h4 {
+  opacity: 0.5;
+}
 .table {
   border-top: 1px solid #d8d8d8;
   border-collapse: separate;
@@ -232,6 +257,7 @@ table tr:hover .actions {
 }
 .actions .glyphicon {
   cursor: pointer;
+  font-size: 130%;
 }
 nav.goBack {
   font-weight: bold;
@@ -270,6 +296,12 @@ nav.goBack {
 .actions {
   text-align: right;
   white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+}
+.actions span,
+.actions small {
+  margin: auto 0 auto 0.4em;
 }
 .action {
   cursor: pointer;

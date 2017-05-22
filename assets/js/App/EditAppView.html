@@ -64,8 +64,18 @@
   <div data-edit-experiment data-ng-repeat="exp in app.experiments | filter : {archived: false}"></div>
   <hr>
 
-  <h2>Archived</h2>
-  <div style="background-color: #aaa" data-edit-experiment data-ng-repeat="exp in app.experiments | filter : {archived: true}"></div>
+  <div class="archived">
+    <div class="archived-heading" ng-click="isCollapsed = !isCollapsed">
+      <span>
+        <h2>Archived</h2>
+        <span class="glyphicon glyphicon-question-sign" popover-trigger="mouseenter" popover-placement="top" popover="Archived experiments: Will not be sent to apps, will not be re-added by apps, and can be deleted"></span>
+      </span>
+      <span class="glyphicon" ng-class="{'glyphicon-chevron-up': isCollapsed, 'glyphicon-chevron-down': !isCollapsed }"></span>
+    </div>
+    <div collapse="!isCollapsed">
+      <div data-edit-experiment data-ng-repeat="exp in app.experiments | filter : {archived: true}"></div>
+    </div>
+  </div>
 
   <div data-ng-hide="app.experiments.length">
     <hr>

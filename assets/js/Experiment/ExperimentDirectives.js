@@ -62,26 +62,19 @@
           };
 
           scope.setArchived = function(val, expData) {
-            console.log('archived, val:', val);
             var id = scope.exp._id;
             scope.failText = null;
 
-            var confMessage = (val)
-              ? 'Archive this experiment? \nIt will be removed from the current list of experiments, and filtered to the bottom of the page'
-              : 'Un-archive this experiment? \nIt will be re-added to the current list of experiments, and filtered to the top of the page';
-
-            if (window.confirm(confMessage)) {
-              expData.archived = val;
-              experimentService.update(expData)
-                .then(function(data) {
-                  ['archived'].map(function(key) {
-                    scope.exp.archived = data.archived;
-                  });
-                  master = angular.copy(data);
-                }, function(err) {
-                  scope.failText = 'Archive failed, sry: {0} ({1})'.format(err.statusText, err.status || '000');
+            expData.archived = val;
+            experimentService.update(expData)
+              .then(function(data) {
+                ['archived'].map(function(key) {
+                  scope.exp.archived = data.archived;
                 });
-            }
+                master = angular.copy(data);
+              }, function(err) {
+                scope.failText = 'Archive failed, sry: {0} ({1})'.format(err.statusText, err.status || '000');
+              });
 
           };
 
