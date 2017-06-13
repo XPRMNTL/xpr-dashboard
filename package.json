@@ -19,7 +19,7 @@
     "stylus": "^0.51.1",
     "superagent": "^1.2.0",
     "superagent-defaults": "^0.1.12",
-    "xpr-dash-mongodb": "git+https://github.com/fs-webdev/xpr-dash-mongodb.git#archive",
+    "xpr-dash-mongodb": "2.1.0",
     "xpr-util-validation": "^1.0.0"
   },
   "devDependencies": {

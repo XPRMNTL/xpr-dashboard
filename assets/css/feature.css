@@ -143,8 +143,9 @@ a {
 }
 .archived {
   padding: 1em 3em;
-  background-color: rgba(1,1,1,0.1);
+  background-color: #ddd;
   border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
 }
 .archived .archived-heading {
   cursor: pointer;
