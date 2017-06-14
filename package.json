@@ -1,6 +1,6 @@
 {
   "name": "xpr-dashboard",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Experiments Dashboard for Frontier",
   "main": "./lib/app.js",
   "author": "Dan Crews <crewsd@gmail.com>",
