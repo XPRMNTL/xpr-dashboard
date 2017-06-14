@@ -61,6 +61,23 @@
             return ! angular.equals(expData, master);
           };
 
+          scope.setArchived = function(val, expData) {
+            var id = scope.exp._id;
+            scope.failText = null;
+
+            expData.archived = val;
+            experimentService.update(expData)
+              .then(function(data) {
+                ['archived'].map(function(key) {
+                  scope.exp.archived = data.archived;
+                });
+                master = angular.copy(data);
+              }, function(err) {
+                scope.failText = 'Archive failed, sry: {0} ({1})'.format(err.statusText, err.status || '000');
+              });
+
+          };
+
           scope.deleteMe = function() {
             var id = scope.exp._id;
             scope.failText = null;
@@ -89,7 +106,7 @@
 
             experimentService.update(expData)
               .then(function(data) {
-                ['value','references','date_modified'].map(function(key) {
+                ['value','references','archived','date_modified'].map(function(key) {
                   scope.exp[key] = data[key];
                 });
                 master = angular.copy(data);

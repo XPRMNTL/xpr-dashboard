@@ -143,6 +143,31 @@ a
   padding-top 0
   padding-bottom 0
 
+.archived
+  padding 1em 3em
+  background-color #ddd
+  border-radius 4px
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+
+  .archived-heading
+    cursor pointer
+    display flex
+    align-items center
+    justify-content space-between
+
+    & > span
+      display flex
+      align-items center
+
+      & > .glyphicon
+        color #999
+        font-size 130%
+
+  & > div > .panel
+    border 2px dashed #fff
+
+    .panel-heading > div > div > h4
+      opacity 0.5
 
 // Table Styling
 .table
@@ -223,6 +248,7 @@ table tr:hover .actions
 
 .actions .glyphicon
   cursor pointer
+  font-size 130%
 
 nav.goBack
   font-weight bold
@@ -265,6 +291,11 @@ nav.goBack
 .actions
   text-align right
   white-space nowrap
+  display flex
+  justify-content space-between
+
+  span, small
+    margin auto 0 auto 0.4em
 
 .action
   cursor pointer

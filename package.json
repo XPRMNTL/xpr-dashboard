@@ -6,6 +6,7 @@
   "author": "Dan Crews <crewsd@gmail.com>",
   "dependencies": {
     "bluebird": "^2.9.25",
+    "compression": "^1.6.2",
     "connect-redis": "^2.3.0",
     "debug": "^2.1.3",
     "glob": "^5.0.5",
@@ -18,7 +19,7 @@
     "stylus": "^0.51.1",
     "superagent": "^1.2.0",
     "superagent-defaults": "^0.1.12",
-    "xpr-dash-mongodb": "^2.0.0",
+    "xpr-dash-mongodb": "2.1.0",
     "xpr-util-validation": "^1.0.0"
   },
   "devDependencies": {

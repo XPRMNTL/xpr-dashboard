@@ -1,4 +1,4 @@
-<div class="panel" data-ng-class="getClassName()">
+<div class="panel" data-ng-class="getClassName()" data-exp-archived="{{exp.archived}}">
   <div class="panel-heading clearfix no-gap">
     <div class="row">
       <div class="col-md-7">
@@ -40,7 +40,9 @@
         </span>
         <span class="pull-right actions" data-ng-show="! isDirty(exp)">
           <small data-ng-class="{ true: 'label label-warning' }[modified.isOld]" data-ng-bind="'Modified: ' + modified.fromNow()" title="{{ modified.format('MMMM Do YYYY, h:mm:ss a') }}"></small>
-          <span data-ng-click="deleteMe()" class="glyphicon glyphicon-trash deleter"></span>
+          <span  data-ng-show="!exp.archived" data-ng-click="setArchived(true,exp)" class="glyphicon glyphicon-trash" popover-trigger="mouseenter" popover-placement="left" popover="Send to 'Archived'. It will not be sent to or re-added by apps"></span>
+          <span  data-ng-show="exp.archived" data-ng-click="setArchived(false,exp)" class="glyphicon glyphicon-upload"  popover-trigger="mouseenter" popover-placement="left" popover="Un-archive this experiment. Apps will use it again."></span>
+          <span data-ng-show="exp.archived" data-ng-click="deleteMe()" class="glyphicon glyphicon-remove deleter"  popover-trigger="mouseenter" popover-placement="left" popover="Delete this experiment for good (not recoverable)"></span>
           <br />
           <small class="label label-danger" data-ng-bind="failText"></small>
         </span>
