@@ -31,6 +31,6 @@
     "test": "NODE_ENV=test `pwd`/node_modules/.bin/mocha --reporter spec test/server/**/*"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "8"
   }
 }
