@@ -1,5 +1,7 @@
 [![XPRMNTL][logo-image]][logo-url]
 # XPRMNTL Dashboard.js
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/XPRMNTL/xpr-dashboard.svg)](https://greenkeeper.io/)
 [![Build Status][build-image]][build-url]
 [![NPM version][npm-image]][npm-url]
 [![Tips][gratipay-image]][gratipay-url]
